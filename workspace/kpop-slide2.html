@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Pop History</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 720pt;
+            height: 405pt;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A0A1A 100%);
+            font-family: Arial, sans-serif;
+            color: #FFFFFF;
+            padding: 40pt;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .header {
+            border-left: 8pt solid #FF2E96;
+            padding-left: 20pt;
+            margin-bottom: 30pt;
+        }
+        h1 {
+            font-size: 42pt;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20pt;
+        }
+        .era {
+            background: rgba(255, 46, 150, 0.1);
+            border-left: 4pt solid #FF2E96;
+            padding: 15pt 20pt;
+            border-radius: 0 8pt 8pt 0;
+        }
+        .era:nth-child(2) {
+            background: rgba(155, 77, 202, 0.1);
+            border-left-color: #9B4DCA;
+        }
+        .era:nth-child(3) {
+            background: rgba(0, 229, 255, 0.1);
+            border-left-color: #00E5FF;
+        }
+        .era-title {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #FF2E96;
+            margin-bottom: 6pt;
+            text-transform: uppercase;
+        }
+        .era:nth-child(2) .era-title {
+            color: #9B4DCA;
+        }
+        .era:nth-child(3) .era-title {
+            color: #00E5FF;
+        }
+        .era-desc {
+            font-size: 14pt;
+            color: #CCCCCC;
+            line-height: 1.4;
+        }
+        .accent {
+            position: absolute;
+            width: 150pt;
+            height: 150pt;
+            background: radial-gradient(circle, rgba(255, 46, 150, 0.2) 0%, transparent 70%);
+            top: 0;
+            right: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="accent"></div>
+    <div class="header">
+        <h1>A Brief History</h1>
+    </div>
+    <div class="content">
+        <div class="era">
+            <div class="era-title">1990s - The Birth</div>
+            <div class="era-desc">Seo Taiji and Boys revolutionize Korean music with hip-hop influences, laying the foundation for modern K-pop.</div>
+        </div>
+        <div class="era">
+            <div class="era-title">2000s - Hallyu Wave</div>
+            <div class="era-desc">TVXQ, Girls' Generation, Super Junior lead the Korean Wave across Asia with polished idol groups.</div>
+        </div>
+        <div class="era">
+            <div class="era-title">2010s-Present - Global Domination</div>
+            <div class="era-desc">BTS, BLACKPINK, TWICE break international barriers, conquering Billboard, Grammys, and worldwide charts.</div>
+        </div>
+    </div>
+</body>
+</html>

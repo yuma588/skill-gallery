@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Pop Conclusion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 720pt;
+            height: 405pt;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A0A1A 50%, #0A0A2A 100%);
+            font-family: Arial, sans-serif;
+            color: #FFFFFF;
+            padding: 40pt;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            max-width: 550pt;
+        }
+        h1 {
+            font-size: 52pt;
+            font-weight: bold;
+            background: linear-gradient(90deg, #FF2E96, #9B4DCA, #00E5FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30pt;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+        .quote {
+            font-size: 20pt;
+            color: #CCCCCC;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 40pt;
+        }
+        .highlight {
+            color: #FF2E96;
+            font-weight: bold;
+        }
+        .divider {
+            width: 300pt;
+            height: 3pt;
+            background: linear-gradient(90deg, transparent, #FF2E96, #9B4DCA, #00E5FF, transparent);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+        .thank-you {
+            font-size: 16pt;
+            color: #FFFFFF;
+            margin-top: 30pt;
+            letter-spacing: 2px;
+        }
+        .accent-circles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.25;
+        }
+        .circle-1 {
+            width: 200pt;
+            height: 200pt;
+            background: radial-gradient(circle, #FF2E96 0%, transparent 70%);
+            top: -50pt;
+            left: 50pt;
+        }
+        .circle-2 {
+            width: 180pt;
+            height: 180pt;
+            background: radial-gradient(circle, #00E5FF 0%, transparent 70%);
+            bottom: -40pt;
+            right: 40pt;
+        }
+    </style>
+</head>
+<body>
+    <div class="accent-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+    <div class="container">
+        <h1>The Future</h1>
+        <div class="quote">
+            K-pop continues to <span class="highlight">break barriers</span> and <span class="highlight">redefine</span> global music culture, proving that art knows no boundaries.
+        </div>
+        <div class="divider"></div>
+        <div class="thank-you">Thank You</div>
+    </div>
+</body>
+</html>

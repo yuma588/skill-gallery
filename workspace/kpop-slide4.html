@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Pop Global Impact</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 720pt;
+            height: 405pt;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A0A1A 100%);
+            font-family: Arial, sans-serif;
+            color: #FFFFFF;
+            padding: 35pt 40pt 40pt 40pt;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            border-left: 8pt solid #00E5FF;
+            padding-left: 20pt;
+            margin-bottom: 25pt;
+        }
+        h1 {
+            font-size: 38pt;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            gap: 25pt;
+        }
+        .left-panel {
+            flex: 0 0 35%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20pt;
+        }
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4pt solid #00E5FF;
+            padding: 15pt;
+            border-radius: 0 8pt 8pt 0;
+        }
+        .stat-value {
+            font-size: 28pt;
+            font-weight: bold;
+            color: #00E5FF;
+            margin-bottom: 5pt;
+        }
+        .stat-label {
+            font-size: 13pt;
+            color: #CCCCCC;
+        }
+        .right-panel {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        .chart-placeholder {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 3pt dashed rgba(0, 229, 255, 0.5);
+            border-radius: 12pt;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00E5FF;
+            font-size: 16pt;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Global Impact</h1>
+    </div>
+    <div class="content">
+        <div class="left-panel">
+            <div class="stat-item">
+                <div class="stat-value">$12.5B+</div>
+                <div class="stat-label">Annual Revenue</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">120+</div>
+                <div class="stat-label">Countries Reached</div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="placeholder chart-placeholder" id="growth-chart">Chart Area</div>
+        </div>
+    </div>
+</body>
+</html>

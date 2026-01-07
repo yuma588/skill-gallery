@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Pop Culture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 720pt;
+            height: 405pt;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A0A1A 50%, #0A0A2A 100%);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            z-index: 2;
+        }
+        h1 {
+            font-size: 72pt;
+            font-weight: bold;
+            background: linear-gradient(90deg, #FF2E96, #9B4DCA, #00E5FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20pt;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-size: 28pt;
+            color: #FFFFFF;
+            font-weight: normal;
+            letter-spacing: 4px;
+            margin-bottom: 40pt;
+        }
+        .divider {
+            width: 400pt;
+            height: 4pt;
+            background: linear-gradient(90deg, transparent, #FF2E96, #9B4DCA, #00E5FF, transparent);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+        .accent-circles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        .circle-1 {
+            width: 300pt;
+            height: 300pt;
+            background: radial-gradient(circle, #FF2E96 0%, transparent 70%);
+            top: -100pt;
+            right: -100pt;
+        }
+        .circle-2 {
+            width: 250pt;
+            height: 250pt;
+            background: radial-gradient(circle, #9B4DCA 0%, transparent 70%);
+            bottom: -80pt;
+            left: -80pt;
+        }
+        .circle-3 {
+            width: 200pt;
+            height: 200pt;
+            background: radial-gradient(circle, #00E5FF 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="accent-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+    <div class="container">
+        <h1>K-POP</h1>
+        <h2>The Global Music Phenomenon</h2>
+        <div class="divider"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+  Removed 1 nearly identical frames (preserved subtle animations)
+  Reducing frames from 23 to ~12 for emoji size
+Traceback (most recent call last):
+  File "d:\frontend-design\run_heart.py", line 114, in <module>
+    builder.save('heart_beat.gif', num_colors=48, optimize_for_emoji=True, remove_duplicates=True)
+  File "d:\frontend-design\skills\slack-gif-creator-SKILL\core\gif_builder.py", line 250, in save
+    print(f"\n\u2713 GIF created successfully!")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u2713' in position 2: illegal multibyte sequence
