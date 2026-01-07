@@ -1,10 +1,108 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>我的项目</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>部署成功！</h1>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">Skill✦Gallery</div>
+            
+            <div class="category-section">
+                <div class="category-label">From SkillsMP.com</div>
+                <ul class="category-list" id="categoryList">
+                    <!-- Categories will be rendered here -->
+                </ul>
+            </div>
+
+            <div class="category-section">
+                <div class="category-label">Collection</div>
+                <ul class="category-list">
+                    <li class="category-item">
+                        <button class="category-btn" data-category="favorites">
+                            <span>⭐ My Favorites</span>
+                            <span class="count" id="favoriteCount">0</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h1 class="header-title" id="headerTitle">All Skills</h1>
+                <p class="header-subtitle" id="headerSubtitle">Explore and discover powerful skills</p>
+            </header>
+
+            <div class="skills-grid" id="skillsGrid">
+                <!-- Skills will be rendered here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <div class="modal-icon" id="modalIcon">📦</div>
+                    <div class="modal-title-text">
+                        <h2 id="modalTitle">Skill Name</h2>
+                        <p id="modalCategory">Category</p>
+                    </div>
+                </div>
+                <button class="modal-close" onclick="closeModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-tabs">
+                <button class="tab-btn active" data-tab="overview" onclick="switchTab('overview')">Overview</button>
+                <button class="tab-btn" data-tab="skillmd" onclick="switchTab('skillmd')">SKILL.md</button>
+                <button class="tab-btn" data-tab="resources" onclick="switchTab('resources')">Resources</button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content active" id="tab-overview">
+                    <div class="overview-content" id="overviewContent"></div>
+                </div>
+                <div class="tab-content" id="tab-skillmd">
+                    <div class="loading-spinner" id="skillmdLoading">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="skill-md-content" id="skillmdContent" style="display: none;"></div>
+                    <div class="action-buttons" id="skillmdActions" style="display: none;">
+                        <button class="action-btn primary" onclick="copyCode()">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857c0 1.124-.895 2.036-2 2.036H8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z"/>
+                            </svg>
+                            Copy Code
+                        </button>
+                        <button class="action-btn secondary" onclick="downloadSkillMd()">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Download SKILL.md
+                        </button>
+                    </div>
+                </div>
+                <div class="tab-content" id="tab-resources">
+                    <div class="overview-content" id="resourcesContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="modal.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
