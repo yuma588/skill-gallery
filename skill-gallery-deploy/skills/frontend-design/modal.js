@@ -256,8 +256,11 @@ function copyCode() {
 
 async function downloadResource(path, filename) {
     try {
-        // skills/ directory is now in the same directory, so use path directly
+        // Fix path: convert "skills/..." to "../..." for correct relative path
         let correctedPath = path;
+        if (path.startsWith('skills/')) {
+            correctedPath = '../' + path.substring('skills/'.length);
+        }
 
         const response = await fetch(correctedPath);
         if (response.ok) {
