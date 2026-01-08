@@ -6,14 +6,21 @@ const crawler = new GitHubCrawler();
 
 async function main() {
   try {
-    // 定义要爬取的文件列表
+    // 定义要爬取的文件列表 - theme-factory 主题文件
     const files = [
-      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/SKILL.md',
-      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/LICENSE.txt',
-      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/theme-showcase.pdf'
+      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/themes/arctic-frost.md',
+      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/themes/botanical-garden.md',
+      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/themes/desert-rose.md',
+      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/themes/forest-canopy.md',
+      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/themes/golden-hour.md',
+      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/themes/midnight-galaxy.md',
+      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/themes/modern-minimalist.md',
+      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/themes/ocean-depths.md',
+      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/themes/sunset-boulevard.md',
+      'https://github.com/anthropics/skills/blob/main/skills/theme-factory/themes/tech-innovation.md'
     ];
 
-    const outputDir = 'd:/frontend-design/skills/theme-factory-SKILL';
+    const outputDir = 'd:/skill gallery/skills/theme-factory-SKILL/themes';
 
     console.log('开始爬取 theme-factory 文件...\n');
 

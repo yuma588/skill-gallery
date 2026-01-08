@@ -1,6 +1,7 @@
 // State
 let favorites = JSON.parse(localStorage.getItem('skillFavorites')) || [];
 let currentCategory = 'all';
+let currentLanguage = localStorage.getItem('skillLanguage') || 'en';
 
 // Get unique categories (sorted by count descending)
 function getCategories() {
@@ -9,6 +10,74 @@ function getCategories() {
         const countA = skillsData.filter(skill => skill.category === a).length;
         const countB = skillsData.filter(skill => skill.category === b).length;
         return countB - countA;
+    });
+}
+
+// Get translation helper
+function t(key) {
+    return translations[currentLanguage][key] || translations['en'][key] || key;
+}
+
+// Translate category name
+function translateCategory(category) {
+    const categoryMap = {
+        'Tools': 'tools',
+        'Development': 'development',
+        'Data & AI': 'dataAi',
+        'Business': 'business',
+        'DevOps': 'devOps',
+        'Testing & Security': 'testingSecurity',
+        'Documentation': 'documentation',
+        'Content & Media': 'contentMedia',
+        'Lifestyle': 'lifestyle',
+        'Research': 'research',
+        'Databases': 'databases',
+        'Blockchain': 'blockchain'
+    };
+    const key = categoryMap[category] || category.toLowerCase().replace(/[^a-z]/g, '');
+    return t(key);
+}
+
+// Toggle language
+function toggleLanguage() {
+    currentLanguage = currentLanguage === 'en' ? 'zh' : 'en';
+    localStorage.setItem('skillLanguage', currentLanguage);
+    updateLanguage();
+}
+
+// Update all language text
+function updateLanguage() {
+    // Update language button text
+    document.getElementById('langText').textContent = currentLanguage.toUpperCase();
+    
+    // Update sidebar labels
+    document.querySelectorAll('.category-label').forEach(label => {
+        if (label.textContent === 'From SkillsMP.com') {
+            label.textContent = t('fromSkillsMp');
+        } else if (label.textContent === 'Collection') {
+            label.textContent = t('collection');
+        }
+    });
+    
+    // Update My Favorites button
+    const favoritesBtn = document.querySelector('[data-category="favorites"]');
+    if (favoritesBtn) {
+        favoritesBtn.querySelector('span').textContent = t('myFavorites');
+    }
+    
+    // Re-render categories and skills with new language
+    renderCategories();
+    renderSkills(currentCategory);
+    
+    // Update modal if open
+    if (currentSkill) {
+        updateModalLanguage();
+    }
+    
+    // Update all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        el.textContent = t(key);
     });
 }
 
@@ -28,7 +97,7 @@ function renderCategories() {
     let html = `
         <li class="category-item">
             <button class="category-btn ${currentCategory === 'all' ? 'active' : ''}" data-category="all">
-                <span>✨ All Skills</span>
+                <span>${t('allSkills')}</span>
                 <span class="count">${getCategoryCount('all').toLocaleString()}</span>
             </button>
         </li>
@@ -36,10 +105,11 @@ function renderCategories() {
 
     categories.forEach(category => {
         const emoji = categoryEmojis[category] || '⭐';
+        const translatedCategory = translateCategory(category);
         html += `
             <li class="category-item">
                 <button class="category-btn ${currentCategory === category ? 'active' : ''}" data-category="${category}">
-                    <span>${emoji} ${category}</span>
+                    <span>${emoji} ${translatedCategory}</span>
                     <span class="count">${getCategoryCount(category).toLocaleString()}</span>
                 </button>
             </li>
@@ -76,25 +146,26 @@ function renderSkills(category) {
     if (category === 'all') {
         filteredSkills = skillsData;
         const totalCount = getCategoryCount('all');
-        headerTitle.textContent = 'All Skills';
-        headerSubtitle.textContent = `Explore and discover ${totalCount.toLocaleString()} powerful skills from skillsmp.com`;
+        headerTitle.textContent = t('allSkillsTitle');
+        headerSubtitle.textContent = t('allSkillsSubtitle');
     } else if (category === 'favorites') {
         filteredSkills = skillsData.filter(skill => favorites.includes(skill.id));
-        headerTitle.textContent = 'My Favorites';
-        headerSubtitle.textContent = `${filteredSkills.length} skills in your collection`;
+        headerTitle.textContent = t('myFavoritesTitle');
+        headerSubtitle.textContent = `${filteredSkills.length}${t('myFavoritesSubtitle')}`;
     } else {
         filteredSkills = skillsData.filter(skill => skill.category === category);
         const count = getCategoryCount(category);
-        headerTitle.textContent = category;
-        headerSubtitle.textContent = `${count.toLocaleString()} skills available in ${category} (showing ${filteredSkills.length} samples)`;
+        const translatedCategory = translateCategory(category);
+        headerTitle.textContent = translatedCategory;
+        headerSubtitle.textContent = `${count.toLocaleString()}${t('categorySubtitle').replace('{category}', translatedCategory).replace('{count}', filteredSkills.length)}`;
     }
 
     if (filteredSkills.length === 0) {
         skillsGrid.innerHTML = `
             <div class="empty-state" style="grid-column: 1 / -1;">
                 <div class="empty-state-icon">🔍</div>
-                <h3>No skills found</h3>
-                <p>Try selecting a different category or add some favorites</p>
+                <h3>${t('noSkillsFound')}</h3>
+                <p>${t('tryDifferentCategory')}</p>
             </div>
         `;
         return;
@@ -108,7 +179,7 @@ function renderSkills(category) {
                 <h3 class="skill-name">${skill.name}</h3>
                 <p class="skill-description">${skill.description}</p>
                 <div class="skill-footer">
-                    <span class="skill-category">${skill.category}</span>
+                    <span class="skill-category">${translateCategory(skill.category)}</span>
                     <button class="favorite-btn ${isFavorited ? 'favorited' : ''}" onclick="event.stopPropagation(); toggleFavorite('${skill.id}')">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -137,6 +208,7 @@ function toggleFavorite(skillId) {
 
 // Initialize
 function init() {
+    updateLanguage();
     renderCategories();
     renderSkills(currentCategory);
 

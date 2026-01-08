@@ -37,8 +37,18 @@
 
         <main class="main-content">
             <header class="header">
-                <h1 class="header-title" id="headerTitle">All Skills</h1>
-                <p class="header-subtitle" id="headerSubtitle">Explore and discover powerful skills</p>
+                <div class="header-content">
+                    <div>
+                        <h1 class="header-title" id="headerTitle">All Skills</h1>
+                        <p class="header-subtitle" id="headerSubtitle">Explore and discover powerful skills</p>
+                    </div>
+                    <button class="lang-switch-btn" id="langSwitchBtn" onclick="toggleLanguage()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 8l6 6M19 8l-6 6M5 12h14M9 12v6"/>
+                        </svg>
+                        <span id="langText">EN</span>
+                    </button>
+                </div>
             </header>
 
             <div class="skills-grid" id="skillsGrid">
@@ -65,9 +75,9 @@
                 </button>
             </div>
             <div class="modal-tabs">
-                <button class="tab-btn active" data-tab="overview" onclick="switchTab('overview')">Overview</button>
-                <button class="tab-btn" data-tab="skillmd" onclick="switchTab('skillmd')">SKILL.md</button>
-                <button class="tab-btn" data-tab="resources" onclick="switchTab('resources')">Resources</button>
+                <button class="tab-btn active" data-tab="overview" data-i18n="overview" onclick="switchTab('overview')">Overview</button>
+                <button class="tab-btn" data-tab="skillmd" data-i18n="skillmd" onclick="switchTab('skillmd')">SKILL.md</button>
+                <button class="tab-btn" data-tab="resources" data-i18n="resources" onclick="switchTab('resources')">Resources</button>
             </div>
             <div class="modal-body">
                 <div class="tab-content active" id="tab-overview">
@@ -79,13 +89,13 @@
                     </div>
                     <div class="skill-md-content" id="skillmdContent" style="display: none;"></div>
                     <div class="action-buttons" id="skillmdActions" style="display: none;">
-                        <button class="action-btn primary" onclick="copyCode()">
+                        <button class="action-btn primary" data-i18n="copyCode" onclick="copyCode()">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857c0 1.124-.895 2.036-2 2.036H8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z"/>
                             </svg>
                             Copy Code
                         </button>
-                        <button class="action-btn secondary" onclick="downloadSkillMd()">
+                        <button class="action-btn secondary" data-i18n="downloadSkillMd" onclick="downloadSkillMd()">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                                 <polyline points="7 10 12 15 17 10"/>
@@ -103,6 +113,7 @@
     </div>
 
     <!-- 直接使用文件名，适配同目录下的JS文件 -->
+    <script src="translations.js"></script>
     <script src="data.js"></script>
     <script src="modal.js"></script>
     <script src="app.js"></script>

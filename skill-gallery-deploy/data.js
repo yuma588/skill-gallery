@@ -163,15 +163,68 @@ const skillsData = [
             }
         ]
     },
+    {
+        id: "dev-5",
+        name: "Web Artifacts Builder",
+        description: "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Perfect for complex artifacts requiring state management, routing, or shadcn/ui components. Includes init and bundle scripts with pre-configured React 18 + TypeScript + Vite + Parcel + Tailwind CSS 3.4.1 + 40+ shadcn/ui components.",
+        category: "Development",
+        icon: "🚀",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://skillsmp.com/skills/web-artifacts-builder-skill-md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Complete documentation with quick start guide, design guidelines, and usage instructions",
+                path: "skills/web-artifacts-builder-SKILL/SKILL.md"
+            },
+            {
+                name: "init-artifact.sh",
+                description: "Initialization script to create React + TypeScript + Tailwind + shadcn/ui project with all dependencies and 40+ components",
+                path: "skills/web-artifacts-builder-SKILL/scripts/init-artifact.sh"
+            },
+            {
+                name: "bundle-artifact.sh",
+                description: "Bundling script to package React app into single HTML artifact with all code inlined",
+                path: "skills/web-artifacts-builder-SKILL/scripts/bundle-artifact.sh"
+            },
+            {
+                name: "shadcn-components.tar.gz",
+                description: "40+ pre-installed shadcn/ui components (Button, Card, Dialog, Form, Table, etc.) ready to use",
+                path: "skills/web-artifacts-builder-SKILL/scripts/shadcn-components.tar.gz"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Complete license terms and conditions for using the Web Artifacts Builder skill",
+                path: "skills/web-artifacts-builder-SKILL/LICENSE.txt"
+            }
+        ]
+    },
     // Data & AI
     {
         id: "ai-1",
-        name: "LLM & AI",
-        description: "Large Language Models and AI-powered solutions.",
+        name: "XLSX",
+        description: "Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, and visualization. When Claude needs to work with spreadsheets (.xlsx, .xlsm, .csv, .tsv, etc) for: (1) Creating new spreadsheets with formulas and formatting, (2) Reading or analyzing data, (3) Modify existing spreadsheets while preserving formulas, (4) Data analysis and visualization in spreadsheets, or (5) Recalculating formulas",
         category: "Data & AI",
-        icon: "🧠",
-        gradient: "var(--gradient-3)",
-        sourceUrl: "https://skillsmp.com/skills/llm-ai-skill-md"
+        icon: "📊",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://skillsmp.com/skills/xlsx-skill-md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Main skill documentation with comprehensive guide for Excel operations, formulas, formatting, and best practices",
+                path: "skills/xlsx-SKILL/SKILL.md"
+            },
+            {
+                name: "recalc.py",
+                description: "Python script to recalculate Excel formulas using LibreOffice with error detection and reporting",
+                path: "skills/xlsx-SKILL/recalc.py"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Complete license terms and conditions for using the xlsx skill",
+                path: "skills/xlsx-SKILL/LICENSE.txt"
+            }
+        ]
     },
     {
         id: "ai-2",
@@ -250,12 +303,44 @@ const skillsData = [
     // Testing & Security
     {
         id: "security-1",
-        name: "Testing",
-        description: "Automated testing and quality assurance tools.",
+        name: "Web Application Testing",
+        description: "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.",
         category: "Testing & Security",
-        icon: "✅",
-        gradient: "var(--gradient-4)",
-        sourceUrl: "https://skillsmp.com/skills/testing-skill-md"
+        icon: "🌐",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://skillsmp.com/skills/webapp-testing-skill-md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Main skill documentation with complete web application testing guide",
+                path: "skills/webapp-testing-SKILL/SKILL.md"
+            },
+            {
+                name: "with_server.py",
+                description: "Helper script for managing server lifecycle during testing",
+                path: "skills/webapp-testing-SKILL/scripts/with_server.py"
+            },
+            {
+                name: "element_discovery.py",
+                description: "Example script for discovering buttons, links, and inputs",
+                path: "skills/webapp-testing-SKILL/examples/element_discovery.py"
+            },
+            {
+                name: "console_logging.py",
+                description: "Example script for capturing console logs during automation",
+                path: "skills/webapp-testing-SKILL/examples/console_logging.py"
+            },
+            {
+                name: "static_html_automation.py",
+                description: "Example script for automating local HTML files",
+                path: "skills/webapp-testing-SKILL/examples/static_html_automation.py"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Apache License 2.0 terms and conditions for using the Web Application Testing skill",
+                path: "skills/webapp-testing-SKILL/LICENSE.txt"
+            }
+        ]
     },
     {
         id: "security-2",
@@ -490,6 +575,82 @@ const skillsData = [
                 name: "requirements.txt",
                 description: "Python dependencies (pillow, imageio, numpy) for the Slack GIF Creator skill",
                 path: "skills/slack-gif-creator-SKILL/requirements.txt"
+            }
+        ]
+    },
+    {
+        id: "media-4",
+        name: "Theme Factory",
+        description: "Toolkit for styling artifacts with professional themes. Features 10 pre-set curated themes (Ocean Depths, Sunset Boulevard, Forest Canopy, Modern Minimalist, Golden Hour, Arctic Frost, Desert Rose, Tech Innovation, Botanical Garden, Midnight Galaxy) with carefully selected color palettes and font pairings. Apply consistent, professional styling to presentation slide decks, documents, reports, and HTML landing pages. Each theme includes cohesive colors, complementary fonts, and distinct visual identity for different contexts and audiences.",
+        category: "Content & Media",
+        icon: "🎭",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://skillsmp.com/skills/theme-factory-skill-md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Main skill documentation with complete theme library, usage instructions, and custom theme creation guide",
+                path: "skills/theme-factory-SKILL/SKILL.md"
+            },
+            {
+                name: "theme-showcase.pdf",
+                description: "Visual showcase of all 10 professional themes with color palettes and font pairings",
+                path: "skills/theme-factory-SKILL/theme-showcase.pdf"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Complete license terms and conditions for using the Theme Factory skill",
+                path: "skills/theme-factory-SKILL/LICENSE.txt"
+            },
+            {
+                name: "ocean-depths.md",
+                description: "Professional maritime theme with deep navy blues and teal accents",
+                path: "skills/theme-factory-SKILL/themes/ocean-depths.md"
+            },
+            {
+                name: "sunset-boulevard.md",
+                description: "Warm and vibrant sunset colors with orange and pink hues",
+                path: "skills/theme-factory-SKILL/themes/sunset-boulevard.md"
+            },
+            {
+                name: "forest-canopy.md",
+                description: "Natural and grounded earth tones with forest greens",
+                path: "skills/theme-factory-SKILL/themes/forest-canopy.md"
+            },
+            {
+                name: "modern-minimalist.md",
+                description: "Clean and contemporary grayscale with charcoal and grays",
+                path: "skills/theme-factory-SKILL/themes/modern-minimalist.md"
+            },
+            {
+                name: "golden-hour.md",
+                description: "Rich and warm autumnal palette with golden tones",
+                path: "skills/theme-factory-SKILL/themes/golden-hour.md"
+            },
+            {
+                name: "arctic-frost.md",
+                description: "Cool and crisp winter-inspired theme with icy blues",
+                path: "skills/theme-factory-SKILL/themes/arctic-frost.md"
+            },
+            {
+                name: "desert-rose.md",
+                description: "Soft and sophisticated dusty tones with rose hues",
+                path: "skills/theme-factory-SKILL/themes/desert-rose.md"
+            },
+            {
+                name: "tech-innovation.md",
+                description: "Bold and modern tech aesthetic with vibrant colors",
+                path: "skills/theme-factory-SKILL/themes/tech-innovation.md"
+            },
+            {
+                name: "botanical-garden.md",
+                description: "Fresh and organic garden colors with green and floral hues",
+                path: "skills/theme-factory-SKILL/themes/botanical-garden.md"
+            },
+            {
+                name: "midnight-galaxy.md",
+                description: "Dramatic and cosmic deep tones with purple and blue accents",
+                path: "skills/theme-factory-SKILL/themes/midnight-galaxy.md"
             }
         ]
     },

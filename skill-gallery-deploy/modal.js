@@ -2,6 +2,31 @@
 let currentSkill = null;
 let currentSkillMd = '';
 
+// Get translation helper
+function t(key) {
+    return translations[currentLanguage][key] || translations['en'][key] || key;
+}
+
+// Translate category name
+function translateCategory(category) {
+    const categoryMap = {
+        'Tools': 'tools',
+        'Development': 'development',
+        'Data & AI': 'dataAi',
+        'Business': 'business',
+        'DevOps': 'devOps',
+        'Testing & Security': 'testingSecurity',
+        'Documentation': 'documentation',
+        'Content & Media': 'contentMedia',
+        'Lifestyle': 'lifestyle',
+        'Research': 'research',
+        'Databases': 'databases',
+        'Blockchain': 'blockchain'
+    };
+    const key = categoryMap[category] || category.toLowerCase().replace(/[^a-z]/g, '');
+    return t(key);
+}
+
 // Modal functions
 function openModal(skill) {
     currentSkill = skill;
@@ -14,25 +39,25 @@ function openModal(skill) {
 
     // Set overview content
     const overviewContent = `
-        <h3>Description</h3>
+        <h3>${t('description')}</h3>
         <p>${skill.description}</p>
-        <h3>Category</h3>
-        <p>${skill.category}</p>
-        <h3>Source</h3>
-        <p>From SkillsMP.com</p>
+        <h3>${t('category')}</h3>
+        <p>${translateCategory(skill.category)}</p>
+        <h3>${t('source')}</h3>
+        <p>${t('fromSkillsMpCom')}</p>
     `;
     document.getElementById('overviewContent').innerHTML = overviewContent;
 
     // Set resources content
     let resourcesContent = `
-        <h3>External Links</h3>
-        <p><a href="${skill.sourceUrl}" target="_blank" style="color: var(--accent-light); text-decoration: none;">View on SkillsMP.com</a></p>
+        <h3>${t('externalLinks')}</h3>
+        <p><a href="${skill.sourceUrl}" target="_blank" style="color: var(--accent-light); text-decoration: none;">${t('viewOnSkillsMp')}</a></p>
     `;
 
     // Check if skill has custom resources
     if (skill.resources && skill.resources.length > 0) {
         resourcesContent += `
-            <h3>Documentation Files</h3>
+            <h3>${t('documentationFiles')}</h3>
             <div class="resources-list">
         `;
 
@@ -49,7 +74,7 @@ function openModal(skill) {
                             <polyline points="7 10 12 15 17 10"/>
                             <line x1="12" y1="15" x2="12" y2="3"/>
                         </svg>
-                        Download
+                        ${t('download')}
                     </button>
                 </div>
             `;
@@ -58,8 +83,8 @@ function openModal(skill) {
         resourcesContent += `</div>`;
     } else {
         resourcesContent += `
-            <h3>Documentation</h3>
-            <p>Visit the SkillsMP.com page for full documentation and examples.</p>
+            <h3>${t('documentation')}</h3>
+            <p>${t('visitSkillsMpFullDocs')}</p>
         `;
     }
 
@@ -245,7 +270,7 @@ function copyCode() {
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20 6L9 17l-5-5"/>
                 </svg>
-                Copied!
+                ${t('copied')}
             `;
             setTimeout(() => {
                 btn.innerHTML = originalText;
@@ -306,3 +331,99 @@ document.addEventListener('keydown', (e) => {
         closeModal();
     }
 });
+
+// Update modal content when language changes
+function updateModalLanguage() {
+    if (!currentSkill) return;
+
+    // Update category text in modal header
+    document.getElementById('modalCategory').textContent = translateCategory(currentSkill.category);
+
+    // Update overview content
+    const overviewContent = `
+        <h3>${t('description')}</h3>
+        <p>${currentSkill.description}</p>
+        <h3>${t('category')}</h3>
+        <p>${translateCategory(currentSkill.category)}</p>
+        <h3>${t('source')}</h3>
+        <p>${t('fromSkillsMpCom')}</p>
+    `;
+    document.getElementById('overviewContent').innerHTML = overviewContent;
+
+    // Update resources
+    updateResourcesLanguage();
+
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        const key = btn.dataset.i18n;
+        if (key) {
+            btn.textContent = t(key);
+        }
+    });
+
+    // Update action buttons
+    const primaryBtn = document.querySelector('.action-btn.primary');
+    const secondaryBtn = document.querySelector('.action-btn.secondary');
+    if (primaryBtn) {
+        primaryBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857c0 1.124-.895 2.036-2 2.036H8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z"/>
+            </svg>
+            ${t('copyCode')}
+        `;
+    }
+    if (secondaryBtn) {
+        secondaryBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            ${t('downloadSkillMd')}
+        `;
+    }
+}
+
+function updateResourcesLanguage() {
+    if (!currentSkill) return;
+
+    let resourcesContent = `
+        <h3>${t('externalLinks')}</h3>
+        <p><a href="${currentSkill.sourceUrl}" target="_blank" style="color: var(--accent-light); text-decoration: none;">${t('viewOnSkillsMp')}</a></p>
+    `;
+
+    if (currentSkill.resources && currentSkill.resources.length > 0) {
+        resourcesContent += `
+            <h3>${t('documentationFiles')}</h3>
+            <div class="resources-list">
+        `;
+
+        currentSkill.resources.forEach(resource => {
+            resourcesContent += `
+                <div class="resource-item">
+                    <div class="resource-info">
+                        <div class="resource-name">${resource.name}</div>
+                        <div class="resource-desc">${resource.description}</div>
+                    </div>
+                    <button class="download-btn" onclick="downloadResource('${resource.path}', '${resource.name}')">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        ${t('download')}
+                    </button>
+                </div>
+            `;
+        });
+
+        resourcesContent += `</div>`;
+    } else {
+        resourcesContent += `
+            <h3>${t('documentation')}</h3>
+            <p>${t('visitSkillsMpFullDocs')}</p>
+        `;
+    }
+
+    document.getElementById('resourcesContent').innerHTML = resourcesContent;
+}
