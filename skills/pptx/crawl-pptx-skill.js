@@ -1,4 +1,4 @@
-import { GitHubCrawler } from './skills/github-crawler/index.js';
+import { GitHubCrawler } from '../github-crawler/index.js';
 
 const crawler = new GitHubCrawler();
 
