@@ -1,6 +1,6 @@
 // State
 let favorites = JSON.parse(localStorage.getItem('skillFavorites')) || [];
-let currentCategory = 'all';
+let currentCategory = localStorage.getItem('skillCategory') || 'all';
 let currentLanguage = localStorage.getItem('skillLanguage') || 'en';
 
 // Get unique categories (sorted by count descending)
@@ -339,6 +339,7 @@ function init() {
         if (categoryBtn) {
             const category = categoryBtn.dataset.category;
             currentCategory = category;
+            localStorage.setItem('skillCategory', category);
             renderCategories();
             renderSkills(category);
         }

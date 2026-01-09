@@ -1,31 +1,50 @@
-import { GitHubCrawler } from './authropic_skills/github-crawler/index.js';
-import { writeFileSync } from 'fs';
+/**
+ * 使用 github-crawler skill 爬取指定的 GitHub 文件
+ */
 
+import { GitHubCrawler } from './skills/github-crawler/index.js';
+import fs from 'fs';
+
+// 创建爬虫实例
 const crawler = new GitHubCrawler();
 
+// 要爬取的文件列表
+const filesToCrawl = [
+  'https://github.com/eliasjudin/oai-skills/blob/main/docs/render_docx.py',
+  'https://github.com/eliasjudin/oai-skills/blob/main/docs/skill.md'
+];
+
+// 爬取文件
 (async () => {
-  try {
-    console.log('开始爬取 GitHub 文件...\n');
+  console.log('开始爬取文件...\n');
 
-    // 文件 1: skill.md
-    console.log('1. 爬取 skill.md...');
-    const skillContent = await crawler.fetchFile(
-      'https://github.com/eliasjudin/oai-skills/blob/main/docs/skill.md'
-    );
-    writeFileSync('d:/skill gallery/skill.md', skillContent, 'utf8');
-    console.log('✓ skill.md 已保存到 d:/skill gallery/skill.md\n');
+  for (const fileUrl of filesToCrawl) {
+    console.log('='.repeat(60));
+    console.log(`爬取文件: ${fileUrl}`);
+    console.log('='.repeat(60));
 
-    // 文件 2: render_docx.py
-    console.log('2. 爬取 render_docx.py...');
-    const renderContent = await crawler.fetchFile(
-      'https://github.com/eliasjudin/oai-skills/blob/main/docs/render_docx.py'
-    );
-    writeFileSync('d:/skill gallery/render_docx.py', renderContent, 'utf8');
-    console.log('✓ render_docx.py 已保存到 d:/skill gallery/render_docx.py\n');
+    try {
+      const content = await crawler.fetchFile(fileUrl);
 
-    console.log('✓ 所有文件爬取完成！');
+      // 提取文件名
+      const fileName = fileUrl.split('/').pop();
 
-  } catch (error) {
-    console.error('✗ 爬取失败:', error.message);
+      // 保存到当前目录
+      fs.writeFileSync(fileName, content);
+
+      console.log(`✓ 成功保存: ${fileName}`);
+      console.log(`  文件大小: ${content.length} 字符`);
+      console.log(`  行数: ${content.split('\n').length} 行\n`);
+
+    } catch (error) {
+      console.error(`✗ 错误: ${error.message}\n`);
+    }
+
+    // 添加延迟以避免触发速率限制
+    await new Promise(resolve => setTimeout(resolve, 2000));
   }
+
+  console.log('='.repeat(60));
+  console.log('爬取完成！');
+  console.log('='.repeat(60));
 })();

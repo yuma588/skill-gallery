@@ -367,6 +367,179 @@ const skillsData = [
             }
         ]
     },
+    {
+        id: "docs-4",
+        name: "DOCX",
+        description: "Comprehensive DOCX (Word) document creation, reading, and review guidance with python-docx and LibreOffice rendering. Supports creating professional documents with consistent formatting, visual inspection via PDF→PNG conversion, and quality control for client-ready outputs. Perfect for technical docs, reports, proposals, and any document requiring professional styling.",
+        category: "chatgpt",
+        icon: "📄",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/docx/skill.md",
+        resources: [
+            {
+                name: "skill.md",
+                description: "Main skill documentation with DOCX reading, creation, and review guidelines including rendering workflow and quality expectations",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/docx/skill.md"
+            },
+            {
+                name: "render_docx.py",
+                description: "Python script for rendering DOCX files to PNG images with automatic DPI calculation and LibreOffice conversion",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/docx/render_docx.py"
+            }
+        ]
+    },
+    {
+        id: "docs-5",
+        name: "PDF",
+        description: "Comprehensive PDF reading, creation, and review guidance. Use pdftoppm to convert PDF to PNG for visual inspection, pdfplumber for text extraction, and reportlab for PDF creation. Ensure professional-grade document quality, consistent layout, and zero visual defects. Perfect for processing, generating, or analyzing PDF documents.",
+        category: "chatgpt",
+        icon: "📄",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/pdfs/skill.md",
+        resources: [
+            {
+                name: "skill.md",
+                description: "Main skill documentation with PDF reading, creation, and review guidelines including rendering workflow and quality expectations",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/pdfs/skill.md"
+            }
+        ]
+    },
+    {
+        id: "docs-6",
+        name: "Spreadsheets",
+        description: "Comprehensive spreadsheet creation, editing, and analysis with openpyxl and artifact_tool. Support for formulas, formatting, data analysis, and visualization. Use this skill when working with spreadsheets (.xlsx, .csv, .tsv) for: Creating new workbooks with proper formulas and formatting, Reading or analyzing tabular data, Modifying existing workbooks while preserving formulas, Visualizing data with charts, or Recalculating formulas.",
+        category: "chatgpt",
+        icon: "📊",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/skill.md",
+        resources: [
+            {
+                name: "skill.md",
+                description: "Main skill documentation with comprehensive guidelines for spreadsheet operations, formulas, formatting, and best practices using openpyxl and artifact_tool",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/skill.md"
+            },
+            {
+                name: "spreadsheet.md",
+                description: "Quick reference guide for spreadsheet operations with artifact_tool library",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/spreadsheet.md"
+            },
+            {
+                name: "artifact_tool_spreadsheets_api.md",
+                description: "Complete API documentation for artifact_tool spreadsheet operations",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/artifact_tool_spreadsheets_api.md"
+            },
+            {
+                name: "artifact_tool_spreadsheet_formulas.md",
+                description: "Detailed formula reference for spreadsheet calculations",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/artifact_tool_spreadsheet_formulas.md"
+            },
+            {
+                name: "create_basic_spreadsheet.py",
+                description: "Example: Create a basic spreadsheet with data and formulas",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/create_basic_spreadsheet.py"
+            },
+            {
+                name: "create_spreadsheet_with_styling.py",
+                description: "Example: Create a spreadsheet with professional styling and formatting",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/create_spreadsheet_with_styling.py"
+            },
+            {
+                name: "read_existing_spreadsheet.py",
+                description: "Example: Read and analyze data from existing spreadsheet",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/read_existing_spreadsheet.py"
+            },
+            {
+                name: "styling_spreadsheet.py",
+                description: "Example: Apply various styling options to spreadsheet cells",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/styling_spreadsheet.py"
+            },
+            {
+                name: "create_bar_chart.py",
+                description: "Example: Create bar charts in spreadsheets",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/create_bar_chart.py"
+            },
+            {
+                name: "create_line_chart.py",
+                description: "Example: Create line charts in spreadsheets",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/create_line_chart.py"
+            },
+            {
+                name: "create_pie_chart.py",
+                description: "Example: Create pie charts in spreadsheets",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/create_pie_chart.py"
+            },
+            {
+                name: "create_area_chart.py",
+                description: "Example: Create area charts in spreadsheets",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/create_area_chart.py"
+            },
+            {
+                name: "create_doughnut_chart.py",
+                description: "Example: Create doughnut charts in spreadsheets",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/create_doughnut_chart.py"
+            },
+            {
+                name: "set_cell_fills.py",
+                description: "Example: Apply cell background colors and fills",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/set_cell_fills.py"
+            },
+            {
+                name: "set_cell_borders.py",
+                description: "Example: Apply cell borders and border styles",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/set_cell_borders.py"
+            },
+            {
+                name: "set_font_styles.py",
+                description: "Example: Apply font styles, colors, and effects",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/set_font_styles.py"
+            },
+            {
+                name: "set_number_formats.py",
+                description: "Example: Format numbers, dates, currencies, and percentages",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/set_number_formats.py"
+            },
+            {
+                name: "set_conditional_formatting.py",
+                description: "Example: Apply conditional formatting rules",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/set_conditional_formatting.py"
+            },
+            {
+                name: "set_text_alignment.py",
+                description: "Example: Set text alignment and orientation",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/set_text_alignment.py"
+            },
+            {
+                name: "set_cell_width_height.py",
+                description: "Example: Adjust cell widths and row heights",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/set_cell_width_height.py"
+            },
+            {
+                name: "set_merge_cells.py",
+                description: "Example: Merge and unmerge cells",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/set_merge_cells.py"
+            },
+            {
+                name: "set_wrap_text_styles.py",
+                description: "Example: Configure text wrapping settings",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/set_wrap_text_styles.py"
+            },
+            {
+                name: "create_tables.py",
+                description: "Example: Create and format data tables",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/create_tables.py"
+            },
+            {
+                name: "cite_cells.py",
+                description: "Example: Add citations and references to cells",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/cite_cells.py"
+            },
+            {
+                name: "change_existing_charts.py",
+                description: "Example: Modify existing charts in spreadsheets",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/chatgpt/spreadsheets/examples/features/change_existing_charts.py"
+            }
+        ]
+    },
     // Content & Media
     {
         id: "media-1",

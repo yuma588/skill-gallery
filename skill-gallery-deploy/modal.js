@@ -52,6 +52,16 @@ function openModal(skill) {
     document.getElementById('modalTitle').textContent = getSkillTranslation(skill, 'name');
     document.getElementById('modalCategory').textContent = skill.category;
 
+    // Determine source based on category
+    const isChatGPT = skill.category === 'chatgpt';
+    const sourceText = isChatGPT ? 'From github.com/eliasjudin/oai-skills' : t('fromSkillsMpCom');
+    const sourceUrl = isChatGPT 
+        ? 'https://github.com/eliasjudin/oai-skills' 
+        : skill.sourceUrl;
+    const viewText = isChatGPT 
+        ? 'View on github.com/eliasjudin/oai-skills' 
+        : t('viewOnSkillsMp');
+
     // Set overview content
     const overviewContent = `
         <h3>${t('description')}</h3>
@@ -59,14 +69,14 @@ function openModal(skill) {
         <h3>${t('category')}</h3>
         <p>${translateCategory(skill.category)}</p>
         <h3>${t('source')}</h3>
-        <p>${t('fromSkillsMpCom')}</p>
+        <p>${sourceText}</p>
     `;
     document.getElementById('overviewContent').innerHTML = overviewContent;
 
     // Set resources content
     let resourcesContent = `
         <h3>${t('externalLinks')}</h3>
-        <p><a href="${skill.sourceUrl}" target="_blank" style="color: var(--accent-light); text-decoration: none;">${t('viewOnSkillsMp')}</a></p>
+        <p><a href="${sourceUrl}" target="_blank" style="color: var(--accent-light); text-decoration: none;">${viewText}</a></p>
     `;
 
     // Check if skill has custom resources
@@ -355,6 +365,10 @@ function updateModalLanguage() {
     document.getElementById('modalTitle').textContent = getSkillTranslation(currentSkill, 'name');
     document.getElementById('modalCategory').textContent = translateCategory(currentSkill.category);
 
+    // Determine source based on category
+    const isChatGPT = currentSkill.category === 'chatgpt';
+    const sourceText = isChatGPT ? 'From github.com/eliasjudin/oai-skills' : t('fromSkillsMpCom');
+
     // Update overview content
     const overviewContent = `
         <h3>${t('description')}</h3>
@@ -362,7 +376,7 @@ function updateModalLanguage() {
         <h3>${t('category')}</h3>
         <p>${translateCategory(currentSkill.category)}</p>
         <h3>${t('source')}</h3>
-        <p>${t('fromSkillsMpCom')}</p>
+        <p>${sourceText}</p>
     `;
     document.getElementById('overviewContent').innerHTML = overviewContent;
 
@@ -403,9 +417,18 @@ function updateModalLanguage() {
 function updateResourcesLanguage() {
     if (!currentSkill) return;
 
+    // Determine source based on category
+    const isChatGPT = currentSkill.category === 'chatgpt';
+    const sourceUrl = isChatGPT 
+        ? 'https://github.com/eliasjudin/oai-skills' 
+        : currentSkill.sourceUrl;
+    const viewText = isChatGPT 
+        ? 'View on github.com/eliasjudin/oai-skills' 
+        : t('viewOnSkillsMp');
+
     let resourcesContent = `
         <h3>${t('externalLinks')}</h3>
-        <p><a href="${currentSkill.sourceUrl}" target="_blank" style="color: var(--accent-light); text-decoration: none;">${t('viewOnSkillsMp')}</a></p>
+        <p><a href="${sourceUrl}" target="_blank" style="color: var(--accent-light); text-decoration: none;">${viewText}</a></p>
     `;
 
     if (currentSkill.resources && currentSkill.resources.length > 0) {

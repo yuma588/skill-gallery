@@ -105,6 +105,18 @@ const translations = {
             'media-4': {
                 name: "Theme Factory",
                 description: "Toolkit for styling artifacts with professional themes. Features 10 pre-set curated themes (Ocean Depths, Sunset Boulevard, Forest Canopy, Modern Minimalist, Golden Hour, Arctic Frost, Desert Rose, Tech Innovation, Botanical Garden, Midnight Galaxy) with carefully selected color palettes and font pairings. Apply consistent, professional styling to presentation slide decks, documents, reports, and HTML landing pages. Each theme includes cohesive colors, complementary fonts, and distinct visual identity for different contexts and audiences."
+            },
+            'docs-4': {
+                name: "DOCX",
+                description: "Comprehensive DOCX (Word) document creation, reading, and review guidance with python-docx and LibreOffice rendering. Supports creating professional documents with consistent formatting, visual inspection via PDF→PNG conversion, and quality control for client-ready outputs. Perfect for technical docs, reports, proposals, and any document requiring professional styling."
+            },
+            'docs-5': {
+                name: "PDF",
+                description: "Comprehensive PDF reading, creation, and review guidance. Use pdftoppm to convert PDF to PNG for visual inspection, pdfplumber for text extraction, and reportlab for PDF creation. Ensure professional-grade document quality, consistent layout, and zero visual defects. Perfect for processing, generating, or analyzing PDF documents."
+            },
+            'docs-6': {
+                name: "Spreadsheets",
+                description: "Comprehensive spreadsheet creation, editing, and analysis with openpyxl and artifact_tool. Support for formulas, formatting, data analysis, and visualization. Use this skill when working with spreadsheets (.xlsx, .csv, .tsv) for: Creating new workbooks with proper formulas and formatting, Reading or analyzing tabular data, Modifying existing workbooks while preserving formulas, Visualizing data with charts, or Recalculating formulas."
             }
         }
     },
@@ -224,6 +236,18 @@ const translations = {
             'media-4': {
                 name: "主题工厂",
                 description: "使用专业主题为工件设置样式的工具包。提供10个精心策划的预设主题(深海、日落大道、森林树冠、现代极简主义、黄金时刻、北极霜、沙漠玫瑰、科技创新、植物园、午夜银河),具有精心选择的色板和字体配对。对演示文稿幻灯片、文档、报告和HTML落地页应用一致、专业的样式。每个主题都包括连贯的色彩、互补的字体和针对不同语境和受众的独特视觉标识。"
+            },
+            'docs-4': {
+                name: "DOCX文档处理",
+                description: "全面的DOCX(Word)文档创建、读取和审查指南,使用python-docx和LibreOffice渲染。支持创建具有一致格式的专业文档,通过PDF→PNG转换进行视觉检查,以及客户就绪输出的质量控制。非常适合技术文档、报告、提案和任何需要专业样式的文档。"
+            },
+            'docs-5': {
+                name: "PDF",
+                description: "全面的PDF读取、创建和审查指南。使用pdftoppm将PDF转换为PNG进行视觉检查,使用pdfplumber提取文本,使用reportlab创建PDF。确保专业级文档质量、一致的布局和零视觉缺陷。适合处理、生成或分析PDF文档的场景。"
+            },
+            'docs-6': {
+                name: "电子表格",
+                description: "使用openpyxl和artifact_tool进行全面的电子表格创建、编辑和分析。支持公式、格式化、数据分析和可视化。当需要处理电子表格(.xlsx、.csv、.tsv)时使用此技能:创建带有正确公式和格式的新工作簿、读取或分析表格数据、修改现有工作簿同时保留公式、使用图表可视化数据,或重新计算公式。"
             }
         }
     }
