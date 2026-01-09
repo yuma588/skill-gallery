@@ -3,7 +3,9 @@ const translations = {
     en: {
         // Sidebar
         fromSkillsMp: "From github.com/anthropics/skills",
+        official: "Official",
         collection: "Collection",
+        community: "Community",
         myFavorites: "⭐ My Favorites",
         
         // Categories
@@ -123,7 +125,9 @@ const translations = {
     zh: {
         // Sidebar
         fromSkillsMp: "来自 github.com/anthropics/skills",
+        official: "官方",
         collection: "收藏",
+        community: "社区",
         myFavorites: "⭐ 我的收藏",
 
         // Categories

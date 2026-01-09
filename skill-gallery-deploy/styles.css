@@ -201,6 +201,57 @@ body::after {
     margin-left: 10px;
 }
 
+/* All Skills Button - Featured Style */
+.all-skills-btn {
+    background: var(--gradient-1) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    padding: 14px 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    transform: scale(1);
+    animation: allSkillsPulse 2s ease-in-out infinite;
+}
+
+@keyframes allSkillsPulse {
+    0%, 100% {
+    }
+    50% {
+    }
+}
+
+.all-skills-btn:hover {
+    transform: scale(1.03) !important;
+    background: var(--gradient-2) !important;
+}
+
+.all-skills-btn::before {
+    display: none !important;
+}
+
+.all-skills-btn .count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    opacity: 1 !important;
+    font-size: 0.8rem;
+}
+
+.all-skills-btn.active {
+    background: var(--gradient-2) !important;
+    animation: allSkillsActive 1.5s ease-in-out infinite;
+}
+
+@keyframes allSkillsActive {
+    0%, 100% {
+        transform: scale(1.03);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
 /* Main content */
 .main-content {
     flex: 1;

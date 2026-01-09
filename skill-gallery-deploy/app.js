@@ -64,15 +64,6 @@ function updateLanguage() {
     // Update language button text
     document.getElementById('langText').textContent = currentLanguage.toUpperCase();
     
-    // Update sidebar labels
-    document.querySelectorAll('.category-label').forEach(label => {
-        if (label.textContent === 'From SkillsMP.com') {
-            label.textContent = t('fromSkillsMp');
-        } else if (label.textContent === 'Collection') {
-            label.textContent = t('collection');
-        }
-    });
-    
     // Update My Favorites button
     const favoritesBtn = document.querySelector('[data-category="favorites"]');
     if (favoritesBtn) {
@@ -103,21 +94,70 @@ function getCategoryCount(category) {
     return skillsData.filter(skill => skill.category === category).length;
 }
 
+// Render community categories
+function renderCommunityCategories() {
+    const communityList = document.getElementById('communityList');
+
+    // Get unique community sub-categories from skills
+    const communitySkills = skillsData.filter(skill => skill.category === 'community');
+    const subCategories = [...new Set(communitySkills.map(skill => skill.subCategory || 'General'))];
+
+    // Get saved subcategory from localStorage
+    const savedSubCategory = localStorage.getItem('skillSubcategory');
+
+    let html = '';
+
+    if (subCategories.length > 0 && communitySkills.length > 0) {
+        subCategories.forEach(subCategory => {
+            const count = communitySkills.filter(skill =>
+                (skill.subCategory || 'General') === subCategory
+            ).length;
+
+            // Check if this subcategory is currently active
+            const isActive = currentCategory === 'community' && savedSubCategory === subCategory;
+
+            html += `
+                <li class="category-item">
+                    <button class="category-btn ${isActive ? 'active' : ''}" data-category="community" data-subcategory="${subCategory}">
+                        <span>🌍 ${subCategory}</span>
+                        <span class="count">${count.toLocaleString()}</span>
+                    </button>
+                </li>
+            `;
+        });
+    } else {
+        html = `
+            <li class="category-item" style="opacity: 0.5;">
+                <span style="padding: 12px 16px; font-size: 14px; color: var(--text-secondary);">
+                    ${currentLanguage === 'zh' ? '暂无民间技能' : 'No community skills yet'}
+                </span>
+            </li>
+        `;
+    }
+
+    communityList.innerHTML = html;
+}
+
 // Render category list
 function renderCategories() {
+    const allSkillsList = document.getElementById('allSkillsList');
     const categoryList = document.getElementById('categoryList');
     const categories = getCategories();
 
-    let html = `
+    // Render "ALL SKILLS" button to the new list
+    let allSkillsHtml = `
         <li class="category-item">
-            <button class="category-btn ${currentCategory === 'all' ? 'active' : ''}" data-category="all">
-                <span>${t('allSkills')}</span>
+            <button class="category-btn all-skills-btn ${currentCategory === 'all' ? 'active' : ''}" data-category="all">
+                <span>✨ ${t('allSkills')}</span>
                 <span class="count">${getCategoryCount('all').toLocaleString()}</span>
             </button>
         </li>
     `;
+    allSkillsList.innerHTML = allSkillsHtml;
 
-    categories.forEach(category => {
+    // Render official categories
+    let html = '';
+    categories.filter(category => category !== 'community').forEach(category => {
         const emoji = categoryEmojis[category] || '⭐';
         const translatedCategory = translateCategory(category);
         html += `
@@ -150,7 +190,7 @@ function updateFavoriteCount() {
 }
 
 // Render skills
-function renderSkills(category) {
+function renderSkills(category, subCategory = null) {
     const skillsGrid = document.getElementById('skillsGrid');
     const headerTitle = document.getElementById('headerTitle');
     const headerSubtitle = document.getElementById('headerSubtitle');
@@ -166,6 +206,17 @@ function renderSkills(category) {
         filteredSkills = skillsData.filter(skill => favorites.includes(skill.id));
         headerTitle.textContent = t('myFavoritesTitle');
         headerSubtitle.textContent = `${filteredSkills.length}${t('myFavoritesSubtitle')}`;
+    } else if (category === 'community' && subCategory) {
+        // Filter by community category and subcategory
+        filteredSkills = skillsData.filter(skill =>
+            skill.category === 'community' &&
+            (skill.subCategory || 'General') === subCategory
+        );
+        headerTitle.textContent = `🌍 ${subCategory}`;
+        const subtitle = currentLanguage === 'zh' ?
+            `${filteredSkills.length} 个 ${subCategory} 民间技能` :
+            `${filteredSkills.length} community skills in ${subCategory}`;
+        headerSubtitle.textContent = subtitle;
     } else {
         filteredSkills = skillsData.filter(skill => skill.category === category);
         const count = getCategoryCount(category);
@@ -331,17 +382,32 @@ function showToast(message) {
 function init() {
     updateLanguage();
     renderCategories();
-    renderSkills(currentCategory);
+    renderCommunityCategories();
+
+    // Get saved subcategory if exists
+    const savedSubCategory = localStorage.getItem('skillSubcategory');
+    renderSkills(currentCategory, savedSubCategory);
 
     // Add event listeners for category buttons
     document.addEventListener('click', (e) => {
         const categoryBtn = e.target.closest('.category-btn');
         if (categoryBtn) {
             const category = categoryBtn.dataset.category;
+            const subCategory = categoryBtn.dataset.subcategory;
+
             currentCategory = category;
+
+            // Store subcategory if it exists
+            if (subCategory) {
+                localStorage.setItem('skillSubcategory', subCategory);
+            } else {
+                localStorage.removeItem('skillSubcategory');
+            }
+
             localStorage.setItem('skillCategory', category);
             renderCategories();
-            renderSkills(category);
+            renderCommunityCategories();
+            renderSkills(category, subCategory);
         }
     });
 }

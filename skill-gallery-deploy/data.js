@@ -709,8 +709,21 @@ const skillsData = [
                 path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/theme-factory-SKILL/themes/midnight-galaxy.md"
             }
         ]
-    }
+    },
     // Lifestyle
+    
+    // Community
+    {
+        id: "community-superpower-1",
+        name: "Superpower",
+        description: "A placeholder for community superpower skills. Coming soon!",
+        category: "community",
+        subCategory: "superpower",
+        icon: "⚡",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "",
+        resources: []
+    },
     
     // Blockchain
     
@@ -719,5 +732,6 @@ const skillsData = [
 // Category emojis
 const categoryEmojis = {
     "anthropics": "🤖",
-    "chatgpt": "💬"
+    "chatgpt": "💬",
+    "community": "🌍"
 };
