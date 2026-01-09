@@ -1,0 +1,597 @@
+// Skills data from skillsmp.com
+const skillsData = [
+    // Tools
+    {
+        id: "tool-1",
+        name: "Productivity Tools",
+        description: "Enhance your productivity with powerful integration and automation tools.",
+        category: "Tools",
+        icon: "⚡",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://skillsmp.com/skills/productivity-tools-skill-md"
+    },
+    {
+        id: "tool-2",
+        name: "Automation Tools",
+        description: "Automate repetitive tasks and workflows with intelligent agents.",
+        category: "Tools",
+        icon: "🤖",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://skillsmp.com/skills/automation-tools-skill-md"
+    },
+    {
+        id: "tool-3",
+        name: "Debugging Tools",
+        description: "Advanced debugging and troubleshooting utilities for developers.",
+        category: "Tools",
+        icon: "🐛",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://skillsmp.com/skills/debugging-tools-skill-md"
+    },
+    // Development
+    {
+        id: "dev-1",
+        name: "Algorithmic Art",
+        description: "Create stunning generative art using p5.js with seeded randomness and interactive parameter exploration. From algorithmic philosophies to interactive visualizations.",
+        category: "Development",
+        icon: "🎨",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://skillsmp.com/skills/algorithmic-art-skill-md",
+        resources: [
+            {
+                name: "algorithmic-art-SKILL.md",
+                description: "Main skill documentation with complete workflow and philosophy creation guide",
+                path: "skills/algorithmic-art-SKILL/algorithmic-art-SKILL.md"
+            },
+            {
+                name: "viewer.html",
+                description: "Interactive viewer template for generative art with Anthropic branding",
+                path: "skills/algorithmic-art-SKILL/templates/viewer.html"
+            },
+            {
+                name: "generator_template.js",
+                description: "p5.js best practices and code structure reference for generative art",
+                path: "skills/algorithmic-art-SKILL/templates/generator_template.js"
+            }
+        ]
+    },
+    {
+        id: "dev-2",
+        name: "Frontend Design",
+        description: "Create distinctive, production-grade frontend interfaces with high design quality. Generates creative, polished code and UI design that avoids generic AI aesthetics. Focus on bold aesthetic directions, unique typography, cohesive color themes, and memorable visual details.",
+        category: "Development",
+        icon: "✨",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://skillsmp.com/skills/frontend-design-skill-md",
+        resources: [
+            {
+                name: "frontend-design-SKILL-crawled.md",
+                description: "Crawled skill documentation with detailed frontend aesthetics principles",
+                path: "skills/frontend-design-SKILL/frontend-design-SKILL-crawled.md"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Complete license terms and conditions for using the frontend design skill",
+                path: "skills/frontend-design-SKILL/frontend-design-LICENSE-crawled.txt"
+            }
+        ]
+    },
+    {
+        id: "dev-3",
+        name: "MCP Builder",
+        description: "Create high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Comprehensive development guide for TypeScript and Python SDK with best practices, tool design, error handling, and evaluation workflows.",
+        category: "Development",
+        icon: "🔧",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://skillsmp.com/skills/mcp-builder-skill-md",
+        resources: [
+            {
+                name: "mcp-builder-SKILL.md",
+                description: "Complete MCP server development guide with four-phase workflow, implementation patterns, and evaluation guidelines",
+                path: "skills/mcp-builder-SKILL/SKILL.md"
+            },
+            {
+                name: "mcp_best_practices.md",
+                description: "MCP best practices covering server naming, response formats, pagination, transport selection, and security standards",
+                path: "skills/mcp-builder-SKILL/reference/mcp_best_practices.md"
+            },
+            {
+                name: "node_mcp_server.md",
+                description: "TypeScript implementation guide with project structure, Zod schema patterns, and complete working examples",
+                path: "skills/mcp-builder-SKILL/reference/node_mcp_server.md"
+            },
+            {
+                name: "python_mcp_server.md",
+                description: "Python implementation guide with FastMCP patterns, Pydantic models, and complete working examples",
+                path: "skills/mcp-builder-SKILL/reference/python_mcp_server.md"
+            },
+            {
+                name: "evaluation.md",
+                description: "Evaluation guide for testing MCP server effectiveness with 10-question methodology",
+                path: "skills/mcp-builder-SKILL/reference/evaluation.md"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Complete license terms and conditions for using the MCP builder skill",
+                path: "skills/mcp-builder-SKILL/LICENSE.txt"
+            }
+        ]
+    },
+    {
+        id: "dev-4",
+        name: "Skill Creator",
+        description: "Guide for creating effective skills that extend Claude's capabilities with specialized knowledge, workflows, and tool integrations. Six-step creation process: Understanding the skill with concrete examples, planning reusable contents (scripts, references, assets), initializing with init_skill.py, editing the skill with best practices, packaging into distributable .skill files, and iterating based on real usage feedback.",
+        category: "Development",
+        icon: "⚙️",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://skillsmp.com/skills/skill-creator-skill-md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Main skill documentation with core principles, skill anatomy, progressive disclosure design, and complete six-step creation workflow",
+                path: "skills/skill-creator-SKILL/SKILL.md"
+            },
+            {
+                name: "workflows.md",
+                description: "Detailed reference for multi-step processes and conditional logic in skill design",
+                path: "skills/skill-creator-SKILL/references/workflows.md"
+            },
+            {
+                name: "output-patterns.md",
+                description: "Template and example patterns for consistent output formats and quality standards",
+                path: "skills/skill-creator-SKILL/references/output-patterns.md"
+            },
+            {
+                name: "init_skill.py",
+                description: "Python script to initialize a new skill with proper directory structure and SKILL.md template",
+                path: "skills/skill-creator-SKILL/scripts/init_skill.py"
+            },
+            {
+                name: "package_skill.py",
+                description: "Python script to package a skill into a distributable .skill file with automatic validation",
+                path: "skills/skill-creator-SKILL/scripts/package_skill.py"
+            },
+            {
+                name: "quick_validate.py",
+                description: "Python script for quick validation of skill structure and frontmatter requirements",
+                path: "skills/skill-creator-SKILL/scripts/quick_validate.py"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Complete license terms and conditions for using the skill creator",
+                path: "skills/skill-creator-SKILL/LICENSE.txt"
+            }
+        ]
+    },
+    // Data & AI
+    {
+        id: "ai-1",
+        name: "LLM & AI",
+        description: "Large Language Models and AI-powered solutions.",
+        category: "Data & AI",
+        icon: "🧠",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://skillsmp.com/skills/llm-ai-skill-md"
+    },
+    {
+        id: "ai-2",
+        name: "Data Analysis",
+        description: "Advanced data analysis and visualization tools.",
+        category: "Data & AI",
+        icon: "📊",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://skillsmp.com/skills/data-analysis-skill-md"
+    },
+    {
+        id: "ai-3",
+        name: "Machine Learning",
+        description: "Machine learning models and training frameworks.",
+        category: "Data & AI",
+        icon: "🎯",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://skillsmp.com/skills/machine-learning-skill-md"
+    },
+    // Business
+    {
+        id: "business-1",
+        name: "Project Management",
+        description: "Comprehensive project management and collaboration tools.",
+        category: "Business",
+        icon: "📋",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://skillsmp.com/skills/project-management-skill-md"
+    },
+    {
+        id: "business-2",
+        name: "Sales & Marketing",
+        description: "Sales automation and marketing optimization solutions.",
+        category: "Business",
+        icon: "📈",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://skillsmp.com/skills/sales-marketing-skill-md"
+    },
+    {
+        id: "business-3",
+        name: "Finance & Investment",
+        description: "Financial analysis and investment tracking tools.",
+        category: "Business",
+        icon: "💹",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://skillsmp.com/skills/finance-investment-skill-md"
+    },
+    // DevOps
+    {
+        id: "devops-1",
+        name: "CI/CD",
+        description: "Continuous integration and deployment automation.",
+        category: "DevOps",
+        icon: "🔄",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://skillsmp.com/skills/ci-cd-skill-md"
+    },
+    {
+        id: "devops-2",
+        name: "Cloud",
+        description: "Cloud infrastructure and deployment tools.",
+        category: "DevOps",
+        icon: "☁️",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://skillsmp.com/skills/cloud-skill-md"
+    },
+    {
+        id: "devops-3",
+        name: "Containers",
+        description: "Docker and Kubernetes containerization solutions.",
+        category: "DevOps",
+        icon: "📦",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://skillsmp.com/skills/containers-skill-md"
+    },
+    // Testing & Security
+    {
+        id: "security-1",
+        name: "Testing",
+        description: "Automated testing and quality assurance tools.",
+        category: "Testing & Security",
+        icon: "✅",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://skillsmp.com/skills/testing-skill-md"
+    },
+    {
+        id: "security-2",
+        name: "Code Quality",
+        description: "Code linting, formatting, and quality checks.",
+        category: "Testing & Security",
+        icon: "🔬",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://skillsmp.com/skills/code-quality-skill-md"
+    },
+    {
+        id: "security-3",
+        name: "Security",
+        description: "Security scanning and vulnerability assessment tools.",
+        category: "Testing & Security",
+        icon: "🔒",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://skillsmp.com/skills/security-skill-md"
+    },
+    // Documentation
+    {
+        id: "docs-1",
+        name: "Doc Co-Authoring",
+        description: "Guide users through a structured workflow for collaborative document creation. Three-stage process: Context Gathering (clarify requirements and gather information), Refinement & Structure (build section by section through brainstorming and editing), and Reader Testing (test document with fresh perspective to catch blind spots). Perfect for writing technical specs, proposals, decision docs, and similar structured content.",
+        category: "Documentation",
+        icon: "✏️",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://skillsmp.com/skills/doccoauthoring-skill-md",
+        resources: [
+            {
+                name: "doc-coauthoring-SKILL.md",
+                description: "Main skill documentation with complete three-stage workflow guide including detailed instructions for context gathering, refinement, and reader testing phases",
+                path: "skills/doc-coauthoring-SKILL/doc-coauthoring-SKILL.md"
+            }
+        ]
+    },
+    {
+        id: "docs-2",
+        name: "Internal Communications",
+        description: "A set of resources to help write all kinds of internal communications, using the formats that your company likes to use. Perfect for 3P updates (Progress, Plans, Problems), company newsletters, FAQ responses, status reports, leadership updates, project updates, and incident reports.",
+        category: "Documentation",
+        icon: "💬",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://skillsmp.com/skills/internal-comms-skill-md",
+        resources: [
+            {
+                name: "internal-comms-SKILL.md",
+                description: "Main skill documentation with complete instructions for writing various internal communications",
+                path: "skills/internal-comms-SKILL/internal-comms-SKILL-crawled.md"
+            },
+            {
+                name: "3p-updates.md",
+                description: "Template and guidelines for Progress/Plans/Problems team updates",
+                path: "skills/internal-comms-SKILL/examples/3p-updates.md"
+            },
+            {
+                name: "company-newsletter.md",
+                description: "Template and guidelines for company-wide newsletters",
+                path: "skills/internal-comms-SKILL/examples/company-newsletter.md"
+            },
+            {
+                name: "faq-answers.md",
+                description: "Template and guidelines for answering frequently asked questions",
+                path: "skills/internal-comms-SKILL/examples/faq-answers.md"
+            },
+            {
+                name: "general-comms.md",
+                description: "Guidelines for general internal communications",
+                path: "skills/internal-comms-SKILL/examples/general-comms.md"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Complete license terms and conditions",
+                path: "skills/internal-comms-SKILL/internal-comms-LICENSE-crawled.txt"
+            }
+        ]
+    },
+    {
+        id: "docs-3",
+        name: "PDF Processing",
+        description: "Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. When Claude needs to fill in a PDF form or programmatically process, generate, or analyze PDF documents at scale.",
+        category: "Documentation",
+        icon: "📄",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://skillsmp.com/skills/pdf-processing-skill-md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Main skill documentation with PDF processing workflow and examples",
+                path: "skills/pdf-skills/SKILL.md"
+            },
+            {
+                name: "forms.md",
+                description: "Detailed guide for filling PDF forms programmatically",
+                path: "skills/pdf-skills/forms.md"
+            },
+            {
+                name: "reference.md",
+                description: "Advanced reference documentation with complete API examples",
+                path: "skills/pdf-skills/reference.md"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Complete license terms and conditions",
+                path: "skills/pdf-skills/LICENSE.txt"
+            },
+            {
+                name: "check_bounding_boxes.py",
+                description: "Utility to check and validate PDF form field bounding boxes",
+                path: "skills/pdf-skills/scripts/check_bounding_boxes.py"
+            },
+            {
+                name: "check_fillable_fields.py",
+                description: "Simple script to identify fillable form fields in a PDF",
+                path: "skills/pdf-skills/scripts/check_fillable_fields.py"
+            },
+            {
+                name: "convert_pdf_to_images.py",
+                description: "Convert PDF pages to images for OCR or analysis",
+                path: "skills/pdf-skills/scripts/convert_pdf_to_images.py"
+            },
+            {
+                name: "create_validation_image.py",
+                description: "Create a validation image to verify form field coordinates",
+                path: "skills/pdf-skills/scripts/create_validation_image.py"
+            },
+            {
+                name: "extract_form_field_info.py",
+                description: "Extract detailed information about all form fields in a PDF",
+                path: "skills/pdf-skills/scripts/extract_form_field_info.py"
+            },
+            {
+                name: "fill_fillable_fields.py",
+                description: "Fill PDF forms programmatically with data",
+                path: "skills/pdf-skills/scripts/fill_fillable_fields.py"
+            },
+            {
+                name: "fill_pdf_form_with_annotations.py",
+                description: "Advanced form filling with annotation support",
+                path: "skills/pdf-skills/scripts/fill_pdf_form_with_annotations.py"
+            }
+        ]
+    },
+    // Content & Media
+    {
+        id: "media-1",
+        name: "PPTX Presentation",
+        description: "Create professional PowerPoint presentations with html2pptx and PptxGenJS. Support for rich text, charts, tables, images, and custom styling.",
+        category: "Content & Media",
+        icon: "📊",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://skillsmp.com/skills/pptx-skill-md",
+        resources: [
+            {
+                name: "pptx-SKILL.md",
+                description: "Main PPTX skill documentation covering all features and workflows",
+                path: "skills/pptx/pptx-SKILL.md"
+            },
+            {
+                name: "html2pptx.md",
+                description: "Complete guide for converting HTML to PowerPoint presentations",
+                path: "skills/pptx/html2pptx.md"
+            },
+            {
+                name: "ooxml.md",
+                description: "Office Open XML technical reference for advanced PPTX editing",
+                path: "skills/pptx/ooxml.md"
+            }
+        ]
+    },
+    {
+        id: "media-2",
+        name: "Brand Guidelines",
+        description: "Apply Anthropic's official brand colors and typography to any sort of artifact. Includes color palette (dark #141413, light #faf9f5, mid gray #b0aea5, light gray #e8e6dc), accent colors (orange #d97757, blue #6a9bcc, green #788c5d), and typography system (Poppins for headings, Lora for body text). Use for consistent visual identity across presentations, web pages, and documents.",
+        category: "Content & Media",
+        icon: "🎨",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://skillsmp.com/skills/brand-guidelines-skill-md",
+        resources: [
+            {
+                name: "brand-guidelines-SKILL.md",
+                description: "Main skill documentation with complete brand guidelines, color palette, typography system, and usage instructions",
+                path: "skills/brand-guidelines-SKILL/brand-guidelines-SKILL.md"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Complete license terms and conditions for using the brand guidelines skill",
+                path: "skills/brand-guidelines-SKILL/LICENSE.txt"
+            }
+        ]
+    },
+    {
+        id: "media-3",
+        name: "Slack GIF Creator",
+        description: "Create animated GIFs optimized for Slack with pulse, particle, and various animation effects. Includes GIFBuilder, easing functions, and comprehensive animation concepts for Slack emoji and message GIFs. Supports shake, bounce, spin, fade, slide, zoom, explode animations with PIL drawing primitives.",
+        category: "Content & Media",
+        icon: "🎬",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://skillsmp.com/skills/slack-gif-creator-skill-md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Complete guide for creating Slack-optimized GIFs with animation concepts, utilities, and optimization strategies",
+                path: "skills/slack-gif-creator-SKILL/SKILL.md"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Complete license terms and conditions for using the Slack GIF Creator skill",
+                path: "skills/slack-gif-creator-SKILL/LICENSE.txt"
+            },
+            {
+                name: "gif_builder.py",
+                description: "GIFBuilder class that assembles frames and optimizes for Slack requirements",
+                path: "skills/slack-gif-creator-SKILL/core/gif_builder.py"
+            },
+            {
+                name: "easing.py",
+                description: "Easing functions (linear, ease_in, ease_out, bounce_out, elastic_out, back_out) for smooth animations",
+                path: "skills/slack-gif-creator-SKILL/core/easing.py"
+            },
+            {
+                name: "frame_composer.py",
+                description: "Helper functions for creating frames, gradients, shapes, and text rendering",
+                path: "skills/slack-gif-creator-SKILL/core/frame_composer.py"
+            },
+            {
+                name: "validators.py",
+                description: "Validation utilities to check if GIF meets Slack requirements",
+                path: "skills/slack-gif-creator-SKILL/core/validators.py"
+            },
+            {
+                name: "requirements.txt",
+                description: "Python dependencies (pillow, imageio, numpy) for the Slack GIF Creator skill",
+                path: "skills/slack-gif-creator-SKILL/requirements.txt"
+            }
+        ]
+    },
+    // Lifestyle
+    {
+        id: "life-1",
+        name: "Wellness & Health",
+        description: "Health tracking and wellness improvement tools.",
+        category: "Lifestyle",
+        icon: "💪",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://skillsmp.com/skills/wellness-health-skill-md"
+    },
+    {
+        id: "life-2",
+        name: "Culinary Arts",
+        description: "Recipe management and cooking assistance.",
+        category: "Lifestyle",
+        icon: "🍳",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://skillsmp.com/skills/culinary-arts-skill-md"
+    },
+    // Research
+    {
+        id: "research-1",
+        name: "Academic",
+        description: "Academic research and citation management.",
+        category: "Research",
+        icon: "🔬",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://skillsmp.com/skills/academic-skill-md"
+    },
+    {
+        id: "research-2",
+        name: "Scientific Computing",
+        description: "Scientific computing and data simulation tools.",
+        category: "Research",
+        icon: "🧮",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://skillsmp.com/skills/scientific-computing-skill-md"
+    },
+    // Databases
+    {
+        id: "db-1",
+        name: "SQL Databases",
+        description: "Relational database management and querying tools.",
+        category: "Databases",
+        icon: "🗃️",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://skillsmp.com/skills/sql-databases-skill-md"
+    },
+    {
+        id: "db-2",
+        name: "NoSQL Databases",
+        description: "NoSQL database solutions and optimization.",
+        category: "Databases",
+        icon: "📊",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://skillsmp.com/skills/nosql-databases-skill-md"
+    },
+    // Blockchain
+    {
+        id: "blockchain-1",
+        name: "Web3 Tools",
+        description: "包含 MetaMask 钱包插件、Web3.js 和 Ethers.js 交互库、WalletConnect 协议、IPFS 去中心化存储、The Graph 数据索引、Hardhat 和 Ganache 开发测试环境等完整的 Web3 开发工具栈。",
+        category: "Blockchain",
+        icon: "🌐",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://skillsmp.com/skills/web3-tools-skill-md"
+    },
+    {
+        id: "blockchain-2",
+        name: "Smart Contracts",
+        description: "Solidity 智能合约编程语言、OpenZeppelin 安全标准库、Truffle 和 Foundry 开发框架、Remix IDE 在线环境、Brownie Python 框架、Slither 安全分析工具、Web3 Testing 综合测试等智能合约开发测试工具。",
+        category: "Blockchain",
+        icon: "⚡",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://skillsmp.com/skills/smart-contracts-skill-md"
+    },
+    {
+        id: "blockchain-3",
+        name: "DeFi",
+        description: "包含 Uniswap 去中心化交易、Aave 和 Compound 借贷协议、Curve 稳定币交易、MakerDAO 稳定币发行、Yearn Finance 收益聚合、Synthetix 合成资产、Chainlink 去中心化预言机等完整的 DeFi 生态系统工具。",
+        category: "Blockchain",
+        icon: "💎",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://skillsmp.com/skills/defi-skill-md"
+    }
+];
+
+// Category emojis
+const categoryEmojis = {
+    "Tools": "🛠️",
+    "Development": "💻",
+    "Data & AI": "🧠",
+    "Business": "💼",
+    "DevOps": "☁️",
+    "Testing & Security": "🔒",
+    "Documentation": "📚",
+    "Content & Media": "🎨",
+    "Lifestyle": "🌟",
+    "Research": "🔬",
+    "Databases": "🗃️",
+    "Blockchain": "⛓️"
+};
