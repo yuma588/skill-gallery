@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024年Q4季度报告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DejaVu Sans', Arial, sans-serif;
+            background-color: #1a2332;
+            color: #f1faee;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 0;
+            background-color: #1a2332;
+        }
+
+        .slide h1, .slide h2, .slide h3 {
+            font-family: 'DejaVu Sans', Arial, sans-serif;
+            font-weight: bold;
+            color: #2d8b8b;
+        }
+
+        .slide h1 {
+            font-size: 64px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .slide h2 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .slide h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #a8dadc;
+        }
+
+        .slide p {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #f1faee;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .highlight {
+            color: #2d8b8b;
+            font-weight: bold;
+        }
+
+        .secondary-highlight {
+            color: #a8dadc;
+        }
+
+        /* 封面页 */
+        .cover-slide {
+            text-align: center;
+        }
+
+        .company-name {
+            font-size: 36px;
+            color: #a8dadc;
+            margin-bottom: 20px;
+        }
+
+        .report-date {
+            font-size: 24px;
+            color: #f1faee;
+            margin-top: 40px;
+        }
+
+        /* 目录页 */
+        .toc-list {
+            list-style: none;
+            font-size: 24px;
+            color: #f1faee;
+            line-height: 2.5;
+        }
+
+        .toc-list li {
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 10px 20px;
+            border-left: 4px solid #2d8b8b;
+            margin-bottom: 10px;
+        }
+
+        .toc-list li:hover {
+            color: #2d8b8b;
+            padding-left: 30px;
+        }
+
+        .toc-number {
+            color: #2d8b8b;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        /* 数据卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background-color: #2d8b8b;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: #f1faee;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: #1a2332;
+        }
+
+        /* 图表区域 */
+        .chart-container {
+            background-color: #2d8b8b;
+            padding: 40px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 900px;
+            margin: 30px 0;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 300px;
+            gap: 20px;
+        }
+
+        .bar {
+            width: 80px;
+            background-color: #a8dadc;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -30px;
+            color: #f1faee;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            color: #1a2332;
+            font-size: 14px;
+            text-align: center;
+            width: 100px;
+        }
+
+        /* 亮点列表 */
+        .highlights-list {
+            list-style: none;
+            font-size: 22px;
+            line-height: 2.2;
+            max-width: 900px;
+        }
+
+        .highlights-list li {
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .highlights-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #a8dadc;
+            font-weight: bold;
+        }
+
+        /* 展望卡片 */
+        .outlook-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 40px;
+        }
+
+        .outlook-card {
+            background-color: rgba(45, 139, 139, 0.3);
+            padding: 40px;
+            border-radius: 10px;
+            border-left: 5px solid #2d8b8b;
+        }
+
+        /* 导航按钮 */
+        .nav-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #2d8b8b;
+            color: #f1faee;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #a8dadc;
+        }
+
+        /* 页码 */
+        .page-number {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            color: #a8dadc;
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 {
+                font-size: 48px;
+            }
+            .slide h2 {
+                font-size: 36px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .outlook-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 幻灯片 1: 封面页 -->
+    <div class="slide cover-slide">
+        <div class="container">
+            <p class="company-name">ABC科技有限公司</p>
+            <h1>2024年Q4季度财务报告</h1>
+            <p style="text-align: center; font-size: 28px;">
+                <span class="highlight">持续增长</span> · 
+                <span class="secondary-highlight">创新突破</span> · 
+                <span class="highlight">卓越运营</span>
+            </p>
+            <p class="report-date">2025年1月</p>
+        </div>
+    </div>
+
+    <!-- 幻灯片 2: 目录 -->
+    <div class="slide">
+        <div class="container">
+            <h2>报告目录</h2>
+            <ul class="toc-list">
+                <li><span class="toc-number">01</span>财务概览</li>
+                <li><span class="toc-number">02</span>业绩亮点</li>
+                <li><span class="toc-number">03</span>业务分析</li>
+                <li><span class="toc-number">04</span>数据图表</li>
+                <li><span class="toc-number">05</span>下季度展望</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 幻灯片 3: 财务概览 -->
+    <div class="slide">
+        <div class="container">
+            <h2>财务概览</h2>
+            <p>本季度公司整体业绩表现优异，各项关键指标均实现<span class="highlight">强劲增长</span></p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">¥2.8亿</div>
+                    <div class="stat-label">季度营收</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">+35%</div>
+                    <div class="stat-label">同比增长</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">¥4800万</div>
+                    <div class="stat-label">净利润</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">+28%</div>
+                    <div class="stat-label">利润率</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 幻灯片 4: 业绩亮点 -->
+    <div class="slide">
+        <div class="container">
+            <h2>业绩亮点</h2>
+            <ul class="highlights-list">
+                <li>营收突破<span class="highlight">2.8亿元</span>，创历史新高</li>
+                <li>新增企业客户<span class="highlight">156家</span>，同比增长42%</li>
+                <li>产品迭代速度提升<span class="secondary-highlight">30%</span>，发布新功能模块23个</li>
+                <li>市场占有率提升至<span class="highlight">18.5%</span>，行业排名升至第三</li>
+                <li>用户满意度达到<span class="secondary-highlight">94.2%</span>，客户留存率提升至87%</li>
+                <li>成功签约<span class="highlight">3家</span>世界500强企业，品牌影响力显著提升</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 幻灯片 5: 业务分析 -->
+    <div class="slide">
+        <div class="container">
+            <h2>业务分析</h2>
+            <div class="outlook-grid">
+                <div class="outlook-card">
+                    <h3>核心业务增长</h3>
+                    <p>SaaS服务营收达<span class="highlight">¥1.9亿元</span>，占比68%，成为增长主要驱动力</p>
+                    <p>企业定制化服务同比增长<span class="secondary-highlight">45%</span>，毛利率提升至72%</p>
+                </div>
+                <div class="outlook-card">
+                    <h3>新兴业务突破</h3>
+                    <p>AI智能助手模块上线三个月，收入达到<span class="highlight">¥3200万元</span></p>
+                    <p>数据分析平台用户数突破<span class="secondary-highlight">5000家</span>，付费转化率32%</p>
+                </div>
+                <div class="outlook-card">
+                    <h3>市场拓展成果</h3>
+                    <p>华东市场营收占比<span class="highlight">42%</span>，成为最大区域市场</p>
+                    <p>华南市场增速达<span class="secondary-highlight">58%</span>，潜力巨大</p>
+                </div>
+                <div class="outlook-card">
+                    <h3>运营效率提升</h3>
+                    <p>人均创收提升至<span class="highlight">¥85万元</span>，行业领先</p>
+                    <p>客户服务响应时间缩短<span class="secondary-highlight">40%</span>，NPS提升12分</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 幻灯片 6: 数据图表 -->
+    <div class="slide">
+        <div class="container">
+            <h2>季度营收趋势</h2>
+            <div class="chart-container">
+                <div class="bar-chart">
+                    <div class="bar" style="height: 180px;">
+                        <div class="bar-value">1.8亿</div>
+                        <div class="bar-label">Q1</div>
+                    </div>
+                    <div class="bar" style="height: 210px;">
+                        <div class="bar-value">2.1亿</div>
+                        <div class="bar-label">Q2</div>
+                    </div>
+                    <div class="bar" style="height: 240px;">
+                        <div class="bar-value">2.4亿</div>
+                        <div class="bar-label">Q3</div>
+                    </div>
+                    <div class="bar" style="background-color: #f1faee; height: 280px;">
+                        <div class="bar-value" style="color: #1a2332;">2.8亿</div>
+                        <div class="bar-label">Q4</div>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">
+                <span class="highlight">连续四个季度实现环比增长</span>，Q4创历史最高纪录
+            </p>
+        </div>
+    </div>
+
+    <!-- 幻灯片 7: 下季度展望 -->
+    <div class="slide">
+        <div class="container">
+            <h2>下季度展望</h2>
+            <div class="outlook-grid">
+                <div class="outlook-card">
+                    <h3>营收目标</h3>
+                    <p>预计Q1营收达到<span class="highlight">¥3.2亿元</span>，同比增长14%</p>
+                    <p>目标：实现连续五个季度双位数增长</p>
+                </div>
+                <div class="outlook-card">
+                    <h3>产品规划</h3>
+                    <p>推出AI智能决策系统，预计贡献收入<span class="secondary-highlight">¥5000万元</span></p>
+                    <p>完成平台架构升级，支持更大规模并发</p>
+                </div>
+                <div class="outlook-card">
+                    <h3>市场策略</h3>
+                    <p>加大华南市场投入，目标新增<span class="highlight">80家</span>企业客户</p>
+                    <p>拓展海外市场，首批进入东南亚市场</p>
+                </div>
+                <div class="outlook-card">
+                    <h3>团队建设</h3>
+                    <p>计划招聘<span class="secondary-highlight">120人</span>，重点加强研发团队</p>
+                    <p>建立人才梯队，为上市做好准备</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 幻灯片 8: 结束页 -->
+    <div class="slide cover-slide">
+        <div class="container">
+            <h1>感谢您的关注</h1>
+            <p style="text-align: center; font-size: 28px; margin-top: 40px;">
+                <span class="highlight">携手共进</span> · 
+                <span class="secondary-highlight">共创未来</span> · 
+                <span class="highlight">再创辉煌</span>
+            </p>
+            <div style="margin-top: 60px; border-top: 2px solid #2d8b8b; padding-top: 30px;">
+                <p style="font-size: 18px; color: #a8dadc;">ABC科技有限公司</p>
+                <p style="font-size: 18px; color: #a8dadc;">www.abctech.com | contact@abctech.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-number">8 / 8</div>
+    <button class="nav-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">返回顶部</button>
+
+    <script>
+        // 平滑滚动效果
+        document.querySelectorAll('.toc-list li').forEach(item => {
+            item.addEventListener('click', function() {
+                const slideIndex = parseInt(this.querySelector('.toc-number').textContent);
+                const slides = document.querySelectorAll('.slide');
+                if (slides[slideIndex]) {
+                    slides[slideIndex].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -21,18 +21,7 @@ function t(key) {
 // Translate category name
 function translateCategory(category) {
     const categoryMap = {
-        'Tools': 'tools',
-        'Development': 'development',
-        'Data & AI': 'dataAi',
-        'Business': 'business',
-        'DevOps': 'devOps',
-        'Testing & Security': 'testingSecurity',
-        'Documentation': 'documentation',
-        'Content & Media': 'contentMedia',
-        'Lifestyle': 'lifestyle',
-        'Research': 'research',
-        'Databases': 'databases',
-        'Blockchain': 'blockchain'
+        'anthropics': 'anthropics'
     };
     const key = categoryMap[category] || category.toLowerCase().replace(/[^a-z]/g, '');
     return t(key);
@@ -180,11 +169,20 @@ function renderSkills(category) {
                 <p class="skill-description">${skill.description}</p>
                 <div class="skill-footer">
                     <span class="skill-category">${translateCategory(skill.category)}</span>
-                    <button class="favorite-btn ${isFavorited ? 'favorited' : ''}" onclick="event.stopPropagation(); toggleFavorite('${skill.id}')">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
-                    </button>
+                    <div class="action-buttons-group">
+                        <button class="share-btn" onclick="event.stopPropagation(); shareSkill('${skill.id}')" title="${t('share')}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                                <polyline points="16 6 12 2 8 6"/>
+                                <line x1="12" y1="2" x2="12" y2="15"/>
+                            </svg>
+                        </button>
+                        <button class="favorite-btn ${isFavorited ? 'favorited' : ''}" onclick="event.stopPropagation(); toggleFavorite('${skill.id}')">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
@@ -194,7 +192,7 @@ function renderSkills(category) {
 // Toggle favorite
 function toggleFavorite(skillId) {
     const index = favorites.indexOf(skillId);
-    
+
     if (index === -1) {
         favorites.push(skillId);
     } else {
@@ -203,7 +201,102 @@ function toggleFavorite(skillId) {
 
     localStorage.setItem('skillFavorites', JSON.stringify(favorites));
     updateFavoriteCount();
-    renderSkills(currentCategory);
+
+    // 找到被点击的收藏按钮并更新其样式
+    const skillCard = document.querySelector(`[data-skill-id="${skillId}"]`);
+    if (skillCard) {
+        const favBtn = skillCard.querySelector('.favorite-btn');
+        if (favBtn) {
+            const isFavorited = favorites.includes(skillId);
+            if (isFavorited) {
+                favBtn.classList.add('favorited');
+            } else {
+                favBtn.classList.remove('favorited');
+            }
+        }
+    }
+
+    // 如果当前在"我的收藏"分类，需要处理技能的显示/隐藏
+    if (currentCategory === 'favorites') {
+        const skillCard = document.querySelector(`[data-skill-id="${skillId}"]`);
+        if (skillCard) {
+            const isFavorited = favorites.includes(skillId);
+            if (!isFavorited) {
+                // 如果取消收藏，淡出并移除卡片
+                skillCard.style.opacity = '0';
+                skillCard.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    skillCard.remove();
+                    // 检查是否为空
+                    const remainingSkills = document.querySelectorAll('.skill-card');
+                    if (remainingSkills.length === 0) {
+                        const skillsGrid = document.getElementById('skillsGrid');
+                        const headerSubtitle = document.getElementById('headerSubtitle');
+                        skillsGrid.innerHTML = `
+                            <div class="empty-state" style="grid-column: 1 / -1;">
+                                <div class="empty-state-icon">🔍</div>
+                                <h3>${t('noSkillsFound')}</h3>
+                                <p>${t('tryDifferentCategory')}</p>
+                            </div>
+                        `;
+                        headerSubtitle.textContent = `0${t('myFavoritesSubtitle')}`;
+                    }
+                }, 300);
+            }
+        }
+    }
+}
+
+// Share skill
+async function shareSkill(skillId) {
+    const skill = skillsData.find(s => s.id === skillId);
+    if (!skill) return;
+
+    const shareData = {
+        title: skill.name,
+        text: `${skill.name}\n\n${skill.description}`,
+        url: window.location.href
+    };
+
+    try {
+        if (navigator.share) {
+            await navigator.share(shareData);
+            showToast(t('shareSuccess'));
+        } else {
+            await navigator.clipboard.writeText(shareData.url);
+            showToast(t('linkCopied'));
+        }
+    } catch (err) {
+        if (err.name !== 'AbortError') {
+            console.error('Share failed:', err);
+            await navigator.clipboard.writeText(shareData.url);
+            showToast(t('linkCopied'));
+        }
+    }
+}
+
+// Show toast notification
+function showToast(message) {
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) {
+        existingToast.remove();
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, 2000);
 }
 
 // Initialize

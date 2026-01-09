@@ -1,39 +1,12 @@
 // Skills data from skillsmp.com
 const skillsData = [
     // Tools
-    {
-        id: "tool-1",
-        name: "Productivity Tools",
-        description: "Enhance your productivity with powerful integration and automation tools.",
-        category: "Tools",
-        icon: "⚡",
-        gradient: "var(--gradient-1)",
-        sourceUrl: "https://skillsmp.com/skills/productivity-tools-skill-md"
-    },
-    {
-        id: "tool-2",
-        name: "Automation Tools",
-        description: "Automate repetitive tasks and workflows with intelligent agents.",
-        category: "Tools",
-        icon: "🤖",
-        gradient: "var(--gradient-2)",
-        sourceUrl: "https://skillsmp.com/skills/automation-tools-skill-md"
-    },
-    {
-        id: "tool-3",
-        name: "Debugging Tools",
-        description: "Advanced debugging and troubleshooting utilities for developers.",
-        category: "Tools",
-        icon: "🐛",
-        gradient: "var(--gradient-3)",
-        sourceUrl: "https://skillsmp.com/skills/debugging-tools-skill-md"
-    },
-    // Development
+    
     {
         id: "dev-1",
         name: "Algorithmic Art",
         description: "Create stunning generative art using p5.js with seeded randomness and interactive parameter exploration. From algorithmic philosophies to interactive visualizations.",
-        category: "Development",
+        category: "anthropics",
         icon: "🎨",
         gradient: "var(--gradient-4)",
         sourceUrl: "https://skillsmp.com/skills/algorithmic-art-skill-md",
@@ -59,7 +32,7 @@ const skillsData = [
         id: "dev-2",
         name: "Frontend Design",
         description: "Create distinctive, production-grade frontend interfaces with high design quality. Generates creative, polished code and UI design that avoids generic AI aesthetics. Focus on bold aesthetic directions, unique typography, cohesive color themes, and memorable visual details.",
-        category: "Development",
+        category: "anthropics",
         icon: "✨",
         gradient: "var(--gradient-1)",
         sourceUrl: "https://skillsmp.com/skills/frontend-design-skill-md",
@@ -80,7 +53,7 @@ const skillsData = [
         id: "dev-3",
         name: "MCP Builder",
         description: "Create high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Comprehensive development guide for TypeScript and Python SDK with best practices, tool design, error handling, and evaluation workflows.",
-        category: "Development",
+        category: "anthropics",
         icon: "🔧",
         gradient: "var(--gradient-2)",
         sourceUrl: "https://skillsmp.com/skills/mcp-builder-skill-md",
@@ -121,7 +94,7 @@ const skillsData = [
         id: "dev-4",
         name: "Skill Creator",
         description: "Guide for creating effective skills that extend Claude's capabilities with specialized knowledge, workflows, and tool integrations. Six-step creation process: Understanding the skill with concrete examples, planning reusable contents (scripts, references, assets), initializing with init_skill.py, editing the skill with best practices, packaging into distributable .skill files, and iterating based on real usage feedback.",
-        category: "Development",
+        category: "anthropics",
         icon: "⚙️",
         gradient: "var(--gradient-3)",
         sourceUrl: "https://skillsmp.com/skills/skill-creator-skill-md",
@@ -167,7 +140,7 @@ const skillsData = [
         id: "dev-5",
         name: "Web Artifacts Builder",
         description: "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Perfect for complex artifacts requiring state management, routing, or shadcn/ui components. Includes init and bundle scripts with pre-configured React 18 + TypeScript + Vite + Parcel + Tailwind CSS 3.4.1 + 40+ shadcn/ui components.",
-        category: "Development",
+        category: "anthropics",
         icon: "🚀",
         gradient: "var(--gradient-1)",
         sourceUrl: "https://skillsmp.com/skills/web-artifacts-builder-skill-md",
@@ -204,7 +177,7 @@ const skillsData = [
         id: "ai-1",
         name: "XLSX",
         description: "Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, and visualization. When Claude needs to work with spreadsheets (.xlsx, .xlsm, .csv, .tsv, etc) for: (1) Creating new spreadsheets with formulas and formatting, (2) Reading or analyzing data, (3) Modify existing spreadsheets while preserving formulas, (4) Data analysis and visualization in spreadsheets, or (5) Recalculating formulas",
-        category: "Data & AI",
+        category: "anthropics",
         icon: "📊",
         gradient: "var(--gradient-4)",
         sourceUrl: "https://skillsmp.com/skills/xlsx-skill-md",
@@ -226,86 +199,13 @@ const skillsData = [
             }
         ]
     },
-    {
-        id: "ai-2",
-        name: "Data Analysis",
-        description: "Advanced data analysis and visualization tools.",
-        category: "Data & AI",
-        icon: "📊",
-        gradient: "var(--gradient-4)",
-        sourceUrl: "https://skillsmp.com/skills/data-analysis-skill-md"
-    },
-    {
-        id: "ai-3",
-        name: "Machine Learning",
-        description: "Machine learning models and training frameworks.",
-        category: "Data & AI",
-        icon: "🎯",
-        gradient: "var(--gradient-1)",
-        sourceUrl: "https://skillsmp.com/skills/machine-learning-skill-md"
-    },
-    // Business
-    {
-        id: "business-1",
-        name: "Project Management",
-        description: "Comprehensive project management and collaboration tools.",
-        category: "Business",
-        icon: "📋",
-        gradient: "var(--gradient-2)",
-        sourceUrl: "https://skillsmp.com/skills/project-management-skill-md"
-    },
-    {
-        id: "business-2",
-        name: "Sales & Marketing",
-        description: "Sales automation and marketing optimization solutions.",
-        category: "Business",
-        icon: "📈",
-        gradient: "var(--gradient-3)",
-        sourceUrl: "https://skillsmp.com/skills/sales-marketing-skill-md"
-    },
-    {
-        id: "business-3",
-        name: "Finance & Investment",
-        description: "Financial analysis and investment tracking tools.",
-        category: "Business",
-        icon: "💹",
-        gradient: "var(--gradient-4)",
-        sourceUrl: "https://skillsmp.com/skills/finance-investment-skill-md"
-    },
-    // DevOps
-    {
-        id: "devops-1",
-        name: "CI/CD",
-        description: "Continuous integration and deployment automation.",
-        category: "DevOps",
-        icon: "🔄",
-        gradient: "var(--gradient-1)",
-        sourceUrl: "https://skillsmp.com/skills/ci-cd-skill-md"
-    },
-    {
-        id: "devops-2",
-        name: "Cloud",
-        description: "Cloud infrastructure and deployment tools.",
-        category: "DevOps",
-        icon: "☁️",
-        gradient: "var(--gradient-2)",
-        sourceUrl: "https://skillsmp.com/skills/cloud-skill-md"
-    },
-    {
-        id: "devops-3",
-        name: "Containers",
-        description: "Docker and Kubernetes containerization solutions.",
-        category: "DevOps",
-        icon: "📦",
-        gradient: "var(--gradient-3)",
-        sourceUrl: "https://skillsmp.com/skills/containers-skill-md"
-    },
+   
     // Testing & Security
     {
         id: "security-1",
         name: "Web Application Testing",
         description: "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.",
-        category: "Testing & Security",
+        category: "anthropics",
         icon: "🌐",
         gradient: "var(--gradient-3)",
         sourceUrl: "https://skillsmp.com/skills/webapp-testing-skill-md",
@@ -342,30 +242,13 @@ const skillsData = [
             }
         ]
     },
-    {
-        id: "security-2",
-        name: "Code Quality",
-        description: "Code linting, formatting, and quality checks.",
-        category: "Testing & Security",
-        icon: "🔬",
-        gradient: "var(--gradient-1)",
-        sourceUrl: "https://skillsmp.com/skills/code-quality-skill-md"
-    },
-    {
-        id: "security-3",
-        name: "Security",
-        description: "Security scanning and vulnerability assessment tools.",
-        category: "Testing & Security",
-        icon: "🔒",
-        gradient: "var(--gradient-2)",
-        sourceUrl: "https://skillsmp.com/skills/security-skill-md"
-    },
+    
     // Documentation
     {
         id: "docs-1",
         name: "Doc Co-Authoring",
         description: "Guide users through a structured workflow for collaborative document creation. Three-stage process: Context Gathering (clarify requirements and gather information), Refinement & Structure (build section by section through brainstorming and editing), and Reader Testing (test document with fresh perspective to catch blind spots). Perfect for writing technical specs, proposals, decision docs, and similar structured content.",
-        category: "Documentation",
+        category: "anthropics",
         icon: "✏️",
         gradient: "var(--gradient-3)",
         sourceUrl: "https://skillsmp.com/skills/doccoauthoring-skill-md",
@@ -381,7 +264,7 @@ const skillsData = [
         id: "docs-2",
         name: "Internal Communications",
         description: "A set of resources to help write all kinds of internal communications, using the formats that your company likes to use. Perfect for 3P updates (Progress, Plans, Problems), company newsletters, FAQ responses, status reports, leadership updates, project updates, and incident reports.",
-        category: "Documentation",
+        category: "anthropics",
         icon: "💬",
         gradient: "var(--gradient-4)",
         sourceUrl: "https://skillsmp.com/skills/internal-comms-skill-md",
@@ -422,7 +305,7 @@ const skillsData = [
         id: "docs-3",
         name: "PDF Processing",
         description: "Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. When Claude needs to fill in a PDF form or programmatically process, generate, or analyze PDF documents at scale.",
-        category: "Documentation",
+        category: "anthropics",
         icon: "📄",
         gradient: "var(--gradient-1)",
         sourceUrl: "https://skillsmp.com/skills/pdf-processing-skill-md",
@@ -489,7 +372,7 @@ const skillsData = [
         id: "media-1",
         name: "PPTX Presentation",
         description: "Create professional PowerPoint presentations with html2pptx and PptxGenJS. Support for rich text, charts, tables, images, and custom styling.",
-        category: "Content & Media",
+        category: "anthropics",
         icon: "📊",
         gradient: "var(--gradient-1)",
         sourceUrl: "https://skillsmp.com/skills/pptx-skill-md",
@@ -515,7 +398,7 @@ const skillsData = [
         id: "media-2",
         name: "Brand Guidelines",
         description: "Apply Anthropic's official brand colors and typography to any sort of artifact. Includes color palette (dark #141413, light #faf9f5, mid gray #b0aea5, light gray #e8e6dc), accent colors (orange #d97757, blue #6a9bcc, green #788c5d), and typography system (Poppins for headings, Lora for body text). Use for consistent visual identity across presentations, web pages, and documents.",
-        category: "Content & Media",
+        category: "anthropics",
         icon: "🎨",
         gradient: "var(--gradient-2)",
         sourceUrl: "https://skillsmp.com/skills/brand-guidelines-skill-md",
@@ -536,7 +419,7 @@ const skillsData = [
         id: "media-3",
         name: "Slack GIF Creator",
         description: "Create animated GIFs optimized for Slack with pulse, particle, and various animation effects. Includes GIFBuilder, easing functions, and comprehensive animation concepts for Slack emoji and message GIFs. Supports shake, bounce, spin, fade, slide, zoom, explode animations with PIL drawing primitives.",
-        category: "Content & Media",
+        category: "anthropics",
         icon: "🎬",
         gradient: "var(--gradient-3)",
         sourceUrl: "https://skillsmp.com/skills/slack-gif-creator-skill-md",
@@ -582,7 +465,7 @@ const skillsData = [
         id: "media-4",
         name: "Theme Factory",
         description: "Toolkit for styling artifacts with professional themes. Features 10 pre-set curated themes (Ocean Depths, Sunset Boulevard, Forest Canopy, Modern Minimalist, Golden Hour, Arctic Frost, Desert Rose, Tech Innovation, Botanical Garden, Midnight Galaxy) with carefully selected color palettes and font pairings. Apply consistent, professional styling to presentation slide decks, documents, reports, and HTML landing pages. Each theme includes cohesive colors, complementary fonts, and distinct visual identity for different contexts and audiences.",
-        category: "Content & Media",
+        category: "anthropics",
         icon: "🎭",
         gradient: "var(--gradient-4)",
         sourceUrl: "https://skillsmp.com/skills/theme-factory-skill-md",
@@ -653,106 +536,14 @@ const skillsData = [
                 path: "skills/theme-factory-SKILL/themes/midnight-galaxy.md"
             }
         ]
-    },
-    // Lifestyle
-    {
-        id: "life-1",
-        name: "Wellness & Health",
-        description: "Health tracking and wellness improvement tools.",
-        category: "Lifestyle",
-        icon: "💪",
-        gradient: "var(--gradient-3)",
-        sourceUrl: "https://skillsmp.com/skills/wellness-health-skill-md"
-    },
-    {
-        id: "life-2",
-        name: "Culinary Arts",
-        description: "Recipe management and cooking assistance.",
-        category: "Lifestyle",
-        icon: "🍳",
-        gradient: "var(--gradient-4)",
-        sourceUrl: "https://skillsmp.com/skills/culinary-arts-skill-md"
-    },
-    // Research
-    {
-        id: "research-1",
-        name: "Academic",
-        description: "Academic research and citation management.",
-        category: "Research",
-        icon: "🔬",
-        gradient: "var(--gradient-1)",
-        sourceUrl: "https://skillsmp.com/skills/academic-skill-md"
-    },
-    {
-        id: "research-2",
-        name: "Scientific Computing",
-        description: "Scientific computing and data simulation tools.",
-        category: "Research",
-        icon: "🧮",
-        gradient: "var(--gradient-2)",
-        sourceUrl: "https://skillsmp.com/skills/scientific-computing-skill-md"
-    },
-    // Databases
-    {
-        id: "db-1",
-        name: "SQL Databases",
-        description: "Relational database management and querying tools.",
-        category: "Databases",
-        icon: "🗃️",
-        gradient: "var(--gradient-3)",
-        sourceUrl: "https://skillsmp.com/skills/sql-databases-skill-md"
-    },
-    {
-        id: "db-2",
-        name: "NoSQL Databases",
-        description: "NoSQL database solutions and optimization.",
-        category: "Databases",
-        icon: "📊",
-        gradient: "var(--gradient-4)",
-        sourceUrl: "https://skillsmp.com/skills/nosql-databases-skill-md"
-    },
-    // Blockchain
-    {
-        id: "blockchain-1",
-        name: "Web3 Tools",
-        description: "包含 MetaMask 钱包插件、Web3.js 和 Ethers.js 交互库、WalletConnect 协议、IPFS 去中心化存储、The Graph 数据索引、Hardhat 和 Ganache 开发测试环境等完整的 Web3 开发工具栈。",
-        category: "Blockchain",
-        icon: "🌐",
-        gradient: "var(--gradient-1)",
-        sourceUrl: "https://skillsmp.com/skills/web3-tools-skill-md"
-    },
-    {
-        id: "blockchain-2",
-        name: "Smart Contracts",
-        description: "Solidity 智能合约编程语言、OpenZeppelin 安全标准库、Truffle 和 Foundry 开发框架、Remix IDE 在线环境、Brownie Python 框架、Slither 安全分析工具、Web3 Testing 综合测试等智能合约开发测试工具。",
-        category: "Blockchain",
-        icon: "⚡",
-        gradient: "var(--gradient-2)",
-        sourceUrl: "https://skillsmp.com/skills/smart-contracts-skill-md"
-    },
-    {
-        id: "blockchain-3",
-        name: "DeFi",
-        description: "包含 Uniswap 去中心化交易、Aave 和 Compound 借贷协议、Curve 稳定币交易、MakerDAO 稳定币发行、Yearn Finance 收益聚合、Synthetix 合成资产、Chainlink 去中心化预言机等完整的 DeFi 生态系统工具。",
-        category: "Blockchain",
-        icon: "💎",
-        gradient: "var(--gradient-3)",
-        sourceUrl: "https://skillsmp.com/skills/defi-skill-md"
     }
+    // Lifestyle
+    
+    // Blockchain
+    
 ];
 
 // Category emojis
 const categoryEmojis = {
-    "Tools": "🛠️",
-    "Development": "💻",
-    "Data & AI": "🧠",
-    "Business": "💼",
-    "DevOps": "☁️",
-    "Testing & Security": "🔒",
-    "Documentation": "📚",
-    "Content & Media": "🎨",
-    "Lifestyle": "🌟",
-    "Research": "🔬",
-    "Databases": "🗃️",
-    "Blockchain": "⛓️"
+    "anthropics": "🤖"
 };
