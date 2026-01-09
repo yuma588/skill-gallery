@@ -9,7 +9,7 @@ const skillsData = [
         category: "anthropics",
         icon: "🎨",
         gradient: "var(--gradient-4)",
-        sourceUrl: "https://skillsmp.com/skills/algorithmic-art-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/algorithmic-art-SKILL/algorithmic-art-SKILL.md",
         resources: [
             {
                 name: "algorithmic-art-SKILL.md",
@@ -35,7 +35,7 @@ const skillsData = [
         category: "anthropics",
         icon: "✨",
         gradient: "var(--gradient-1)",
-        sourceUrl: "https://skillsmp.com/skills/frontend-design-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/frontend-design-SKILL/frontend-design-SKILL-crawled.md",
         resources: [
             {
                 name: "frontend-design-SKILL-crawled.md",
@@ -56,7 +56,7 @@ const skillsData = [
         category: "anthropics",
         icon: "🔧",
         gradient: "var(--gradient-2)",
-        sourceUrl: "https://skillsmp.com/skills/mcp-builder-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/mcp-builder-SKILL/SKILL.md",
         resources: [
             {
                 name: "mcp-builder-SKILL.md",
@@ -97,7 +97,7 @@ const skillsData = [
         category: "anthropics",
         icon: "⚙️",
         gradient: "var(--gradient-3)",
-        sourceUrl: "https://skillsmp.com/skills/skill-creator-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/skill-creator-SKILL/SKILL.md",
         resources: [
             {
                 name: "SKILL.md",
@@ -143,7 +143,7 @@ const skillsData = [
         category: "anthropics",
         icon: "🚀",
         gradient: "var(--gradient-1)",
-        sourceUrl: "https://skillsmp.com/skills/web-artifacts-builder-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/web-artifacts-builder-SKILL/SKILL.md",
         resources: [
             {
                 name: "SKILL.md",
@@ -180,7 +180,7 @@ const skillsData = [
         category: "anthropics",
         icon: "📊",
         gradient: "var(--gradient-4)",
-        sourceUrl: "https://skillsmp.com/skills/xlsx-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/xlsx-SKILL/SKILL.md",
         resources: [
             {
                 name: "SKILL.md",
@@ -208,7 +208,7 @@ const skillsData = [
         category: "anthropics",
         icon: "🌐",
         gradient: "var(--gradient-3)",
-        sourceUrl: "https://skillsmp.com/skills/webapp-testing-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/webapp-testing-SKILL/SKILL.md",
         resources: [
             {
                 name: "SKILL.md",
@@ -251,7 +251,7 @@ const skillsData = [
         category: "anthropics",
         icon: "✏️",
         gradient: "var(--gradient-3)",
-        sourceUrl: "https://skillsmp.com/skills/doccoauthoring-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/doc-coauthoring-SKILL/doc-coauthoring-SKILL.md",
         resources: [
             {
                 name: "doc-coauthoring-SKILL.md",
@@ -267,7 +267,7 @@ const skillsData = [
         category: "anthropics",
         icon: "💬",
         gradient: "var(--gradient-4)",
-        sourceUrl: "https://skillsmp.com/skills/internal-comms-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/internal-comms-SKILL/internal-comms-SKILL-crawled.md",
         resources: [
             {
                 name: "internal-comms-SKILL.md",
@@ -308,7 +308,7 @@ const skillsData = [
         category: "anthropics",
         icon: "📄",
         gradient: "var(--gradient-1)",
-        sourceUrl: "https://skillsmp.com/skills/pdf-processing-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/pdf-skills/SKILL.md",
         resources: [
             {
                 name: "SKILL.md",
@@ -375,7 +375,7 @@ const skillsData = [
         category: "anthropics",
         icon: "📊",
         gradient: "var(--gradient-1)",
-        sourceUrl: "https://skillsmp.com/skills/pptx-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/pptx/pptx-SKILL.md",
         resources: [
             {
                 name: "pptx-SKILL.md",
@@ -401,7 +401,7 @@ const skillsData = [
         category: "anthropics",
         icon: "🎨",
         gradient: "var(--gradient-2)",
-        sourceUrl: "https://skillsmp.com/skills/brand-guidelines-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/brand-guidelines-SKILL/brand-guidelines-SKILL.md",
         resources: [
             {
                 name: "brand-guidelines-SKILL.md",
@@ -422,7 +422,7 @@ const skillsData = [
         category: "anthropics",
         icon: "🎬",
         gradient: "var(--gradient-3)",
-        sourceUrl: "https://skillsmp.com/skills/slack-gif-creator-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/slack-gif-creator-SKILL/SKILL.md",
         resources: [
             {
                 name: "SKILL.md",
@@ -468,7 +468,7 @@ const skillsData = [
         category: "anthropics",
         icon: "🎭",
         gradient: "var(--gradient-4)",
-        sourceUrl: "https://skillsmp.com/skills/theme-factory-skill-md",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/theme-factory-SKILL/SKILL.md",
         resources: [
             {
                 name: "SKILL.md",
