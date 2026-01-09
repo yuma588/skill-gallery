@@ -545,5 +545,6 @@ const skillsData = [
 
 // Category emojis
 const categoryEmojis = {
-    "anthropics": "🤖"
+    "anthropics": "🤖",
+    "chatgpt": "💬"
 };

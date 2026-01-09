@@ -5,8 +5,17 @@ let currentLanguage = localStorage.getItem('skillLanguage') || 'en';
 
 // Get unique categories (sorted by count descending)
 function getCategories() {
-    const categories = [...new Set(skillsData.map(skill => skill.category))];
-    return categories.sort((a, b) => {
+    // Get categories that have skills
+    const categoriesWithSkills = [...new Set(skillsData.map(skill => skill.category))];
+
+    // Get all defined categories from categoryEmojis
+    const allDefinedCategories = Object.keys(categoryEmojis);
+
+    // Merge and deduplicate
+    const allCategories = [...new Set([...categoriesWithSkills, ...allDefinedCategories])];
+
+    // Sort by count descending (categories with 0 skills go last)
+    return allCategories.sort((a, b) => {
         const countA = skillsData.filter(skill => skill.category === a).length;
         const countB = skillsData.filter(skill => skill.category === b).length;
         return countB - countA;
@@ -21,10 +30,26 @@ function t(key) {
 // Translate category name
 function translateCategory(category) {
     const categoryMap = {
-        'anthropics': 'anthropics'
+        'anthropics': 'anthropics',
+        'chatgpt': 'chatgpt'
     };
     const key = categoryMap[category] || category.toLowerCase().replace(/[^a-z]/g, '');
     return t(key);
+}
+
+// Get skill translation helper
+function getSkillTranslation(skill, field) {
+    const skillTranslations = translations[currentLanguage]?.skills?.[skill.id];
+    if (skillTranslations && skillTranslations[field]) {
+        return skillTranslations[field];
+    }
+    // Fallback to English translation
+    const enTranslations = translations['en']?.skills?.[skill.id];
+    if (enTranslations && enTranslations[field]) {
+        return enTranslations[field];
+    }
+    // Fallback to original skill data
+    return skill[field];
 }
 
 // Toggle language
@@ -165,8 +190,8 @@ function renderSkills(category) {
         return `
             <div class="skill-card" style="--card-gradient: ${skill.gradient}" data-skill-id="${skill.id}" onclick="openModal(skillsData.find(s => s.id === '${skill.id}'))">
                 <div class="skill-icon">${skill.icon}</div>
-                <h3 class="skill-name">${skill.name}</h3>
-                <p class="skill-description">${skill.description}</p>
+                <h3 class="skill-name">${getSkillTranslation(skill, 'name')}</h3>
+                <p class="skill-description">${getSkillTranslation(skill, 'description')}</p>
                 <div class="skill-footer">
                     <span class="skill-category">${translateCategory(skill.category)}</span>
                     <div class="action-buttons-group">
@@ -252,9 +277,12 @@ async function shareSkill(skillId) {
     const skill = skillsData.find(s => s.id === skillId);
     if (!skill) return;
 
+    const skillName = getSkillTranslation(skill, 'name');
+    const skillDescription = getSkillTranslation(skill, 'description');
+
     const shareData = {
-        title: skill.name,
-        text: `${skill.name}\n\n${skill.description}`,
+        title: skillName,
+        text: `${skillName}\n\n${skillDescription}`,
         url: window.location.href
     };
 

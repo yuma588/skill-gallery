@@ -27,6 +27,21 @@ function translateCategory(category) {
     return t(key);
 }
 
+// Get skill translation helper
+function getSkillTranslation(skill, field) {
+    const skillTranslations = translations[currentLanguage]?.skills?.[skill.id];
+    if (skillTranslations && skillTranslations[field]) {
+        return skillTranslations[field];
+    }
+    // Fallback to English translation
+    const enTranslations = translations['en']?.skills?.[skill.id];
+    if (enTranslations && enTranslations[field]) {
+        return enTranslations[field];
+    }
+    // Fallback to original skill data
+    return skill[field];
+}
+
 // Modal functions
 function openModal(skill) {
     currentSkill = skill;
@@ -34,13 +49,13 @@ function openModal(skill) {
     // Set modal content
     document.getElementById('modalIcon').textContent = skill.icon;
     document.getElementById('modalIcon').style.background = skill.gradient;
-    document.getElementById('modalTitle').textContent = skill.name;
+    document.getElementById('modalTitle').textContent = getSkillTranslation(skill, 'name');
     document.getElementById('modalCategory').textContent = skill.category;
 
     // Set overview content
     const overviewContent = `
         <h3>${t('description')}</h3>
-        <p>${skill.description}</p>
+        <p>${getSkillTranslation(skill, 'description')}</p>
         <h3>${t('category')}</h3>
         <p>${translateCategory(skill.category)}</p>
         <h3>${t('source')}</h3>
@@ -336,13 +351,14 @@ document.addEventListener('keydown', (e) => {
 function updateModalLanguage() {
     if (!currentSkill) return;
 
-    // Update category text in modal header
+    // Update title and category text in modal header
+    document.getElementById('modalTitle').textContent = getSkillTranslation(currentSkill, 'name');
     document.getElementById('modalCategory').textContent = translateCategory(currentSkill.category);
 
     // Update overview content
     const overviewContent = `
         <h3>${t('description')}</h3>
-        <p>${currentSkill.description}</p>
+        <p>${getSkillTranslation(currentSkill, 'description')}</p>
         <h3>${t('category')}</h3>
         <p>${translateCategory(currentSkill.category)}</p>
         <h3>${t('source')}</h3>
