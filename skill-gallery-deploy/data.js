@@ -747,6 +747,23 @@ const skillsData = [
             }
         ]
     },
+    {
+        id: "community-superpower-3",
+        name: "Executing Plans",
+        description: "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+        category: "community",
+        subCategory: "superpower",
+        icon: "📋",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/executing-plans/executing-plans-SKILL.md",
+        resources: [
+            {
+                name: "executing-plans-SKILL.md",
+                description: "Complete executing plans workflow with batch execution and checkpoint reviews",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/executing-plans/executing-plans-SKILL.md"
+            }
+        ]
+    },
     
     // Blockchain
     

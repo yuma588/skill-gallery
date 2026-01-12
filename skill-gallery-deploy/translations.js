@@ -127,6 +127,10 @@ const translations = {
             'community-superpower-2': {
                 name: "Dispatching Parallel Agents",
                 description: "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies."
+            },
+            'community-superpower-3': {
+                name: "Executing Plans",
+                description: "Use when you have a written implementation plan to execute in a separate session with review checkpoints"
             }
         }
     },
@@ -268,6 +272,10 @@ const translations = {
             'community-superpower-2': {
                 name: "并行调度代理",
                 description: "当面临两个或更多独立任务时使用,这些任务可以在没有共享状态或顺序依赖的情况下并行工作。"
+            },
+            'community-superpower-3': {
+                name: "执行计划",
+                description: "当您有书面实施计划需要在单独会话中执行并进行审查检查点时使用"
             }
         }
     }
