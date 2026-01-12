@@ -119,6 +119,14 @@ const translations = {
             'docs-6': {
                 name: "Spreadsheets",
                 description: "Comprehensive spreadsheet creation, editing, and analysis with openpyxl and artifact_tool. Support for formulas, formatting, data analysis, and visualization. Use this skill when working with spreadsheets (.xlsx, .csv, .tsv) for: Creating new workbooks with proper formulas and formatting, Reading or analyzing tabular data, Modifying existing workbooks while preserving formulas, Visualizing data with charts, or Recalculating formulas."
+            },
+            'community-superpower-1': {
+                name: "Brainstorming",
+                description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation."
+            },
+            'community-superpower-2': {
+                name: "Dispatching Parallel Agents",
+                description: "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies."
             }
         }
     },
@@ -252,6 +260,14 @@ const translations = {
             'docs-6': {
                 name: "电子表格",
                 description: "使用openpyxl和artifact_tool进行全面的电子表格创建、编辑和分析。支持公式、格式化、数据分析和可视化。当需要处理电子表格(.xlsx、.csv、.tsv)时使用此技能:创建带有正确公式和格式的新工作簿、读取或分析表格数据、修改现有工作簿同时保留公式、使用图表可视化数据,或重新计算公式。"
+            },
+            'community-superpower-1': {
+                name: "头脑风暴",
+                description: "在进行任何创意工作之前必须使用此技能 - 创建功能、构建组件、添加功能或修改行为。在实施之前探索用户意图、需求和设计。"
+            },
+            'community-superpower-2': {
+                name: "并行调度代理",
+                description: "当面临两个或更多独立任务时使用,这些任务可以在没有共享状态或顺序依赖的情况下并行工作。"
             }
         }
     }

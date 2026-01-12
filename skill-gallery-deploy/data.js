@@ -715,14 +715,37 @@ const skillsData = [
     // Community
     {
         id: "community-superpower-1",
-        name: "Superpower",
-        description: "A placeholder for community superpower skills. Coming soon!",
+        name: "Brainstorming",
+        description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
         category: "community",
         subCategory: "superpower",
-        icon: "⚡",
+        icon: "💡",
         gradient: "var(--gradient-1)",
-        sourceUrl: "",
-        resources: []
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/brainstorming/brainstorming-SKILL.md",
+        resources: [
+            {
+                name: "brainstorming-SKILL.md",
+                description: "Complete brainstorming workflow with collaborative dialogue, design exploration, and incremental validation principles",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/brainstorming/brainstorming-SKILL.md"
+            }
+        ]
+    },
+    {
+        id: "community-superpower-2",
+        name: "Dispatching Parallel Agents",
+        description: "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies.",
+        category: "community",
+        subCategory: "superpower",
+        icon: "🚀",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/dispatching-parallel-agents/dispatching-parallel-agents-SKILL.md",
+        resources: [
+            {
+                name: "dispatching-parallel-agents-SKILL.md",
+                description: "Complete guide for dispatching parallel agents to handle independent tasks without shared state or sequential dependencies",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/dispatching-parallel-agents/dispatching-parallel-agents-SKILL.md"
+            }
+        ]
     },
     
     // Blockchain
