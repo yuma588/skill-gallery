@@ -131,6 +131,18 @@ const translations = {
             'community-superpower-3': {
                 name: "Executing Plans",
                 description: "Use when you have a written implementation plan to execute in a separate session with review checkpoints"
+            },
+            'community-superpower-4': {
+                name: "Finishing a Development Branch",
+                description: "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup"
+            },
+            'community-superpower-5': {
+                name: "Receiving Code Review",
+                description: "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation"
+            },
+            'community-superpower-6': {
+                name: "Requesting Code Review",
+                description: "Use when completing tasks, implementing major features, or before merging to verify work meets requirements"
             }
         }
     },
@@ -276,6 +288,18 @@ const translations = {
             'community-superpower-3': {
                 name: "执行计划",
                 description: "当您有书面实施计划需要在单独会话中执行并进行审查检查点时使用"
+            },
+            'community-superpower-4': {
+                name: "完成开发分支",
+                description: "当实现完成,所有测试通过,并且需要决定如何集成工作时使用 - 通过提供合并、PR或清理的结构化选项来指导开发工作的完成"
+            },
+            'community-superpower-5': {
+                name: "接收代码审查",
+                description: "当接收代码审查反馈,在实施建议之前使用,特别是如果反馈看起来不清楚或技术上有问题 - 需要技术严谨性和验证,而不是表演性同意或盲目实施"
+            },
+            'community-superpower-6': {
+                name: "请求代码审查",
+                description: "在完成任务、实现主要功能或合并之前使用,以验证工作是否符合要求"
             }
         }
     }

@@ -6,8 +6,8 @@ const crawler = new GitHubCrawler();
 
 async function main() {
   try {
-    const fileUrl = 'https://github.com/anthropics/skills/blob/main/skills/internal-comms/examples/general-comms.md';
-    const outputDir = 'd:/frontend-design/skills/internal-comms-SKILL/examples';
+    const fileUrl = 'https://github.com/obra/superpowers/blob/main/skills/finishing-a-development-branch/SKILL.md';
+    const outputDir = 'd:/skill gallery/crawled/finishing-a-development-branch';
 
     console.log('开始爬取文件...\n');
     console.log(`正在爬取: ${fileUrl}`);

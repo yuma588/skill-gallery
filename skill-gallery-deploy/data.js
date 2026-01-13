@@ -764,6 +764,62 @@ const skillsData = [
             }
         ]
     },
+    {
+        id: "community-superpower-4",
+        name: "Finishing a Development Branch",
+        description: "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
+        category: "community",
+        subCategory: "superpower",
+        icon: "🏁",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/finishing-a-development-branch/SKILL.md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Complete guide for finishing development branches with verification, options presentation, and workflow execution",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/finishing-a-development-branch/SKILL.md"
+            }
+        ]
+    },
+    {
+        id: "community-superpower-5",
+        name: "Receiving Code Review",
+        description: "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+        category: "community",
+        subCategory: "superpower",
+        icon: "🔍",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/receiving-code-review/SKILL.md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Complete guide for receiving and responding to code review feedback with technical rigor and verification",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/receiving-code-review/SKILL.md"
+            }
+        ]
+    },
+    {
+        id: "community-superpower-6",
+        name: "Requesting Code Review",
+        description: "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+        category: "community",
+        subCategory: "superpower",
+        icon: "📝",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/requesting-code-review/SKILL.md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Complete guide for requesting code review with git SHAs, subagent dispatch, and feedback handling",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/requesting-code-review/SKILL.md"
+            },
+            {
+                name: "code-reviewer.md",
+                description: "Template for code review subagent with placeholders for implementation details and requirements",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/requesting-code-review/code-reviewer.md"
+            }
+        ]
+    },
     
     // Blockchain
     
