@@ -143,6 +143,26 @@ const translations = {
             'community-superpower-6': {
                 name: "Requesting Code Review",
                 description: "Use when completing tasks, implementing major features, or before merging to verify work meets requirements"
+            },
+            'community-superpower-7': {
+                name: "Using Git Worktrees",
+                description: "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verification"
+            },
+            'community-superpower-8': {
+                name: "Using Superpowers",
+                description: "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions"
+            },
+            'community-superpower-9': {
+                name: "Verification Before Completion",
+                description: "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims"
+            },
+            'community-superpower-10': {
+                name: "Writing Plans",
+                description: "Use when you have a spec or requirements for a multi-step task, before touching code"
+            },
+            'community-superpower-11': {
+                name: "Subagent-Driven Development",
+                description: "Use when executing implementation plans with independent tasks in the current session. Execute plan by dispatching fresh subagent per task, with two-stage review after each: spec compliance review first, then code quality review."
             }
         }
     },
@@ -300,6 +320,26 @@ const translations = {
             'community-superpower-6': {
                 name: "请求代码审查",
                 description: "在完成任务、实现主要功能或合并之前使用,以验证工作是否符合要求"
+            },
+            'community-superpower-7': {
+                name: "使用Git工作树",
+                description: "在开始需要与当前工作区隔离的功能工作或在执行实施计划之前使用 - 创建具有智能目录选择和安全验证的隔离git工作树"
+            },
+            'community-superpower-8': {
+                name: "使用超能力",
+                description: "在开始任何对话时使用 - 确立如何查找和使用技能,要求在任何回应(包括澄清问题)之前调用Skill工具"
+            },
+            'community-superpower-9': {
+                name: "完成前验证",
+                description: "在声明工作完成、已修复或通过之前,在提交或创建PR之前使用 - 要求运行验证命令并在做出任何成功声明之前确认输出"
+            },
+            'community-superpower-10': {
+                name: "编写计划",
+                description: "当您有针对多步骤任务的规范或需求时,在接触代码之前使用"
+            },
+            'community-superpower-11': {
+                name: "子代理驱动开发",
+                description: "在当前会话中执行具有独立任务的实施计划时使用。通过为每个任务调度新的子代理来执行计划,并在每次任务后进行两阶段审查:首先是规范符合性审查,然后是代码质量审查。"
             }
         }
     }

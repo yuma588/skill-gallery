@@ -820,7 +820,107 @@ const skillsData = [
             }
         ]
     },
-    
+    {
+        id: "community-superpower-7",
+        name: "Using Git Worktrees",
+        description: "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verification",
+        category: "community",
+        subCategory: "superpower",
+        icon: "🌲",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/using-git-worktrees/SKILL.md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Complete guide for using Git worktrees with systematic directory selection and safety verification",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/using-git-worktrees/SKILL.md"
+            }
+        ]
+    },
+    {
+        id: "community-superpower-8",
+        name: "Using Superpowers",
+        description: "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
+        category: "community",
+        subCategory: "superpower",
+        icon: "⚡",
+        gradient: "var(--gradient-4)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/using-superpowers/SKILL.md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Complete guide for using skills with the golden rule and priority guidelines",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/using-superpowers/SKILL.md"
+            }
+        ]
+    },
+    {
+        id: "community-superpower-9",
+        name: "Verification Before Completion",
+        description: "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims",
+        category: "community",
+        subCategory: "superpower",
+        icon: "✅",
+        gradient: "var(--gradient-1)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/verification-before-completion/SKILL.md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Complete verification workflow with evidence-before-claims principle and gate function",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/verification-before-completion/SKILL.md"
+            }
+        ]
+    },
+    {
+        id: "community-superpower-10",
+        name: "Writing Plans",
+        description: "Use when you have a spec or requirements for a multi-step task, before touching code",
+        category: "community",
+        subCategory: "superpower",
+        icon: "📝",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/writing-plans/SKILL.md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Complete planning workflow with bite-sized tasks and comprehensive documentation",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/writing-plans/SKILL.md"
+            }
+        ]
+    },
+    {
+        id: "community-superpower-11",
+        name: "Subagent-Driven Development",
+        description: "Use when executing implementation plans with independent tasks in the current session. Execute plan by dispatching fresh subagent per task, with two-stage review after each: spec compliance review first, then code quality review.",
+        category: "community",
+        subCategory: "superpower",
+        icon: "🤖",
+        gradient: "var(--gradient-3)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/subagent-driven-development/SKILL.md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Main skill documentation with complete workflow, when to use guidelines, process diagrams, advantages, red flags, and integration notes",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/subagent-driven-development/SKILL.md"
+            },
+            {
+                name: "implementer-prompt.md",
+                description: "Template for dispatching implementer subagent with task description, context, and self-review guidelines",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/subagent-driven-development/implementer-prompt.md"
+            },
+            {
+                name: "spec-reviewer-prompt.md",
+                description: "Template for spec compliance reviewer subagent to verify implementation matches requirements exactly",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/subagent-driven-development/spec-reviewer-prompt.md"
+            },
+            {
+                name: "code-quality-reviewer-prompt.md",
+                description: "Template for code quality reviewer subagent to verify implementation is well-built, clean, and maintainable",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/community/superpower/subagent-driven-development/code-quality-reviewer-prompt.md"
+            }
+        ]
+    },
+
     // Blockchain
     
 ];
