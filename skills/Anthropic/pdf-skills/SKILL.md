@@ -230,10 +230,81 @@ print(text)
 ```
 
 ### Add Watermark
+
+#### Text Watermark (Recommended)
+```python
+from pypdf import PdfReader, PdfWriter, PageObject
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.colors import Color
+import io
+
+def create_text_watermark(text, rotation=45, opacity=0.3, font_size=50):
+    """Create a text watermark PDF in memory"""
+    packet = io.BytesIO()
+
+    # Create canvas with letter size
+    c = canvas.Canvas(packet, pagesize=letter)
+    width, height = letter
+
+    # Set transparency (opacity)
+    c.setFillColor(Color(0.5, 0.5, 0.5, alpha=opacity))
+    c.setFont("Helvetica-Bold", font_size)
+
+    # Save state, rotate, add text, restore state
+    c.saveState()
+    c.translate(width/2, height/2)
+    c.rotate(rotation)
+    # Center the text
+    text_width = c.stringWidth(text, "Helvetica-Bold", font_size)
+    c.drawString(-text_width/2, 0, text)
+    c.restoreState()
+
+    c.save()
+    packet.seek(0)
+    return PdfReader(packet).pages[0]
+
+def add_text_watermark(input_pdf, output_pdf, watermark_text, **kwargs):
+    """Add text watermark to all pages of a PDF
+
+    Args:
+        input_pdf: Path to input PDF
+        output_pdf: Path to output PDF
+        watermark_text: Text to use as watermark
+        **kwargs: Optional parameters for watermark (rotation, opacity, font_size)
+    """
+    # Create watermark
+    watermark = create_text_watermark(watermark_text, **kwargs)
+
+    # Apply to all pages
+    reader = PdfReader(input_pdf)
+    writer = PdfWriter()
+
+    for page in reader.pages:
+        page.merge_page(watermark)
+        writer.add_page(page)
+
+    with open(output_pdf, "wb") as f:
+        writer.write(f)
+
+    print(f"Watermarked PDF saved to: {output_pdf}")
+
+# Usage example
+add_text_watermark(
+    "document.pdf",
+    "watermarked.pdf",
+    "CONFIDENTIAL",
+    rotation=45,      # Diagonal angle
+    opacity=0.3,      # 30% opacity
+    font_size=60      # Large font
+)
+```
+
+#### Image Watermark (From Existing PDF)
 ```python
 from pypdf import PdfReader, PdfWriter
 
-# Create watermark (or load existing)
+# Load existing watermark PDF (e.g., logo or stamp)
 watermark = PdfReader("watermark.pdf").pages[0]
 
 # Apply to all pages
@@ -282,6 +353,7 @@ with open("encrypted.pdf", "wb") as output:
 | Extract text | pdfplumber | `page.extract_text()` |
 | Extract tables | pdfplumber | `page.extract_tables()` |
 | Create PDFs | reportlab | Canvas or Platypus |
+| Add text watermark | pypdf + reportlab | `page.merge_page(watermark)` |
 | Command line merge | qpdf | `qpdf --empty --pages ...` |
 | OCR scanned PDFs | pytesseract | Convert to image first |
 | Fill PDF forms | pdf-lib or pypdf (see forms.md) | See forms.md |

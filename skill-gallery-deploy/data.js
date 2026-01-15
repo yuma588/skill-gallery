@@ -920,6 +920,432 @@ const skillsData = [
             }
         ]
     },
+    {
+        id: "media-5",
+        name: "Canvas Design",
+        description: "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.",
+        category: "anthropics",
+        icon: "🎨",
+        gradient: "var(--gradient-2)",
+        sourceUrl: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/SKILL.md",
+        resources: [
+            {
+                name: "SKILL.md",
+                description: "Main skill documentation with complete workflow for creating visual art using design philosophy",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/SKILL.md"
+            },
+            {
+                name: "LICENSE.txt",
+                description: "Complete license terms and conditions for using the canvas design skill",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/LICENSE.txt"
+            },
+            {
+                name: "ArsenalSC-Regular.ttf",
+                description: "Arsenal SC Regular font file - elegant serif font suitable for headings and body text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/ArsenalSC-Regular.ttf"
+            },
+            {
+                name: "ArsenalSC-OFL.txt",
+                description: "Open Font License text for Arsenal SC font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/ArsenalSC-OFL.txt"
+            },
+            {
+                name: "BigShoulders-Bold.ttf",
+                description: "Big Shoulders Bold font file - bold condensed display font for impactful headlines",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/BigShoulders-Bold.ttf"
+            },
+            {
+                name: "BigShoulders-Regular.ttf",
+                description: "Big Shoulders Regular font file - condensed display font for headlines and titles",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/BigShoulders-Regular.ttf"
+            },
+            {
+                name: "BigShoulders-OFL.txt",
+                description: "Open Font License text for Big Shoulders font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/BigShoulders-OFL.txt"
+            },
+            {
+                name: "Boldonse-Regular.ttf",
+                description: "Boldonse Regular font file - bold decorative font for display and headlines",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Boldonse-Regular.ttf"
+            },
+            {
+                name: "Boldonse-OFL.txt",
+                description: "Open Font License text for Boldonse font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Boldonse-OFL.txt"
+            },
+            {
+                name: "BricolageGrotesque-Bold.ttf",
+                description: "Bricolage Grotesque Bold font file - bold variable font with strong character",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/BricolageGrotesque-Bold.ttf"
+            },
+            {
+                name: "BricolageGrotesque-Regular.ttf",
+                description: "Bricolage Grotesque Regular font file - variable font with geometric character",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/BricolageGrotesque-Regular.ttf"
+            },
+            {
+                name: "BricolageGrotesque-OFL.txt",
+                description: "Open Font License text for Bricolage Grotesque font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/BricolageGrotesque-OFL.txt"
+            },
+            {
+                name: "CrimsonPro-Bold.ttf",
+                description: "Crimson Pro Bold font file - bold serif font for emphasis and headings",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/CrimsonPro-Bold.ttf"
+            },
+            {
+                name: "CrimsonPro-Italic.ttf",
+                description: "Crimson Pro Italic font file - italic serif font for elegant text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/CrimsonPro-Italic.ttf"
+            },
+            {
+                name: "CrimsonPro-Regular.ttf",
+                description: "Crimson Pro Regular font file - classic serif font suitable for body text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/CrimsonPro-Regular.ttf"
+            },
+            {
+                name: "CrimsonPro-OFL.txt",
+                description: "Open Font License text for Crimson Pro font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/CrimsonPro-OFL.txt"
+            },
+            {
+                name: "DMMono-Regular.ttf",
+                description: "DM Mono Regular font file - monospace font for code and technical text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/DMMono-Regular.ttf"
+            },
+            {
+                name: "DMMono-OFL.txt",
+                description: "Open Font License text for DM Mono font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/DMMono-OFL.txt"
+            },
+            {
+                name: "EricaOne-Regular.ttf",
+                description: "Erica One Regular font file - display font for impactful headlines",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/EricaOne-Regular.ttf"
+            },
+            {
+                name: "EricaOne-OFL.txt",
+                description: "Open Font License text for Erica One font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/EricaOne-OFL.txt"
+            },
+            {
+                name: "GeistMono-Bold.ttf",
+                description: "Geist Mono Bold font file - bold monospace font for code emphasis",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/GeistMono-Bold.ttf"
+            },
+            {
+                name: "GeistMono-Regular.ttf",
+                description: "Geist Mono Regular font file - modern monospace font for code",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/GeistMono-Regular.ttf"
+            },
+            {
+                name: "GeistMono-OFL.txt",
+                description: "Open Font License text for Geist Mono font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/GeistMono-OFL.txt"
+            },
+            {
+                name: "Gloock-Regular.ttf",
+                description: "Gloock Regular font file - decorative serif for elegant headings",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Gloock-Regular.ttf"
+            },
+            {
+                name: "Gloock-OFL.txt",
+                description: "Open Font License text for Gloock font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Gloock-OFL.txt"
+            },
+            {
+                name: "IBMPlexMono-Bold.ttf",
+                description: "IBM Plex Mono Bold font file - bold monospace font for technical text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/IBMPlexMono-Bold.ttf"
+            },
+            {
+                name: "IBMPlexMono-Regular.ttf",
+                description: "IBM Plex Mono Regular font file - clean monospace font for code",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/IBMPlexMono-Regular.ttf"
+            },
+            {
+                name: "IBMPlexMono-OFL.txt",
+                description: "Open Font License text for IBM Plex Mono font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/IBMPlexMono-OFL.txt"
+            },
+            {
+                name: "IBMPlexSerif-Bold.ttf",
+                description: "IBM Plex Serif Bold font file - bold serif font for headings",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/IBMPlexSerif-Bold.ttf"
+            },
+            {
+                name: "IBMPlexSerif-BoldItalic.ttf",
+                description: "IBM Plex Serif Bold Italic font file - bold italic serif for emphasis",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/IBMPlexSerif-BoldItalic.ttf"
+            },
+            {
+                name: "IBMPlexSerif-Italic.ttf",
+                description: "IBM Plex Serif Italic font file - italic serif for elegant text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/IBMPlexSerif-Italic.ttf"
+            },
+            {
+                name: "IBMPlexSerif-Regular.ttf",
+                description: "IBM Plex Serif Regular font file - professional serif for body text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/IBMPlexSerif-Regular.ttf"
+            },
+            {
+                name: "InstrumentSans-Bold.ttf",
+                description: "Instrument Sans Bold font file - bold sans-serif for impact",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/InstrumentSans-Bold.ttf"
+            },
+            {
+                name: "InstrumentSans-BoldItalic.ttf",
+                description: "Instrument Sans Bold Italic font file - bold italic for emphasis",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/InstrumentSans-BoldItalic.ttf"
+            },
+            {
+                name: "InstrumentSans-Italic.ttf",
+                description: "Instrument Sans Italic font file - italic sans-serif for emphasis",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/InstrumentSans-Italic.ttf"
+            },
+            {
+                name: "InstrumentSans-Regular.ttf",
+                description: "Instrument Sans Regular font file - modern sans-serif for body text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/InstrumentSans-Regular.ttf"
+            },
+            {
+                name: "InstrumentSans-OFL.txt",
+                description: "Open Font License text for Instrument Sans font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/InstrumentSans-OFL.txt"
+            },
+            {
+                name: "InstrumentSerif-Italic.ttf",
+                description: "Instrument Serif Italic font file - elegant italic serif",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/InstrumentSerif-Italic.ttf"
+            },
+            {
+                name: "InstrumentSerif-Regular.ttf",
+                description: "Instrument Serif Regular font file - elegant serif font for headings",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/InstrumentSerif-Regular.ttf"
+            },
+            {
+                name: "Italiana-Regular.ttf",
+                description: "Italiana Regular font file - display serif for elegant headlines",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Italiana-Regular.ttf"
+            },
+            {
+                name: "Italiana-OFL.txt",
+                description: "Open Font License text for Italiana font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Italiana-OFL.txt"
+            },
+            {
+                name: "JetBrainsMono-Bold.ttf",
+                description: "JetBrains Mono Bold font file - bold monospace for code emphasis",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/JetBrainsMono-Bold.ttf"
+            },
+            {
+                name: "JetBrainsMono-Regular.ttf",
+                description: "JetBrains Mono Regular font file - professional monospace for coding",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/JetBrainsMono-Regular.ttf"
+            },
+            {
+                name: "JetBrainsMono-OFL.txt",
+                description: "Open Font License text for JetBrains Mono font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/JetBrainsMono-OFL.txt"
+            },
+            {
+                name: "Jura-Light.ttf",
+                description: "Jura Light font file - light sans-serif for elegant text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Jura-Light.ttf"
+            },
+            {
+                name: "Jura-Medium.ttf",
+                description: "Jura Medium font file - medium sans-serif for body text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Jura-Medium.ttf"
+            },
+            {
+                name: "Jura-OFL.txt",
+                description: "Open Font License text for Jura font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Jura-OFL.txt"
+            },
+            {
+                name: "LibreBaskerville-Regular.ttf",
+                description: "Libre Baskerville Regular font file - classic serif for body text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/LibreBaskerville-Regular.ttf"
+            },
+            {
+                name: "LibreBaskerville-OFL.txt",
+                description: "Open Font License text for Libre Baskerville font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/LibreBaskerville-OFL.txt"
+            },
+            {
+                name: "Lora-Bold.ttf",
+                description: "Lora Bold font file - bold serif for headings and emphasis",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Lora-Bold.ttf"
+            },
+            {
+                name: "Lora-BoldItalic.ttf",
+                description: "Lora Bold Italic font file - bold italic serif for emphasis",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Lora-BoldItalic.ttf"
+            },
+            {
+                name: "Lora-Italic.ttf",
+                description: "Lora Italic font file - italic serif for elegant text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Lora-Italic.ttf"
+            },
+            {
+                name: "Lora-Regular.ttf",
+                description: "Lora Regular font file - beautiful serif font for body text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Lora-Regular.ttf"
+            },
+            {
+                name: "Lora-OFL.txt",
+                description: "Open Font License text for Lora font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Lora-OFL.txt"
+            },
+            {
+                name: "NationalPark-Bold.ttf",
+                description: "National Park Bold font file - bold display font for headlines",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/NationalPark-Bold.ttf"
+            },
+            {
+                name: "NationalPark-Regular.ttf",
+                description: "National Park Regular font file - display font for titles and headlines",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/NationalPark-Regular.ttf"
+            },
+            {
+                name: "NationalPark-OFL.txt",
+                description: "Open Font License text for National Park font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/NationalPark-OFL.txt"
+            },
+            {
+                name: "NothingYouCouldDo-Regular.ttf",
+                description: "Nothing You Could Do Regular font file - handwritten style for personal touch",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/NothingYouCouldDo-Regular.ttf"
+            },
+            {
+                name: "NothingYouCouldDo-OFL.txt",
+                description: "Open Font License text for Nothing You Could Do font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/NothingYouCouldDo-OFL.txt"
+            },
+            {
+                name: "Outfit-Bold.ttf",
+                description: "Outfit Bold font file - bold sans-serif for headlines",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Outfit-Bold.ttf"
+            },
+            {
+                name: "Outfit-Regular.ttf",
+                description: "Outfit Regular font file - modern sans-serif for body text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Outfit-Regular.ttf"
+            },
+            {
+                name: "Outfit-OFL.txt",
+                description: "Open Font License text for Outfit font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Outfit-OFL.txt"
+            },
+            {
+                name: "PixelifySans-Medium.ttf",
+                description: "Pixelify Sans Medium font file - pixelated style for retro designs",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/PixelifySans-Medium.ttf"
+            },
+            {
+                name: "PixelifySans-OFL.txt",
+                description: "Open Font License text for Pixelify Sans font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/PixelifySans-OFL.txt"
+            },
+            {
+                name: "PoiretOne-OFL.txt",
+                description: "Open Font License text for Poiret One font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/PoiretOne-OFL.txt"
+            },
+            {
+                name: "PoiretOne-Regular.ttf",
+                description: "Poiret One Regular font file - elegant display font for headlines",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/PoiretOne-Regular.ttf"
+            },
+            {
+                name: "RedHatMono-Bold.ttf",
+                description: "Red Hat Mono Bold font file - bold monospace for code emphasis",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/RedHatMono-Bold.ttf"
+            },
+            {
+                name: "RedHatMono-Regular.ttf",
+                description: "Red Hat Mono Regular font file - monospace font for code",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/RedHatMono-Regular.ttf"
+            },
+            {
+                name: "RedHatMono-OFL.txt",
+                description: "Open Font License text for Red Hat Mono font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/RedHatMono-OFL.txt"
+            },
+            {
+                name: "Silkscreen-OFL.txt",
+                description: "Open Font License text for Silkscreen font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Silkscreen-OFL.txt"
+            },
+            {
+                name: "Silkscreen-Regular.ttf",
+                description: "Silkscreen Regular font file - pixelated retro font for designs",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Silkscreen-Regular.ttf"
+            },
+            {
+                name: "SmoochSans-Medium.ttf",
+                description: "Smooch Sans Medium font file - rounded sans-serif for friendly text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/SmoochSans-Medium.ttf"
+            },
+            {
+                name: "SmoochSans-OFL.txt",
+                description: "Open Font License text for Smooch Sans font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/SmoochSans-OFL.txt"
+            },
+            {
+                name: "Tektur-Medium.ttf",
+                description: "Tektur Medium font file - geometric sans-serif for modern designs",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Tektur-Medium.ttf"
+            },
+            {
+                name: "Tektur-OFL.txt",
+                description: "Open Font License text for Tektur font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Tektur-OFL.txt"
+            },
+            {
+                name: "Tektur-Regular.ttf",
+                description: "Tektur Regular font file - geometric sans-serif for body text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/Tektur-Regular.ttf"
+            },
+            {
+                name: "WorkSans-Bold.ttf",
+                description: "Work Sans Bold font file - bold sans-serif for headings",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/WorkSans-Bold.ttf"
+            },
+            {
+                name: "WorkSans-BoldItalic.ttf",
+                description: "Work Sans Bold Italic font file - bold italic for emphasis",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/WorkSans-BoldItalic.ttf"
+            },
+            {
+                name: "WorkSans-Italic.ttf",
+                description: "Work Sans Italic font file - italic sans-serif for emphasis",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/WorkSans-Italic.ttf"
+            },
+            {
+                name: "WorkSans-Regular.ttf",
+                description: "Work Sans Regular font file - clean sans-serif for body text",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/WorkSans-Regular.ttf"
+            },
+            {
+                name: "WorkSans-OFL.txt",
+                description: "Open Font License text for Work Sans font family",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/WorkSans-OFL.txt"
+            },
+            {
+                name: "YoungSerif-OFL.txt",
+                description: "Open Font License text for Young Serif font",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/YoungSerif-OFL.txt"
+            },
+            {
+                name: "YoungSerif-Regular.ttf",
+                description: "Young Serif Regular font file - modern serif for headings",
+                path: "https://raw.githubusercontent.com/yuma588/skill-gallery/main/skill-gallery-deploy/skills/Anthropic/canvas-design/canvas-fonts/YoungSerif-Regular.ttf"
+            }
+        ]
+    },
 
     // Blockchain
     

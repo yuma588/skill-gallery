@@ -108,6 +108,10 @@ const translations = {
                 name: "Theme Factory",
                 description: "Toolkit for styling artifacts with professional themes. Features 10 pre-set curated themes (Ocean Depths, Sunset Boulevard, Forest Canopy, Modern Minimalist, Golden Hour, Arctic Frost, Desert Rose, Tech Innovation, Botanical Garden, Midnight Galaxy) with carefully selected color palettes and font pairings. Apply consistent, professional styling to presentation slide decks, documents, reports, and HTML landing pages. Each theme includes cohesive colors, complementary fonts, and distinct visual identity for different contexts and audiences."
             },
+            'media-5': {
+                name: "Canvas Design",
+                description: "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations."
+            },
             'docs-4': {
                 name: "DOCX",
                 description: "Comprehensive DOCX (Word) document creation, reading, and review guidance with python-docx and LibreOffice rendering. Supports creating professional documents with consistent formatting, visual inspection via PDF→PNG conversion, and quality control for client-ready outputs. Perfect for technical docs, reports, proposals, and any document requiring professional styling."
@@ -284,6 +288,10 @@ const translations = {
             'media-4': {
                 name: "主题工厂",
                 description: "使用专业主题为工件设置样式的工具包。提供10个精心策划的预设主题(深海、日落大道、森林树冠、现代极简主义、黄金时刻、北极霜、沙漠玫瑰、科技创新、植物园、午夜银河),具有精心选择的色板和字体配对。对演示文稿幻灯片、文档、报告和HTML落地页应用一致、专业的样式。每个主题都包括连贯的色彩、互补的字体和针对不同语境和受众的独特视觉标识。"
+            },
+            'media-5': {
+                name: "画布设计",
+                description: "使用设计哲学在.png和.pdf文档中创建美丽的视觉艺术。当用户要求创建海报、艺术品、设计或其他静态作品时,应使用此技能。创建原创的视觉设计,绝不复制现有艺术家的作品以避免版权侵权。"
             },
             'docs-4': {
                 name: "DOCX文档处理",

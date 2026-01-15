@@ -525,6 +525,322 @@ with open("cropped.pdf", "wb") as output:
     writer.write(output)
 ```
 
+### Advanced Watermarking Techniques
+
+#### Multi-Position Text Watermark
+```python
+from pypdf import PdfReader, PdfWriter
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.colors import Color
+import io
+
+def create_multi_position_watermark(text, positions=['center'], **kwargs):
+    """Create watermark with text at multiple positions
+
+    Args:
+        text: Watermark text
+        positions: List of positions - 'center', 'top-left', 'top-right',
+                   'bottom-left', 'bottom-right', 'diagonal'
+        **kwargs: rotation, opacity, font_size, color
+    """
+    packet = io.BytesIO()
+    c = canvas.Canvas(packet, pagesize=letter)
+    width, height = letter
+
+    rotation = kwargs.get('rotation', 45)
+    opacity = kwargs.get('opacity', 0.3)
+    font_size = kwargs.get('font_size', 40)
+    color = kwargs.get('color', (0.5, 0.5, 0.5))
+
+    c.setFillColor(Color(*color, alpha=opacity))
+    c.setFont("Helvetica-Bold", font_size)
+
+    position_coords = {
+        'center': (width/2, height/2, rotation),
+        'top-left': (100, height - 50, 0),
+        'top-right': (width - 100, height - 50, 0),
+        'bottom-left': (100, 50, 0),
+        'bottom-right': (width - 100, 50, 0),
+        'diagonal': (width/2, height/2, 45)
+    }
+
+    for pos in positions:
+        if pos in position_coords:
+            x, y, rot = position_coords[pos]
+            c.saveState()
+            c.translate(x, y)
+            c.rotate(rot)
+            text_width = c.stringWidth(text, "Helvetica-Bold", font_size)
+            c.drawString(-text_width/2, 0, text)
+            c.restoreState()
+
+    c.save()
+    packet.seek(0)
+    return PdfReader(packet).pages[0]
+
+# Usage
+def add_advanced_watermark(input_pdf, output_pdf, text, positions=['center'], **kwargs):
+    watermark = create_multi_position_watermark(text, positions, **kwargs)
+    reader = PdfReader(input_pdf)
+    writer = PdfWriter()
+
+    for page in reader.pages:
+        page.merge_page(watermark)
+        writer.add_page(page)
+
+    with open(output_pdf, "wb") as f:
+        writer.write(f)
+
+# Example: Add watermark in multiple positions
+add_advanced_watermark(
+    "document.pdf",
+    "watermarked.pdf",
+    "DRAFT",
+    positions=['center', 'bottom-right'],
+    opacity=0.2,
+    font_size=50,
+    color=(1, 0, 0)  # Red color (RGB)
+)
+```
+
+#### Conditional Watermarking (Different Watermarks for Different Pages)
+```python
+from pypdf import PdfReader, PdfWriter
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.colors import Color
+import io
+
+def create_simple_watermark(text, opacity=0.3, rotation=45, font_size=50):
+    packet = io.BytesIO()
+    c = canvas.Canvas(packet, pagesize=letter)
+    width, height = letter
+
+    c.setFillColor(Color(0.5, 0.5, 0.5, alpha=opacity))
+    c.setFont("Helvetica-Bold", font_size)
+
+    c.saveState()
+    c.translate(width/2, height/2)
+    c.rotate(rotation)
+    text_width = c.stringWidth(text, "Helvetica-Bold", font_size)
+    c.drawString(-text_width/2, 0, text)
+    c.restoreState()
+
+    c.save()
+    packet.seek(0)
+    return PdfReader(packet).pages[0]
+
+def add_conditional_watermark(input_pdf, output_pdf, watermark_rules):
+    """Apply different watermarks to different pages
+
+    Args:
+        watermark_rules: Dict mapping page ranges to watermark configs
+                        Example: {
+                            (0, 5): {'text': 'DRAFT', 'color': (1,0,0)},
+                            (5, 10): {'text': 'REVIEW', 'color': (0,1,0)}
+                        }
+    """
+    reader = PdfReader(input_pdf)
+    writer = PdfWriter()
+
+    for i, page in enumerate(reader.pages):
+        watermark_applied = False
+
+        # Check which rule applies to this page
+        for (start, end), config in watermark_rules.items():
+            if start <= i < end:
+                watermark = create_simple_watermark(**config)
+                page.merge_page(watermark)
+                watermark_applied = True
+                break
+
+        writer.add_page(page)
+
+    with open(output_pdf, "wb") as f:
+        writer.write(f)
+
+# Example usage
+add_conditional_watermark(
+    "document.pdf",
+    "watermarked.pdf",
+    {
+        (0, 3): {'text': 'CONFIDENTIAL', 'opacity': 0.4, 'font_size': 60},
+        (3, 10): {'text': 'INTERNAL USE', 'opacity': 0.3, 'font_size': 50}
+    }
+)
+```
+
+#### Image-Based Watermark with Transparency
+```python
+from pypdf import PdfReader, PdfWriter
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from PIL import Image
+import io
+
+def create_image_watermark(image_path, opacity=0.3, position='center', scale=1.0):
+    """Create watermark from an image file
+
+    Args:
+        image_path: Path to image file (PNG, JPG, etc.)
+        opacity: Transparency level (0-1)
+        position: 'center', 'top-left', 'top-right', 'bottom-left', 'bottom-right'
+        scale: Scale factor for image size
+    """
+    packet = io.BytesIO()
+    c = canvas.Canvas(packet, pagesize=letter)
+    width, height = letter
+
+    # Load and get image dimensions
+    img = Image.open(image_path)
+    img_width, img_height = img.size
+    img_width *= scale
+    img_height *= scale
+
+    # Calculate position
+    positions = {
+        'center': (width/2 - img_width/2, height/2 - img_height/2),
+        'top-left': (50, height - img_height - 50),
+        'top-right': (width - img_width - 50, height - img_height - 50),
+        'bottom-left': (50, 50),
+        'bottom-right': (width - img_width - 50, 50)
+    }
+
+    x, y = positions.get(position, positions['center'])
+
+    # Draw image with transparency
+    c.saveState()
+    c.setFillAlpha(opacity)
+    c.drawImage(image_path, x, y, width=img_width, height=img_height,
+                mask='auto', preserveAspectRatio=True)
+    c.restoreState()
+
+    c.save()
+    packet.seek(0)
+    return PdfReader(packet).pages[0]
+
+# Usage
+def add_image_watermark(input_pdf, output_pdf, image_path, **kwargs):
+    watermark = create_image_watermark(image_path, **kwargs)
+    reader = PdfReader(input_pdf)
+    writer = PdfWriter()
+
+    for page in reader.pages:
+        page.merge_page(watermark)
+        writer.add_page(page)
+
+    with open(output_pdf, "wb") as f:
+        writer.write(f)
+
+# Example
+add_image_watermark(
+    "document.pdf",
+    "watermarked.pdf",
+    "company_logo.png",
+    opacity=0.2,
+    position='bottom-right',
+    scale=0.5
+)
+```
+
+#### Batch Watermarking with Progress Tracking
+```python
+import os
+import glob
+from pypdf import PdfReader, PdfWriter
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.colors import Color
+import io
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+def create_text_watermark(text, **kwargs):
+    packet = io.BytesIO()
+    c = canvas.Canvas(packet, pagesize=letter)
+    width, height = letter
+
+    rotation = kwargs.get('rotation', 45)
+    opacity = kwargs.get('opacity', 0.3)
+    font_size = kwargs.get('font_size', 50)
+
+    c.setFillColor(Color(0.5, 0.5, 0.5, alpha=opacity))
+    c.setFont("Helvetica-Bold", font_size)
+
+    c.saveState()
+    c.translate(width/2, height/2)
+    c.rotate(rotation)
+    text_width = c.stringWidth(text, "Helvetica-Bold", font_size)
+    c.drawString(-text_width/2, 0, text)
+    c.restoreState()
+
+    c.save()
+    packet.seek(0)
+    return PdfReader(packet).pages[0]
+
+def batch_watermark_pdfs(input_dir, output_dir, watermark_text, **kwargs):
+    """Apply watermark to all PDFs in a directory
+
+    Args:
+        input_dir: Directory containing input PDFs
+        output_dir: Directory for watermarked PDFs
+        watermark_text: Text for watermark
+        **kwargs: Watermark parameters
+    """
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Find all PDF files
+    pdf_files = glob.glob(os.path.join(input_dir, "*.pdf"))
+    total = len(pdf_files)
+
+    logger.info(f"Found {total} PDF files to process")
+
+    # Create watermark once (reuse for all files)
+    watermark = create_text_watermark(watermark_text, **kwargs)
+
+    success_count = 0
+    error_count = 0
+
+    for i, pdf_path in enumerate(pdf_files, 1):
+        filename = os.path.basename(pdf_path)
+        output_path = os.path.join(output_dir, filename)
+
+        try:
+            reader = PdfReader(pdf_path)
+            writer = PdfWriter()
+
+            for page in reader.pages:
+                page.merge_page(watermark)
+                writer.add_page(page)
+
+            with open(output_path, "wb") as f:
+                writer.write(f)
+
+            success_count += 1
+            logger.info(f"[{i}/{total}] Processed: {filename}")
+
+        except Exception as e:
+            error_count += 1
+            logger.error(f"[{i}/{total}] Failed: {filename} - {str(e)}")
+
+    logger.info(f"\nComplete! Success: {success_count}, Errors: {error_count}")
+
+# Usage example
+batch_watermark_pdfs(
+    "input_pdfs/",
+    "watermarked_pdfs/",
+    "CONFIDENTIAL",
+    rotation=45,
+    opacity=0.3,
+    font_size=60
+)
+```
+
+
 ## Performance Optimization Tips
 
 ### 1. For Large PDFs
