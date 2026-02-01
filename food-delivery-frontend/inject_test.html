@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车测试控制台</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            color: #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #667eea;
+        }
+        .instruction {
+            background: #e6f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #1890ff;
+        }
+        .instruction h3 {
+            color: #1890ff;
+            margin-top: 0;
+        }
+        .instruction ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .instruction li {
+            margin: 10px 0;
+        }
+        .code {
+            background: #f5f5f5;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            color: #d63384;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .note {
+            background: #fffbe6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #faad14;
+        }
+        .note strong {
+            color: #faad14;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 购物车自动化测试</h1>
+        
+        <div class="instruction">
+            <h3>📋 使用说明</h3>
+            <ol>
+                <li>点击下方按钮打开产品页面</li>
+                <li>在产品页面打开浏览器开发者工具（按 F12）</li>
+                <li>切换到 <strong>Console（控制台）</strong> 标签</li>
+                <li>复制以下代码并粘贴到控制台中：</li>
+                <li>按回车键执行测试</li>
+            </ol>
+            <p><strong>测试代码：</strong></p>
+            <pre class="code" id="testCode"></pre>
+        </div>
+        
+        <div style="text-align: center;">
+            <button onclick="openProductPage()">🚀 打开产品页面</button>
+        </div>
+        
+        <div class="note">
+            <strong>提示：</strong> 测试会自动执行所有步骤，无需手动操作。完成后会在控制台显示详细的测试结果。
+        </div>
+    </div>
+
+    <script>
+        const testCode = `
+(async function runAutoTest() {
+    console.clear();
+    console.log('%c====================================', 'color: #667eea; font-weight: bold; font-size: 16px');
+    console.log('%c购物车功能自动化测试', 'color: #667eea; font-weight: bold; font-size: 16px');
+    console.log('%c====================================\\n', 'color: #667eea; font-weight: bold; font-size: 16px');
+    
+    const results = [];
+    let passed = 0;
+    let failed = 0;
+    
+    function log(message, type = 'info') {
+        const styles = {
+            success: 'color: #52c41a; font-weight: bold',
+            error: 'color: #ff4d4f; font-weight: bold',
+            warning: 'color: #faad14; font-weight: bold',
+            info: 'color: #1890ff',
+            header: 'color: #722ed1; font-weight: bold; font-size: 14px'
+        };
+        const icons = { success: '✓', error: '✗', warning: '⚠', info: 'ℹ' };
+        console.log(\`\%c[\${new Date().toLocaleTimeString()}] %c\${icons[type]} \${message}\`, 
+            'color: #666', styles[type]);
+    }
+    
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    async function runTest(testName, testFn) {
+        log(\`开始: \${testName}\`, 'header');
+        try {
+            const result = await testFn();
+            if (result.success) {
+                log(\`✓ \${testName}: \${result.message}\`, 'success');
+                results.push({ name: testName, status: '通过' });
+                passed++;
+            } else {
+                log(\`✗ \${testName}: \${result.message}\`, 'error');
+                results.push({ name: testName, status: '失败' });
+                failed++;
+            }
+        } catch (error) {
+            log(\`✗ \${testName}: \${error.message}\`, 'error');
+            results.push({ name: testName, status: '失败' });
+            failed++;
+        }
+        await sleep(500);
+    }
+    
+    // 测试1: 检查商品显示
+    await runTest('检查商品显示', async () => {
+        const products = document.querySelectorAll('.product-card');
+        if (products.length === 0) {
+            return { success: false, message: '未检测到商品' };
+        }
+        return { success: true, message: \`检测到 \${products.length} 个商品\` };
+    });
+    
+    // 测试2: 获取第一个商品信息
+    let firstProductName = '';
+    await runTest('获取商品信息', async () => {
+        const firstCard = document.querySelector('.product-card');
+        const name = firstCard.querySelector('.product-name')?.textContent?.trim();
+        const price = firstCard.querySelector('.product-price')?.textContent?.trim();
+        
+        if (!name || !price) {
+            return { success: false, message: '无法获取商品信息' };
+        }
+        firstProductName = name;
+        return { success: true, message: \`\${name} - \${price}\` };
+    });
+    
+    // 测试3: 点击"加入购物车"按钮
+    await runTest('点击加入购物车', async () => {
+        const firstCard = document.querySelector('.product-card');
+        const button = firstCard.querySelector('.btn-add');
+        
+        if (!button) {
+            return { success: false, message: '未找到"加入购物车"按钮' };
+        }
+        
+        button.click();
+        await sleep(1500);
+        return { success: true, message: '按钮已点击' };
+    });
+    
+    // 测试4: 验证购物车图标更新
+    await runTest('验证购物车图标', async () => {
+        const cartBadge = document.querySelector('.cart-count');
+        const cartCount = cartBadge ? cartBadge.textContent : '0';
+        
+        if (parseInt(cartCount) < 1) {
+            return { success: false, message: \`购物车数量未更新: \${cartCount}\` };
+        }
+        return { success: true, message: \`购物车数量: \${cartCount}\` };
+    });
+    
+    // 测试5: 进入购物车页面
+    await runTest('进入购物车页面', async () => {
+        const cartLink = document.querySelector('a[href="/cart"]');
+        
+        if (!cartLink) {
+            return { success: false, message: '未找到购物车链接' };
+        }
+        
+        cartLink.click();
+        await sleep(2000);
+        return { success: true, message: '已进入购物车页面' };
+    });
+    
+    // 测试6: 验证购物车中的商品
+    let cartItemCount = 0;
+    await runTest('验证购物车商品', async () => {
+        const cartItems = document.querySelectorAll('.cart-item');
+        
+        if (cartItems.length === 0) {
+            return { success: false, message: '购物车中没有商品' };
+        }
+        
+        cartItemCount = cartItems.length;
+        const firstItem = cartItems[0];
+        const name = firstItem.querySelector('.cart-item-name')?.textContent?.trim();
+        const quantity = firstItem.querySelector('.cart-item-quantity')?.textContent?.trim();
+        
+        if (name !== firstProductName) {
+            return { success: false, message: \`商品名称不匹配 (期望: \${firstProductName}, 实际: \${name})\` };
+        }
+        
+        return { success: true, message: \`\${name} x\${quantity}\` };
+    });
+    
+    // 测试7: 测试localStorage持久化
+    await runTest('localStorage持久化', async () => {
+        // 返回产品页面
+        window.location.href = 'http://localhost:3000/products';
+        await sleep(2500);
+        
+        const cartBadge = document.querySelector('.cart-count');
+        const cartCount = cartBadge ? cartBadge.textContent : '0';
+        
+        if (parseInt(cartCount) < 1) {
+            return { success: false, message: '购物车数据未持久化' };
+        }
+        return { success: true, message: '购物车数据已持久化' };
+    });
+    
+    // 输出测试结果
+    console.log('%c\\n====================================', 'color: #667eea; font-weight: bold; font-size: 16px');
+    console.log('%c测试结果汇总', 'color: #667eea; font-weight: bold; font-size: 16px');
+    console.log('%c====================================\\n', 'color: #667eea; font-weight: bold; font-size: 16px');
+    
+    results.forEach((result, index) => {
+        const style = result.status === '通过' ? 'color: #52c41a; font-weight: bold' : 'color: #ff4d4f; font-weight: bold';
+        const icon = result.status === '通过' ? '✓' : '✗';
+        console.log(\`\%c\${icon} \${result.name}: \${result.status}\`, style);
+    });
+    
+    console.log(\`\\n总计: \${results.length} 个测试\`, 'color: #333; font-weight: bold');
+    console.log(\`通过: \${passed} 个\`, 'color: #52c41a; font-weight: bold');
+    console.log(\`失败: \${failed} 个\`, failed > 0 ? 'color: #ff4d4f; font-weight: bold' : 'color: #52c41a; font-weight: bold');
+    console.log('%c====================================\\n', 'color: #667eea; font-weight: bold; font-size: 16px');
+    
+    if (failed === 0) {
+        console.log('%c🎉 所有测试通过！', 'color: #52c41a; font-size: 20px; font-weight: bold');
+    } else {
+        console.log('%c⚠️ 存在失败的测试', 'color: #faad14; font-size: 16px; font-weight: bold');
+    }
+    
+    return { total: results.length, passed, failed };
+})();
+
+// 将代码复制到剪贴板
+const codeElement = document.querySelector('#testCode');
+codeElement.textContent = testCode.trim();
+        `.trim();
+
+        document.getElementById('testCode').textContent = testCode;
+
+        function openProductPage() {
+            window.open('http://localhost:3000/products', '_blank');
+        }
+    </script>
+</body>
+</html>

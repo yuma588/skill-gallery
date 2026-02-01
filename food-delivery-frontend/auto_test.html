@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车自动化测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .test-section {
+            background: white;
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-step {
+            padding: 15px;
+            margin: 12px 0;
+            border-left: 4px solid #ddd;
+            background: #f9f9f9;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .success {
+            border-left-color: #52c41a;
+            background: #f6ffed;
+        }
+        .error {
+            border-left-color: #ff4d4f;
+            background: #fff1f0;
+        }
+        .warning {
+            border-left-color: #faad14;
+            background: #fffbe6;
+        }
+        .info {
+            border-left-color: #1890ff;
+            background: #e6f7ff;
+        }
+        .progress {
+            border-left-color: #722ed1;
+            background: #f9f0ff;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        button:disabled {
+            background: #d9d9d9;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .log {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .iframe-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+        .iframe-container.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛒 购物车功能自动化测试</h1>
+        <p>完全自动化的测试脚本，无需手动操作</p>
+    </div>
+
+    <div class="test-section">
+        <h2>测试统计</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalTests">0</div>
+                <div class="stat-label">总测试数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="passedTests">0</div>
+                <div class="stat-label">通过</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="failedTests">0</div>
+                <div class="stat-label">失败</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="progressPercent">0%</div>
+                <div class="stat-label">进度</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="startAutoTest()" id="startBtn">▶ 开始自动化测试</button>
+            <button onclick="stopTest()" id="stopBtn" disabled>⏹ 停止测试</button>
+            <button onclick="resetTest()">↺ 重置</button>
+            <button onclick="showTestWindow()">📺 打开测试窗口</button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>测试步骤</h2>
+        <div id="testResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>测试日志</h2>
+        <div class="log" id="testLog">准备就绪，点击"开始自动化测试"开始运行...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>测试窗口</h2>
+        <div class="iframe-container" id="testWindow"></div>
+    </div>
+
+    <script>
+        let testRunning = false;
+        let testWindow = null;
+        let testResults = [];
+        let currentTestIndex = 0;
+        let testInterval = null;
+
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('testLog');
+            const timestamp = new Date().toLocaleTimeString();
+            const icons = {
+                success: '✓',
+                error: '✗',
+                warning: '⚠',
+                info: 'ℹ',
+                progress: '⏳'
+            };
+            const colors = {
+                success: '#52c41a',
+                error: '#ff4d4f',
+                warning: '#faad14',
+                info: '#1890ff',
+                progress: '#722ed1'
+            };
+            logDiv.innerHTML += `<span style="color: ${colors[type]}">[${timestamp}] ${icons[type]} ${message}</span>\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function addTestResult(message, type = 'info') {
+            const resultsDiv = document.getElementById('testResults');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-step ${type}`;
+            const icons = { success: '✓', error: '✗', warning: '⚠', info: 'ℹ', progress: '⏳' };
+            resultDiv.innerHTML = `<strong>${icons[type]}</strong> ${message}`;
+            resultsDiv.appendChild(resultDiv);
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function updateStats() {
+            const total = testResults.length;
+            const passed = testResults.filter(r => r.status === '通过').length;
+            const failed = testResults.filter(r => r.status === '失败').length;
+            const progress = total > 0 ? Math.round((passed + failed) / total * 100) : 0;
+
+            document.getElementById('totalTests').textContent = total;
+            document.getElementById('passedTests').textContent = passed;
+            document.getElementById('failedTests').textContent = failed;
+            document.getElementById('progressPercent').textContent = progress + '%';
+        }
+
+        function resetTest() {
+            stopTest();
+            testResults = [];
+            currentTestIndex = 0;
+            document.getElementById('testResults').innerHTML = '';
+            document.getElementById('testLog').innerHTML = '准备就绪，点击"开始自动化测试"开始运行...';
+            updateStats();
+            log('测试已重置', 'info');
+        }
+
+        function stopTest() {
+            testRunning = false;
+            if (testInterval) {
+                clearInterval(testInterval);
+                testInterval = null;
+            }
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+            if (testWindow && !testWindow.closed) {
+                testWindow.close();
+            }
+            log('测试已停止', 'warning');
+        }
+
+        function showTestWindow() {
+            const iframeContainer = document.getElementById('testWindow');
+            iframeContainer.classList.add('active');
+            iframeContainer.innerHTML = '<iframe src="http://localhost:3000/products" width="100%" height="100%" frameborder="0"></iframe>';
+            log('测试窗口已打开', 'info');
+        }
+
+        async function runTest(test) {
+            addTestResult(test.name, 'progress');
+            log(`开始执行: ${test.name}`, 'progress');
+
+            try {
+                const result = await test.fn();
+                if (result.success) {
+                    addTestResult(test.name + ': ' + result.message, 'success');
+                    log(`✓ ${test.name}: ${result.message}`, 'success');
+                    testResults.push({ name: test.name, status: '通过' });
+                } else {
+                    addTestResult(test.name + ': ' + result.message, 'error');
+                    log(`✗ ${test.name}: ${result.message}`, 'error');
+                    testResults.push({ name: test.name, status: '失败' });
+                }
+            } catch (error) {
+                addTestResult(test.name + ': ' + error.message, 'error');
+                log(`✗ ${test.name}: ${error.message}`, 'error');
+                testResults.push({ name: test.name, status: `失败: ${error.message}` });
+            }
+
+            updateStats();
+            await sleep(500);
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function startAutoTest() {
+            if (testRunning) return;
+            
+            testRunning = true;
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = false;
+            
+            log('====================================', 'info');
+            log('购物车功能自动化测试开始', 'info');
+            log('====================================', 'info');
+
+            const tests = [
+                {
+                    name: '打开产品页面',
+                    fn: async () => {
+                        testWindow = window.open('http://localhost:3000/products', 'testWindow', 'width=800,height=600');
+                        if (!testWindow) {
+                            throw new Error('无法打开新窗口，请检查弹窗设置');
+                        }
+                        await sleep(3000);
+                        return { success: true, message: '产品页面已打开' };
+                    }
+                },
+                {
+                    name: '检查商品显示',
+                    fn: async () => {
+                        if (!testWindow || testWindow.closed) {
+                            throw new Error('测试窗口已关闭');
+                        }
+                        const productCards = testWindow.document.querySelectorAll('.product-card');
+                        if (productCards.length === 0) {
+                            return { success: false, message: '未检测到商品' };
+                        }
+                        return { success: true, message: `检测到${productCards.length}个商品` };
+                    }
+                },
+                {
+                    name: '获取商品信息',
+                    fn: async () => {
+                        if (!testWindow || testWindow.closed) {
+                            throw new Error('测试窗口已关闭');
+                        }
+                        const firstCard = testWindow.document.querySelector('.product-card');
+                        const name = firstCard.querySelector('.product-name')?.textContent?.trim();
+                        const price = firstCard.querySelector('.product-price')?.textContent?.trim();
+                        if (!name || !price) {
+                            return { success: false, message: '无法获取商品信息' };
+                        }
+                        return { success: true, message: `${name} - ${price}` };
+                    }
+                },
+                {
+                    name: '点击"加入购物车"按钮',
+                    fn: async () => {
+                        if (!testWindow || testWindow.closed) {
+                            throw new Error('测试窗口已关闭');
+                        }
+                        const firstCard = testWindow.document.querySelector('.product-card');
+                        const button = firstCard.querySelector('.btn-add');
+                        if (!button) {
+                            return { success: false, message: '未找到"加入购物车"按钮' };
+                        }
+                        button.click();
+                        await sleep(2000);
+                        return { success: true, message: '按钮已点击' };
+                    }
+                },
+                {
+                    name: '验证购物车图标更新',
+                    fn: async () => {
+                        if (!testWindow || testWindow.closed) {
+                            throw new Error('测试窗口已关闭');
+                        }
+                        const cartBadge = testWindow.document.querySelector('.cart-count');
+                        const cartCount = cartBadge ? cartBadge.textContent : '0';
+                        if (parseInt(cartCount) < 1) {
+                            return { success: false, message: `购物车数量未更新: ${cartCount}` };
+                        }
+                        return { success: true, message: `购物车数量: ${cartCount}` };
+                    }
+                },
+                {
+                    name: '进入购物车页面',
+                    fn: async () => {
+                        if (!testWindow || testWindow.closed) {
+                            throw new Error('测试窗口已关闭');
+                        }
+                        const cartLink = testWindow.document.querySelector('a[href="/cart"]');
+                        if (!cartLink) {
+                            return { success: false, message: '未找到购物车链接' };
+                        }
+                        cartLink.click();
+                        await sleep(3000);
+                        return { success: true, message: '已进入购物车页面' };
+                    }
+                },
+                {
+                    name: '验证购物车商品',
+                    fn: async () => {
+                        if (!testWindow || testWindow.closed) {
+                            throw new Error('测试窗口已关闭');
+                        }
+                        const cartItems = testWindow.document.querySelectorAll('.cart-item');
+                        if (cartItems.length === 0) {
+                            return { success: false, message: '购物车中没有商品' };
+                        }
+                        const firstItem = cartItems[0];
+                        const name = firstItem.querySelector('.cart-item-name')?.textContent?.trim();
+                        const quantity = firstItem.querySelector('.cart-item-quantity')?.textContent?.trim();
+                        return { success: true, message: `${name} x${quantity}` };
+                    }
+                },
+                {
+                    name: '测试localStorage持久化',
+                    fn: async () => {
+                        if (!testWindow || testWindow.closed) {
+                            throw new Error('测试窗口已关闭');
+                        }
+                        testWindow.location.href = 'http://localhost:3000/products';
+                        await sleep(3000);
+                        const cartBadge = testWindow.document.querySelector('.cart-count');
+                        const cartCount = cartBadge ? cartBadge.textContent : '0';
+                        if (parseInt(cartCount) < 1) {
+                            return { success: false, message: '购物车数据未持久化' };
+                        }
+                        return { success: true, message: '购物车数据已持久化' };
+                    }
+                }
+            ];
+
+            try {
+                for (const test of tests) {
+                    if (!testRunning) break;
+                    await runTest(test);
+                }
+
+                if (testRunning) {
+                    log('====================================', 'info');
+                    log('测试完成', 'info');
+                    log('====================================', 'info');
+                    
+                    const passed = testResults.filter(r => r.status === '通过').length;
+                    const failed = testResults.filter(r => r.status === '失败').length;
+                    log(`总计: ${testResults.length}个测试`, 'info');
+                    log(`通过: ${passed}个`, 'success');
+                    log(`失败: ${failed}个`, failed > 0 ? 'error' : 'info');
+
+                    if (failed === 0) {
+                        log('🎉 所有测试通过！', 'success');
+                    } else {
+                        log('⚠️  存在失败的测试', 'warning');
+                    }
+                }
+            } catch (error) {
+                log(`测试运行失败: ${error.message}`, 'error');
+            } finally {
+                testRunning = false;
+                document.getElementById('startBtn').disabled = false;
+                document.getElementById('stopBtn').disabled = true;
+                
+                if (testWindow && !testWindow.closed) {
+                    await sleep(5000);
+                    testWindow.close();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

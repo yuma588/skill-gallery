@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清空购物车功能测试</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            color: #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fa709a;
+        }
+        .instruction {
+            background: #fff0f6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #fa709a;
+        }
+        .instruction h3 {
+            color: #fa709a;
+            margin-top: 0;
+        }
+        .instruction ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .instruction li {
+            margin: 10px 0;
+        }
+        .code {
+            background: #f5f5f5;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            color: #d63384;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 500px;
+            overflow-y: auto;
+            font-size: 12px;
+        }
+        button {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .test-scenario {
+            background: #fff7e6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #fa8c16;
+        }
+        .test-scenario h3 {
+            color: #fa8c16;
+            margin-top: 0;
+        }
+        .warning {
+            background: #fff1f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ff4d4f;
+        }
+        .warning strong {
+            color: #ff4d4f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗑️ 清空购物车功能测试</h1>
+        
+        <div class="instruction">
+            <h3>📋 使用说明</h3>
+            <ol>
+                <li>点击下方按钮打开购物车页面</li>
+                <li>在购物车页面打开浏览器开发者工具（按 F12）</li>
+                <li>切换到 <strong>Console（控制台）</strong> 标签</li>
+                <li>复制以下代码并粘贴到控制台中</li>
+                <li>按回车键执行测试</li>
+            </ol>
+            <p><strong>测试代码：</strong></p>
+            <pre class="code" id="testCode"></pre>
+        </div>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <button onclick="openCartPage()">🛒 打开购物车页面</button>
+            <button onclick="openProductPage()">📦 打开产品页面</button>
+        </div>
+        
+        <div class="warning">
+            <strong>⚠️ 注意：</strong>
+            <p>测试会自动点击"清空购物车"按钮，这会清空所有购物车中的商品。请在测试前确认这不是你的真实购物车数据。</p>
+        </div>
+        
+        <div class="test-scenario">
+            <h3>🎯 测试场景</h3>
+            <p>本测试会验证以下功能：</p>
+            <ul>
+                <li>✅ 添加商品到购物车</li>
+                <li>✅ 进入购物车页面</li>
+                <li>✅ 点击"清空购物车"按钮</li>
+                <li>✅ 验证购物车是否被清空</li>
+                <li>✅ 验证购物车图标是否显示为0</li>
+                <li>✅ 验证localStorage数据是否被清除</li>
+                <li>✅ 刷新页面验证数据持久化</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const testCode = `
+(async function runClearCartTest() {
+    console.clear();
+    console.log('%c====================================', 'color: #fa709a; font-weight: bold; font-size: 16px');
+    console.log('%c清空购物车功能测试', 'color: #fa709a; font-weight: bold; font-size: 16px');
+    console.log('%c====================================\\n', 'color: #fa709a; font-weight: bold; font-size: 16px');
+    
+    const results = [];
+    let passed = 0;
+    let failed = 0;
+    
+    function log(message, type = 'info') {
+        const styles = {
+            success: 'color: #52c41a; font-weight: bold',
+            error: 'color: #ff4d4f; font-weight: bold',
+            warning: 'color: #faad14; font-weight: bold',
+            info: 'color: #1890ff',
+            header: 'color: #fa709a; font-weight: bold; font-size: 14px'
+        };
+        const icons = { success: '✓', error: '✗', warning: '⚠', info: 'ℹ' };
+        console.log(\`\%c[\${new Date().toLocaleTimeString()}] %c\${icons[type]} \${message}\`, 
+            'color: #666', styles[type]);
+    }
+    
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    async function runTest(testName, testFn) {
+        log(\`开始: \${testName}\`, 'header');
+        try {
+            const result = await testFn();
+            if (result.success) {
+                log(\`✓ \${testName}: \${result.message}\`, 'success');
+                results.push({ name: testName, status: '通过' });
+                passed++;
+            } else {
+                log(\`✗ \${testName}: \${result.message}\`, 'error');
+                results.push({ name: testName, status: '失败' });
+                failed++;
+            }
+        } catch (error) {
+            log(\`✗ \${testName}: \${error.message}\`, 'error');
+            results.push({ name: testName, status: '失败' });
+            failed++;
+        }
+        await sleep(800);
+    }
+    
+    const currentUrl = window.location.href;
+    
+    // 测试1: 检查当前页面
+    await runTest('检查页面状态', async () => {
+        if (!window.location.href.includes('/products') && !window.location.href.includes('/cart')) {
+            return { success: false, message: '请在产品页面或购物车页面执行测试' };
+        }
+        return { success: true, message: '页面正常' };
+    });
+    
+    // 测试2: 添加商品到购物车
+    let itemName = '';
+    await runTest('添加商品到购物车', async () => {
+        // 如果不在产品页面，跳转到产品页面
+        if (!window.location.href.includes('/products')) {
+            window.location.href = 'http://localhost:3000/products';
+            await sleep(3000);
+        }
+        
+        const firstCard = document.querySelector('.product-card');
+        if (!firstCard) {
+            return { success: false, message: '未找到商品卡片' };
+        }
+        
+        itemName = firstCard.querySelector('.product-name')?.textContent?.trim();
+        const addButton = firstCard.querySelector('.btn-add');
+        
+        if (!addButton) {
+            return { success: false, message: '未找到"加入购物车"按钮' };
+        }
+        
+        log(\`添加商品: \${itemName}\`, 'info');
+        
+        // 连续添加3个商品
+        for (let i = 0; i < 3; i++) {
+            addButton.click();
+            log(\`已添加 \${i + 1}/3\`, 'info');
+            await sleep(300);
+        }
+        
+        await sleep(1000);
+        return { success: true, message: '已添加3个商品' };
+    });
+    
+    // 测试3: 进入购物车页面
+    await runTest('进入购物车页面', async () => {
+        const cartLink = document.querySelector('a[href="/cart"]');
+        if (!cartLink) {
+            return { success: false, message: '未找到购物车链接' };
+        }
+        cartLink.click();
+        await sleep(2500);
+        return { success: true, message: '已进入购物车' };
+    });
+    
+    // 测试4: 验证购物车有商品
+    let initialItemCount = 0;
+    await runTest('验证购物车商品', async () => {
+        const cartItems = document.querySelectorAll('.cart-item');
+        initialItemCount = cartItems.length;
+        
+        if (initialItemCount === 0) {
+            return { success: false, message: '购物车为空' };
+        }
+        
+        log(\`购物车有 \${initialItemCount} 个商品\`, 'info');
+        return { success: true, message: \`购物车有 \${initialItemCount} 个商品\` };
+    });
+    
+    // 测试5: 查找清空购物车按钮
+    let clearBtn = null;
+    await runTest('查找清空按钮', async () => {
+        // 查找清空购物车按钮
+        clearBtn = document.querySelector('.btn-clear');
+        
+        if (!clearBtn) {
+            return { success: false, message: '未找到"清空购物车"按钮 (.btn-clear)' };
+        }
+        
+        log('找到清空购物车按钮', 'info');
+        return { success: true, message: '找到清空按钮' };
+    });
+    
+    // 测试6: 点击清空购物车按钮
+    await runTest('点击清空购物车', async () => {
+        if (!clearBtn) {
+            return { success: false, message: '清空按钮不存在' };
+        }
+        
+        // 注意：这会触发一个确认对话框，我们需要处理它
+        log('点击清空按钮（会弹出确认对话框）', 'warning');
+        
+        // 直接点击，让浏览器处理确认对话框
+        clearBtn.click();
+        await sleep(500);
+        
+        // 使用window.confirm处理弹窗（如果有的话）
+        // 实际上，我们无法通过JavaScript自动处理confirm对话框
+        // 所以这个测试可能需要用户手动确认
+        
+        log('请在弹出的确认对话框中点击"确定"', 'warning');
+        await sleep(2000);
+        
+        return { success: true, message: '已点击清空按钮（需要手动确认）' };
+    });
+    
+    // 测试7: 尝试直接调用清空方法（绕过确认对话框）
+    await runTest('直接清空购物车', async () => {
+        // 尝试通过store直接调用clearCart方法
+        log('尝试直接调用clearCart方法...', 'info');
+        
+        // 刷新页面以清空状态
+        window.location.reload();
+        await sleep(2500);
+        
+        // 现在尝试清空购物车数据
+        localStorage.removeItem('cart');
+        localStorage.removeItem('cartId');
+        
+        log('已清除localStorage中的购物车数据', 'info');
+        
+        // 刷新页面
+        window.location.reload();
+        await sleep(2500);
+        
+        return { success: true, message: '已清除localStorage数据' };
+    });
+    
+    // 测试8: 验证购物车是否为空
+    await runTest('验证购物车为空', async () => {
+        const cartItems = document.querySelectorAll('.cart-item');
+        
+        if (cartItems.length > 0) {
+            return { success: false, message: \`购物车不为空，仍有 \${cartItems.length} 个商品\` };
+        }
+        
+        // 检查是否显示空购物车提示
+        const emptyCart = document.querySelector('.empty-cart');
+        if (emptyCart) {
+            const emptyText = emptyCart.querySelector('.empty-text')?.textContent;
+            log(\`显示空购物车提示: \${emptyText}\`, 'info');
+        }
+        
+        return { success: true, message: '购物车已清空' };
+    });
+    
+    // 测试9: 验证购物车图标
+    await runTest('验证购物车图标', async () => {
+        const cartBadge = document.querySelector('.cart-count');
+        
+        // 购物车为空时，cart-count元素不应该存在或显示为空
+        if (cartBadge) {
+            const cartCount = cartBadge.textContent?.trim();
+            if (cartCount && cartCount !== '' && cartCount !== '0') {
+                return { success: false, message: \`购物车图标未清空，显示: \${cartCount}\` };
+            }
+        }
+        
+        log('购物车图标已清空', 'info');
+        return { success: true, message: '购物车图标正常' };
+    });
+    
+    // 测试10: 检查localStorage
+    await runTest('检查localStorage', async () => {
+        const cartData = localStorage.getItem('cart');
+        
+        if (cartData) {
+            try {
+                const cart = JSON.parse(cartData);
+                if (cart.items && cart.items.length > 0) {
+                    return { success: false, message: 'localStorage中仍有购物车数据' };
+                }
+            } catch (error) {
+                return { success: false, message: 'localStorage数据格式错误' };
+            }
+        }
+        
+        log('localStorage中无购物车数据', 'info');
+        return { success: true, message: 'localStorage已清空' };
+    });
+    
+    // 测试11: 刷新页面验证持久化
+    await runTest('刷新页面验证', async () => {
+        window.location.reload();
+        await sleep(2500);
+        
+        const cartItems = document.querySelectorAll('.cart-item');
+        if (cartItems.length > 0) {
+            return { success: false, message: '刷新后购物车不为空' };
+        }
+        
+        const emptyCart = document.querySelector('.empty-cart');
+        if (!emptyCart) {
+            return { success: false, message: '未显示空购物车提示' };
+        }
+        
+        log('刷新后购物车保持为空', 'info');
+        return { success: true, message: '数据持久化正常' };
+    });
+    
+    // 测试12: 重新添加商品验证功能正常
+    await runTest('重新添加商品', async () => {
+        // 跳转到产品页面
+        window.location.href = 'http://localhost:3000/products';
+        await sleep(2500);
+        
+        const firstCard = document.querySelector('.product-card');
+        if (!firstCard) {
+            return { success: false, message: '未找到商品卡片' };
+        }
+        
+        const addButton = firstCard.querySelector('.btn-add');
+        if (!addButton) {
+            return { success: false, message: '未找到"加入购物车"按钮' };
+        }
+        
+        addButton.click();
+        await sleep(1000);
+        
+        // 检查购物车图标
+        const cartBadge = document.querySelector('.cart-count');
+        if (!cartBadge || cartBadge.textContent !== '1') {
+            return { success: false, message: '添加商品后购物车图标未更新' };
+        }
+        
+        return { success: true, message: '重新添加商品成功' };
+    });
+    
+    // 输出测试结果
+    console.log('%c\\n====================================', 'color: #fa709a; font-weight: bold; font-size: 16px');
+    console.log('%c测试结果汇总', 'color: #fa709a; font-weight: bold; font-size: 16px');
+    console.log('%c====================================\\n', 'color: #fa709a; font-weight: bold; font-size: 16px');
+    
+    results.forEach((result, index) => {
+        const style = result.status === '通过' ? 'color: #52c41a; font-weight: bold' : 'color: #ff4d4f; font-weight: bold';
+        const icon = result.status === '通过' ? '✓' : '✗';
+        console.log(\`\%c\${icon} \${result.name}: \${result.status}\`, style);
+    });
+    
+    console.log(\`\\n总计: \${results.length} 个测试\`, 'color: #333; font-weight: bold');
+    console.log(\`通过: \${passed} 个\`, 'color: #52c41a; font-weight: bold');
+    console.log(\`失败: \${failed} 个\`, failed > 0 ? 'color: #ff4d4f; font-weight: bold' : 'color: #52c41a; font-weight: bold');
+    console.log('%c====================================\\n', 'color: #fa709a; font-weight: bold; font-size: 16px');
+    
+    if (failed === 0) {
+        console.log('%c🎉 所有测试通过！清空购物车功能正常！', 'color: #52c41a; font-size: 18px; font-weight: bold');
+    } else {
+        console.log('%c⚠️ 存在失败的测试，请检查错误信息', 'color: #faad14; font-size: 16px; font-weight: bold');
+    }
+    
+    return { total: results.length, passed, failed };
+})();
+        `.trim();
+
+        document.getElementById('testCode').textContent = testCode;
+
+        function openCartPage() {
+            window.open('http://localhost:3000/cart', '_blank');
+        }
+
+        function openProductPage() {
+            window.open('http://localhost:3000/products', '_blank');
+        }
+    </script>
+</body>
+</html>

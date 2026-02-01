@@ -2,6 +2,7 @@
 let favorites = JSON.parse(localStorage.getItem('skillFavorites')) || [];
 let currentCategory = localStorage.getItem('skillCategory') || 'all';
 let currentLanguage = localStorage.getItem('skillLanguage') || 'en';
+let currentTheme = localStorage.getItem('skillTheme') || 'dark';
 
 // Get unique categories (sorted by count descending)
 function getCategories() {
@@ -57,6 +58,46 @@ function toggleLanguage() {
     currentLanguage = currentLanguage === 'en' ? 'zh' : 'en';
     localStorage.setItem('skillLanguage', currentLanguage);
     updateLanguage();
+}
+
+// Toggle theme
+function toggleTheme() {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('skillTheme', currentTheme);
+    applyTheme();
+}
+
+// Apply theme
+function applyTheme() {
+    if (currentTheme === 'light') {
+        document.body.classList.add('light-theme');
+        updateThemeIcon('moon');
+    } else {
+        document.body.classList.remove('light-theme');
+        updateThemeIcon('sun');
+    }
+}
+
+// Update theme icon
+function updateThemeIcon(icon) {
+    const themeIcon = document.getElementById('themeIcon');
+    if (icon === 'moon') {
+        themeIcon.innerHTML = `
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        `;
+    } else {
+        themeIcon.innerHTML = `
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        `;
+    }
 }
 
 // Update all language text
@@ -199,7 +240,6 @@ function renderSkills(category, subCategory = null) {
 
     if (category === 'all') {
         filteredSkills = skillsData;
-        const totalCount = getCategoryCount('all');
         headerTitle.textContent = t('allSkillsTitle');
         headerSubtitle.textContent = t('allSkillsSubtitle');
     } else if (category === 'favorites') {
@@ -380,6 +420,7 @@ function showToast(message) {
 
 // Initialize
 function init() {
+    applyTheme();
     updateLanguage();
     renderCategories();
     renderCommunityCategories();

@@ -1,0 +1,225 @@
+{
+  "color_palette": {
+    "primary": "#2C3E50",
+    "secondary": "#3498DB",
+    "accent": "#E74C3C",
+    "success": "#27AE60",
+    "warning": "#F39C12",
+    "info": "#1ABC9C",
+    "light": "#ECF0F1",
+    "dark": "#34495E"
+  },
+  "sequential_colors": [
+    "#3498DB",
+    "#2980B9",
+    "#1A5276",
+    "#154360",
+    "#5499C7"
+  ],
+  "diverging_colors": {
+    "positive": "#27AE60",
+    "neutral": "#F39C12",
+    "negative": "#E74C3C"
+  },
+  "categorical_colors": [
+    "#3498DB",
+    "#E74C3C",
+    "#27AE60",
+    "#F39C12",
+    "#9B59B6",
+    "#1ABC9C",
+    "#34495E",
+    "#7F8C8D",
+    "#16A085",
+    "#2ECC71"
+  ],
+  "font": {
+    "family": "SimHei",
+    "size": {
+      "title": 16,
+      "axis_label": 12,
+      "tick_label": 10,
+      "legend": 11,
+      "annotation": 9
+    },
+    "weight": {
+      "title": "bold",
+      "normal": "normal"
+    }
+  },
+  "line_styles": {
+    "main_line": {
+      "color": "#3498DB",
+      "width": 2.5,
+      "style": "-"
+    },
+    "trend_line": {
+      "color": "#E74C3C",
+      "width": 2.0,
+      "style": "--"
+    },
+    "grid": {
+      "color": "#BDC3C7",
+      "width": 0.5,
+      "style": "-",
+      "alpha": 0.3
+    },
+    "axis": {
+      "color": "#34495E",
+      "width": 1.0
+    }
+  },
+  "bar_styles": {
+    "default": {
+      "color": "#3498DB",
+      "edge_color": "#2980B9",
+      "width": 0.8,
+      "alpha": 0.8
+    },
+    "comparison": [
+      "#3498DB",
+      "#E74C3C",
+      "#27AE60",
+      "#F39C12",
+      "#9B59B6"
+    ],
+    "stacked": [
+      "#2C3E50",
+      "#34495E",
+      "#7F8C8D",
+      "#BDC3C7",
+      "#ECF0F1"
+    ]
+  },
+  "scatter_styles": {
+    "default": {
+      "color": "#3498DB",
+      "size": 50,
+      "edge_color": "#2980B9",
+      "edge_width": 0.5,
+      "alpha": 0.6
+    },
+    "size_by_column": true,
+    "color_by_column": false
+  },
+  "figure_size": {
+    "standard": [12, 6],
+    "wide": [16, 6],
+    "tall": [8, 10],
+    "square": [10, 10],
+    "large": [16, 10]
+  },
+  "legend": {
+    "position": "upper right",
+    "frame_on": true,
+    "frame_alpha": 0.8,
+    "shadow": true,
+    "ncol": 1,
+    "fontsize": 11
+  },
+  "grid": {
+    "show": true,
+    "which": "both",
+    "axis": "both",
+    "style": "-",
+    "alpha": 0.3
+  },
+  "ticks": {
+    "rotation": 45,
+    "alignment": "right",
+    "labelsize": 10
+  },
+  "title": {
+    "fontsize": 16,
+    "fontweight": "bold",
+    "pad": 20,
+    "loc": "center"
+  },
+  "axis_labels": {
+    "fontsize": 12,
+    "fontweight": "normal",
+    "labelpad": 10
+  },
+  "annotations": {
+    "fontsize": 9,
+    "fontweight": "normal",
+    "alpha": 0.7,
+    "boxstyle": "round,pad=0.3"
+  },
+  "output": {
+    "dpi": 300,
+    "format": "png",
+    "bbox_inches": "tight",
+    "transparent": false,
+    "facecolor": "white"
+  },
+  "chart_specific": {
+    "line_chart": {
+      "marker": "o",
+      "markersize": 4,
+      "marker_alpha": 0.7
+    },
+    "bar_chart": {
+      "show_values": true,
+      "value_format": "{:.2f}",
+      "value_rotation": 0,
+      "value_fontsize": 10
+    },
+    "box_plot": {
+      "showfliers": true,
+      "flierprops": {
+        "marker": "o",
+        "markerfacecolor": "red",
+        "markersize": 4,
+        "markeredgecolor": "darkred"
+      },
+      "boxprops": {
+        "facecolor": "lightblue",
+        "color": "navy"
+      },
+      "medianprops": {
+        "color": "red",
+        "linewidth": 2
+      },
+      "whiskerprops": {
+        "color": "navy",
+        "linewidth": 1.5
+      }
+    },
+    "scatter_plot": {
+      "show_trendline": false,
+      "trendline_style": "--",
+      "show_correlation": true,
+      "correlation_format": "r = {:.3f}"
+    },
+    "pie_chart": {
+      "explode": [0, 0, 0, 0, 0],
+      "autopct": "%1.1f%%",
+      "startangle": 90,
+      "shadow": true,
+      "labeldistance": 1.1
+    }
+  },
+  "themes": {
+    "professional": {
+      "colors": ["#2C3E50", "#3498DB", "#7F8C8D"],
+      "background": "#FFFFFF",
+      "grid": "#ECF0F1"
+    },
+    "modern": {
+      "colors": ["#6C5CE7", "#00CEC9", "#FF7675", "#FDCB6E"],
+      "background": "#F8F9FA",
+      "grid": "#DEE2E6"
+    },
+    "minimal": {
+      "colors": ["#000000", "#666666", "#CCCCCC"],
+      "background": "#FFFFFF",
+      "grid": "#F0F0F0"
+    },
+    "vibrant": {
+      "colors": ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4"],
+      "background": "#2C3E50",
+      "grid": "#34495E"
+    }
+  }
+}

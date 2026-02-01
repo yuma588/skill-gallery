@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微观宇宙 - Microscopic Universe</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Anthropic Brand Colors */
+        :root {
+            --anthropic-dark: #141413;
+            --anthropic-light: #faf9f5;
+            --anthropic-mid-gray: #b0aea5;
+            --anthropic-light-gray: #e8e6dc;
+            --anthropic-orange: #d97757;
+            --anthropic-blue: #6a9bcc;
+            --anthropic-green: #788c5d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--anthropic-light) 0%, #f5f3ee 100%);
+            min-height: 100vh;
+            color: var(--anthropic-dark);
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 340px;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(20, 20, 19, 0.1);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .sidebar h1 {
+            font-family: 'Lora', serif;
+            font-size: 26px;
+            font-weight: 500;
+            color: var(--anthropic-dark);
+            margin-bottom: 6px;
+        }
+
+        .sidebar .subtitle {
+            color: var(--anthropic-mid-gray);
+            font-size: 13px;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        /* Control Sections */
+        .control-section {
+            margin-bottom: 28px;
+        }
+
+        .control-section h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--anthropic-dark);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-section h3::before {
+            content: '•';
+            color: var(--anthropic-orange);
+            font-weight: bold;
+        }
+
+        /* Seed Controls */
+        .seed-input {
+            width: 100%;
+            background: var(--anthropic-light);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin-bottom: 10px;
+            border: 1px solid var(--anthropic-light-gray);
+            text-align: center;
+        }
+
+        .seed-input:focus {
+            outline: none;
+            border-color: var(--anthropic-orange);
+            box-shadow: 0 0 0 2px rgba(217, 119, 87, 0.1);
+            background: white;
+        }
+
+        .seed-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .regen-button {
+            margin-bottom: 0;
+        }
+
+        /* Parameter Controls */
+        .control-group {
+            margin-bottom: 16px;
+        }
+
+        .control-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--anthropic-dark);
+            margin-bottom: 6px;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slider-container input[type="range"] {
+            flex: 1;
+            height: 4px;
+            background: var(--anthropic-light-gray);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            background: var(--anthropic-orange);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            background: #c86641;
+        }
+
+        .slider-container input[type="range"]::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            background: var(--anthropic-orange);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .value-display {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: var(--anthropic-mid-gray);
+            min-width: 50px;
+            text-align: right;
+        }
+
+        /* Color Pickers */
+        .color-group {
+            margin-bottom: 12px;
+        }
+
+        .color-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--anthropic-mid-gray);
+            margin-bottom: 4px;
+        }
+
+        .color-picker-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-picker-container input[type="color"] {
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+        }
+
+        .color-value {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: var(--anthropic-mid-gray);
+        }
+
+        /* Buttons */
+        .button {
+            background: var(--anthropic-orange);
+            color: white;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .button:hover {
+            background: #c86641;
+            transform: translateY(-1px);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .button.secondary {
+            background: var(--anthropic-blue);
+        }
+
+        .button.secondary:hover {
+            background: #5a8bb8;
+        }
+
+        .button.tertiary {
+            background: var(--anthropic-green);
+        }
+
+        .button.tertiary:hover {
+            background: #6b7b52;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .button-row .button {
+            flex: 1;
+        }
+
+        /* Canvas Area */
+        .canvas-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        #canvas-container {
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(20, 20, 19, 0.1);
+            background: white;
+        }
+
+        #canvas-container canvas {
+            display: block;
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--anthropic-mid-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: 400px;
+            }
+
+            .canvas-area {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Control Sidebar -->
+        <div class="sidebar">
+            <h1>微观宇宙</h1>
+            <div class="subtitle">流体生命力的数字表达</div>
+
+            <!-- Seed Section -->
+            <div class="control-section">
+                <h3>种子 (Seed)</h3>
+                <input type="number" id="seed-input" class="seed-input" value="12345" onchange="updateSeed()">
+                <div class="seed-controls">
+                    <button class="button secondary" onclick="previousSeed()">← 前一个</button>
+                    <button class="button secondary" onclick="nextSeed()">后一个 →</button>
+                </div>
+                <button class="button tertiary regen-button" onclick="randomSeedAndUpdate()">↻ 随机种子</button>
+            </div>
+
+            <!-- Parameters Section -->
+            <div class="control-section">
+                <h3>参数控制</h3>
+                
+                <!-- Microbe Count -->
+                <div class="control-group">
+                    <label>微生物数量</label>
+                    <div class="slider-container">
+                        <input type="range" id="microbeCount" min="2000" max="8000" step="500" value="5000" oninput="updateParam('microbeCount', this.value)">
+                        <span class="value-display" id="microbeCount-value">5000</span>
+                    </div>
+                </div>
+
+                <!-- Flow Speed -->
+                <div class="control-group">
+                    <label>流动速度</label>
+                    <div class="slider-container">
+                        <input type="range" id="flowSpeed" min="0.1" max="1.0" step="0.05" value="0.5" oninput="updateParam('flowSpeed', this.value)">
+                        <span class="value-display" id="flowSpeed-value">0.5</span>
+                    </div>
+                </div>
+
+                <!-- Noise Scale -->
+                <div class="control-group">
+                    <label>流场缩放</label>
+                    <div class="slider-container">
+                        <input type="range" id="noiseScale" min="0.001" max="0.01" step="0.0005" value="0.004" oninput="updateParam('noiseScale', this.value)">
+                        <span class="value-display" id="noiseScale-value">0.004</span>
+                    </div>
+                </div>
+
+                <!-- Trail Length -->
+                <div class="control-group">
+                    <label>轨迹长度</label>
+                    <div class="slider-container">
+                        <input type="range" id="trailLength" min="5" max="15" step="1" value="10" oninput="updateParam('trailLength', this.value)">
+                        <span class="value-display" id="trailLength-value">10</span>
+                    </div>
+                </div>
+
+                <!-- Life Cycle Speed -->
+                <div class="control-group">
+                    <label>生命周期速度</label>
+                    <div class="slider-container">
+                        <input type="range" id="lifeCycleSpeed" min="0.5" max="2.0" step="0.1" value="1.0" oninput="updateParam('lifeCycleSpeed', this.value)">
+                        <span class="value-display" id="lifeCycleSpeed-value">1.0</span>
+                    </div>
+                </div>
+
+                <!-- Rebirth Rate -->
+                <div class="control-group">
+                    <label>重生率</label>
+                    <div class="slider-container">
+                        <input type="range" id="rebirthRate" min="0.3" max="0.9" step="0.05" value="0.6" oninput="updateParam('rebirthRate', this.value)">
+                        <span class="value-display" id="rebirthRate-value">0.6</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colors Section -->
+            <div class="control-section">
+                <h3>生命周期颜色</h3>
+                
+                <!-- Newborn Color -->
+                <div class="color-group">
+                    <label>新生色</label>
+                    <div class="color-picker-container">
+                        <input type="color" id="colorNewborn" value="#6a9bcc" onchange="updateColor('colorNewborn', this.value)">
+                        <span class="color-value" id="colorNewborn-value">#6a9bcc</span>
+                    </div>
+                </div>
+
+                <!-- Mature Color -->
+                <div class="color-group">
+                    <label>成熟色</label>
+                    <div class="color-picker-container">
+                        <input type="color" id="colorMature" value="#788c5d" onchange="updateColor('colorMature', this.value)">
+                        <span class="color-value" id="colorMature-value">#788c5d</span>
+                    </div>
+                </div>
+
+                <!-- Aging Color -->
+                <div class="color-group">
+                    <label>衰老色</label>
+                    <div class="color-picker-container">
+                        <input type="color" id="colorAging" value="#d97757" onchange="updateColor('colorAging', this.value)">
+                        <span class="color-value" id="colorAging-value">#d97757</span>
+                    </div>
+                </div>
+
+                <!-- Fading Color -->
+                <div class="color-group">
+                    <label>消逝色</label>
+                    <div class="color-picker-container">
+                        <input type="color" id="colorFading" value="#e899a3" onchange="updateColor('colorFading', this.value)">
+                        <span class="color-value" id="colorFading-value">#e899a3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions Section -->
+            <div class="control-section">
+                <h3>操作</h3>
+                <div class="button-row">
+                    <button class="button" onclick="resetParameters()">重置参数</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Canvas Area -->
+        <div class="canvas-area">
+            <div id="canvas-container">
+                <div class="loading">初始化生成艺术...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════════════
+        // GENERATIVE ART PARAMETERS
+        // ═══════════════════════════════════════════════════════════════════════
+
+        let params = {
+            seed: 12345,
+            microbeCount: 5000,
+            flowSpeed: 0.5,
+            noiseScale: 0.004,
+            trailLength: 10,
+            lifeCycleSpeed: 1.0,
+            rebirthRate: 0.6,
+            colorPalette: {
+                newborn: '#6a9bcc',
+                mature: '#788c5d',
+                aging: '#d97757',
+                fading: '#e899a3'
+            }
+        };
+
+        let defaultParams = JSON.parse(JSON.stringify(params));
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // P5.JS GENERATIVE ART ALGORITHM
+        // ═══════════════════════════════════════════════════════════════════════
+
+        let particles = [];
+        let flowField = [];
+        let cols, rows;
+        let scl = 10; // Flow field resolution
+        let timeOffset = 0;
+
+        function setup() {
+            let canvas = createCanvas(1200, 1200);
+            canvas.parent('canvas-container');
+            
+            initializeSystem();
+            
+            // Remove loading message
+            document.querySelector('.loading').style.display = 'none';
+        }
+
+        function initializeSystem() {
+            // Seed the randomness for reproducibility
+            randomSeed(params.seed);
+            noiseSeed(params.seed);
+
+            // Clear particles and recreate
+            particles = [];
+            timeOffset = 0;
+            
+            // Initialize particles
+            for (let i = 0; i < params.microbeCount; i++) {
+                particles.push(new Microbe());
+            }
+
+            // Calculate flow field dimensions
+            cols = floor(width / scl);
+            rows = floor(height / scl);
+            
+            // Clear background with light color
+            background(250, 249, 245);
+        }
+
+        function draw() {
+            // Slight fade effect for trails
+            noStroke();
+            fill(250, 249, 245, 10); // Very subtle fade
+            rect(0, 0, width, height);
+
+            timeOffset += 0.002 * params.lifeCycleSpeed;
+
+            // Update and display all particles
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                particles[i].display();
+                
+                // Handle lifecycle (death and rebirth)
+                if (particles[i].isDead()) {
+                    if (random() < params.rebirthRate) {
+                        particles[i] = new Microbe();
+                    } else {
+                        particles.splice(i, 1);
+                    }
+                }
+            }
+
+            // Maintain particle count
+            while (particles.length < params.microbeCount) {
+                particles.push(new Microbe());
+            }
+        }
+
+        function getFlowFieldAngle(x, y) {
+            // Multi-layered noise for organic flow
+            let n1 = noise(x * params.noiseScale, y * params.noiseScale, timeOffset);
+            let n2 = noise(x * params.noiseScale * 2, y * params.noiseScale * 2, timeOffset * 1.5);
+            let combined = (n1 * 0.7 + n2 * 0.3);
+            
+            // Map noise to angle (0 to TWO_PI)
+            return combined * TWO_PI * 2;
+        }
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // MICROBE CLASS - PARTICLE WITH LIFECYCLE
+        // ═══════════════════════════════════════════════════════════════════════
+
+        class Microbe {
+            constructor() {
+                this.pos = createVector(random(width), random(height));
+                this.vel = createVector(0, 0);
+                this.acc = createVector(0, 0);
+                
+                this.maxSpeed = random(1, 2.5);
+                this.maxForce = 0.2;
+                
+                this.size = random(2, 5);
+                
+                // Lifecycle properties
+                this.life = 0;
+                this.maxLife = random(200, 500);
+                this.lifePhase = 'newborn'; // newborn, mature, aging, fading
+            }
+
+            update() {
+                // Get flow field direction at current position
+                let angle = getFlowFieldAngle(this.pos.x, this.pos.y);
+                let flow = p5.Vector.fromAngle(angle);
+                flow.setMag(params.flowSpeed);
+                
+                // Apply flow force
+                this.applyForce(flow);
+                
+                // Add slight randomness for organic movement
+                let randomForce = p5.Vector.random2D();
+                randomForce.setMag(0.1);
+                this.applyForce(randomForce);
+                
+                // Update physics
+                this.vel.add(this.acc);
+                this.vel.limit(this.maxSpeed);
+                this.pos.add(this.vel);
+                this.acc.mult(0);
+                
+                // Wrap around edges
+                this.wrapAround();
+                
+                // Update lifecycle
+                this.life += 1 * params.lifeCycleSpeed;
+                this.updateLifePhase();
+            }
+
+            applyForce(force) {
+                this.acc.add(force);
+            }
+
+            wrapAround() {
+                if (this.pos.x < 0) this.pos.x = width;
+                if (this.pos.x > width) this.pos.x = 0;
+                if (this.pos.y < 0) this.pos.y = height;
+                if (this.pos.y > height) this.pos.y = 0;
+            }
+
+            updateLifePhase() {
+                let lifeProgress = this.life / this.maxLife;
+                
+                if (lifeProgress < 0.25) {
+                    this.lifePhase = 'newborn';
+                } else if (lifeProgress < 0.5) {
+                    this.lifePhase = 'mature';
+                } else if (lifeProgress < 0.75) {
+                    this.lifePhase = 'aging';
+                } else {
+                    this.lifePhase = 'fading';
+                }
+            }
+
+            isDead() {
+                return this.life >= this.maxLife;
+            }
+
+            display() {
+                let color = this.getColorByPhase();
+                let alpha = this.getAlphaByPhase();
+                
+                stroke(color);
+                strokeWeight(this.size);
+                
+                // Draw trail
+                let trailLength = params.trailLength;
+                let trailEnd = p5.Vector.sub(this.pos, p5.Vector.mult(this.vel, trailLength));
+                line(this.pos.x, this.pos.y, trailEnd.x, trailEnd.y);
+            }
+
+            getColorByPhase() {
+                switch (this.lifePhase) {
+                    case 'newborn':
+                        return color(params.colorPalette.newborn);
+                    case 'mature':
+                        return color(params.colorPalette.mature);
+                    case 'aging':
+                        return color(params.colorPalette.aging);
+                    case 'fading':
+                        return color(params.colorPalette.fading);
+                    default:
+                        return color(params.colorPalette.newborn);
+                }
+            }
+
+            getAlphaByPhase() {
+                let lifeProgress = this.life / this.maxLife;
+                
+                // Fade in at beginning, fade out at end
+                if (lifeProgress < 0.1) {
+                    return map(lifeProgress, 0, 0.1, 0, 180);
+                } else if (lifeProgress > 0.9) {
+                    return map(lifeProgress, 0.9, 1.0, 180, 20);
+                } else {
+                    return 180;
+                }
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // UI CONTROL HANDLERS
+        // ═══════════════════════════════════════════════════════════════════════
+
+        function updateParam(paramName, value) {
+            params[paramName] = parseFloat(value);
+            document.getElementById(paramName + '-value').textContent = value;
+            
+            // For some parameters, we need to regenerate
+            if (paramName === 'microbeCount' || paramName === 'noiseScale') {
+                initializeSystem();
+            }
+        }
+
+        function updateColor(colorId, value) {
+            let key = colorId.replace('color', '').toLowerCase();
+            params.colorPalette[key] = value;
+            document.getElementById(colorId + '-value').textContent = value;
+        }
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // SEED CONTROL FUNCTIONS
+        // ═══════════════════════════════════════════════════════════════════════
+
+        function updateSeedDisplay() {
+            document.getElementById('seed-input').value = params.seed;
+        }
+
+        function updateSeed() {
+            let input = document.getElementById('seed-input');
+            let newSeed = parseInt(input.value);
+            if (newSeed && newSeed > 0) {
+                params.seed = newSeed;
+                initializeSystem();
+            } else {
+                updateSeedDisplay();
+            }
+        }
+
+        function previousSeed() {
+            params.seed = Math.max(1, params.seed - 1);
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        function nextSeed() {
+            params.seed = params.seed + 1;
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        function randomSeedAndUpdate() {
+            params.seed = Math.floor(Math.random() * 999999) + 1;
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        function resetParameters() {
+            params = JSON.parse(JSON.stringify(defaultParams));
+            
+            // Update UI elements
+            document.getElementById('microbeCount').value = params.microbeCount;
+            document.getElementById('microbeCount-value').textContent = params.microbeCount;
+            document.getElementById('flowSpeed').value = params.flowSpeed;
+            document.getElementById('flowSpeed-value').textContent = params.flowSpeed;
+            document.getElementById('noiseScale').value = params.noiseScale;
+            document.getElementById('noiseScale-value').textContent = params.noiseScale;
+            document.getElementById('trailLength').value = params.trailLength;
+            document.getElementById('trailLength-value').textContent = params.trailLength;
+            document.getElementById('lifeCycleSpeed').value = params.lifeCycleSpeed;
+            document.getElementById('lifeCycleSpeed-value').textContent = params.lifeCycleSpeed;
+            document.getElementById('rebirthRate').value = params.rebirthRate;
+            document.getElementById('rebirthRate-value').textContent = params.rebirthRate;
+            
+            // Reset colors
+            document.getElementById('colorNewborn').value = params.colorPalette.newborn;
+            document.getElementById('colorNewborn-value').textContent = params.colorPalette.newborn;
+            document.getElementById('colorMature').value = params.colorPalette.mature;
+            document.getElementById('colorMature-value').textContent = params.colorPalette.mature;
+            document.getElementById('colorAging').value = params.colorPalette.aging;
+            document.getElementById('colorAging-value').textContent = params.colorPalette.aging;
+            document.getElementById('colorFading').value = params.colorPalette.fading;
+            document.getElementById('colorFading-value').textContent = params.colorPalette.fading;
+            
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        // Initialize UI on load
+        window.addEventListener('load', function() {
+            updateSeedDisplay();
+        });
+    </script>
+</body>
+</html>

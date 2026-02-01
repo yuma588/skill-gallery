@@ -1,0 +1,165 @@
+{
+  "currency": "CNY",
+  "version": "1.0",
+  "effective_date": "2025-01-01",
+  "limits": {
+    "meal": {
+      "breakfast": 50,
+      "lunch": 80,
+      "dinner": 100,
+      "daily_total": 200,
+      "description": "Daily meal allowance per person"
+    },
+    "transportation": {
+      "taxi": {
+        "per_ride": 100,
+        "daily_max": 300,
+        "description": "Taxi fare limits"
+      },
+      "public_transport": {
+        "allowance_type": "full_reimbursement",
+        "description": "Subway, bus, train - fully reimbursed with valid receipts"
+      },
+      "rental_car": {
+        "daily_max": 500,
+        "mileage_rate": 2.0,
+        "description": "Car rental including fuel, daily rate limit applies"
+      },
+      "personal_vehicle": {
+        "mileage_rate": 1.5,
+        "description": "Personal vehicle use, reimbursed per km"
+      }
+    },
+    "accommodation": {
+      "tier_1_cities": {
+        "cities": ["Beijing", "Shanghai", "Guangzhou", "Shenzhen"],
+        "daily_limit": 600,
+        "description": "Accommodation limit for Tier 1 cities"
+      },
+      "tier_2_cities": {
+        "cities": ["Hangzhou", "Nanjing", "Chengdu", "Wuhan", "Xiamen", "Qingdao"],
+        "daily_limit": 450,
+        "description": "Accommodation limit for Tier 2 cities"
+      },
+      "tier_3_cities": {
+        "cities": ["Others"],
+        "daily_limit": 350,
+        "description": "Accommodation limit for Tier 3 cities"
+      }
+    },
+    "airfare": {
+      "economy_class": {
+        "max_amount": 2000,
+        "advance_booking_discount": 0.15,
+        "advance_days": 14,
+        "description": "Economy class maximum reimbursement"
+      },
+      "business_class": {
+        "eligible_roles": ["Director", "VP", "C-level"],
+        "max_amount": 6000,
+        "description": "Business class for eligible roles only"
+      }
+    },
+    "train": {
+      "high_speed": {
+        "second_class": "full_reimbursement",
+        "first_class": 400,
+        "business_class": 800,
+        "description": "High-speed train class limits"
+      },
+      "regular": {
+        "sleeper": "full_reimbursement",
+        "seat": "full_reimbursement",
+        "description": "Regular train - fully reimbursed"
+      }
+    },
+    "miscellaneous": {
+      "entertainment": {
+        "daily_max": 200,
+        "requires_approval": true,
+        "approval_level": "manager",
+        "description": "Client entertainment expenses"
+      },
+      "office_supplies": {
+        "allowance_type": "full_reimbursement",
+        "max_per_item": 500,
+        "description": "Office supplies for business use"
+      },
+      "internet_communication": {
+        "daily_max": 100,
+        "description": "Internet and communication expenses during travel"
+      },
+      "laundry": {
+        "daily_max": 50,
+        "min_stay_days": 3,
+        "description": "Laundry expenses for trips 3+ days"
+      },
+      "baggage": {
+        "per_flight": 150,
+        "max_per_trip": 300,
+        "description": "Excess baggage fees"
+      }
+    }
+  },
+  "approval_levels": {
+    "level_1": {
+      "name": "Direct Manager",
+      "amount_limit": 1000,
+      "description": "Expenses under 1,000 CNY"
+    },
+    "level_2": {
+      "name": "Department Head",
+      "amount_range": "1000-5000",
+      "min_amount": 1000,
+      "max_amount": 5000,
+      "description": "Expenses between 1,000-5,000 CNY"
+    },
+    "level_3": {
+      "name": "Finance Director",
+      "amount_range": "5000-20000",
+      "min_amount": 5000,
+      "max_amount": 20000,
+      "description": "Expenses between 5,000-20,000 CNY"
+    },
+    "level_4": {
+      "name": "CFO",
+      "amount_min": 20000,
+      "description": "Expenses exceeding 20,000 CNY"
+    }
+  },
+  "special_rules": {
+    "daily_expense_cap": {
+      "amount": 1500,
+      "description": "Maximum total daily expenses (excluding airfare/trainfare)"
+    },
+    "advance_booking_discounts": {
+      "airfare": {
+        "14_days": 0.15,
+        "7_days": 0.10,
+        "3_days": 0.05
+      },
+      "accommodation": {
+        "7_days": 0.10,
+        "3_days": 0.05
+      }
+    },
+    "company_events": {
+      "max_per_person": 300,
+      "requires_prior_approval": true,
+      "approval_level": "department_head",
+      "description": "Team building, company meetings, and events"
+    },
+    "international_travel": {
+      "meal_allowance_multiplier": 2.0,
+      "requires_special_approval": true,
+      "description": "International travel expenses"
+    }
+  },
+  "compliance_notes": {
+    "receipt_requirements": "All expenses require original receipts dated within the expense period",
+    "submission_deadline": "Expenses must be submitted within 30 days of travel completion",
+    "missing_receipt_policy": "Missing receipts require written explanation and manager approval",
+    "personal_expenses": "Personal expenses are not reimbursable and should be excluded",
+    "duplicate_submissions": "Duplicate expense submissions will result in rejection and potential disciplinary action"
+  }
+}

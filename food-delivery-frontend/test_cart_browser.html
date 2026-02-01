@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车功能测试</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-step {
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid #ddd;
+            background: #f9f9f9;
+        }
+        .success {
+            border-left-color: #52c41a;
+            background: #f6ffed;
+        }
+        .error {
+            border-left-color: #ff4d4f;
+            background: #fff1f0;
+        }
+        .warning {
+            border-left-color: #faad14;
+            background: #fffbe6;
+        }
+        .info {
+            border-left-color: #1890ff;
+            background: #e6f7ff;
+        }
+        .cart-info {
+            background: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        button {
+            background: #1890ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #40a9ff;
+        }
+        button:disabled {
+            background: #d9d9d9;
+            cursor: not-allowed;
+        }
+        .log {
+            background: #262626;
+            color: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛒 购物车功能测试</h1>
+    
+    <div class="test-section">
+        <h2>测试控制</h2>
+        <button onclick="runAllTests()" id="runAllBtn">▶ 运行所有测试</button>
+        <button onclick="resetCart()">↺ 清空购物车</button>
+        <button onclick="clearLog()">🗑 清空日志</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>当前购物车状态</h2>
+        <div class="cart-info" id="cartInfo">
+            <p>购物车数据加载中...</p>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>测试步骤</h2>
+        <div id="testResults"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>测试日志</h2>
+        <div class="log" id="testLog">准备就绪...</div>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('testLog');
+            const timestamp = new Date().toLocaleTimeString();
+            const icon = type === 'success' ? '✓' : type === 'error' ? '✗' : type === 'warning' ? '⚠' : 'ℹ';
+            logDiv.innerHTML += `[${timestamp}] ${icon} ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+        
+        function clearLog() {
+            document.getElementById('testLog').innerHTML = '日志已清空...\n';
+        }
+        
+        function addTestResult(message, type = 'info') {
+            const resultsDiv = document.getElementById('testResults');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-step ${type}`;
+            resultDiv.innerHTML = message;
+            resultsDiv.appendChild(resultDiv);
+        }
+        
+        function clearTestResults() {
+            document.getElementById('testResults').innerHTML = '';
+        }
+        
+        function getCartData() {
+            const cartData = localStorage.getItem('cart');
+            return cartData ? JSON.parse(cartData) : { items: [] };
+        }
+        
+        function updateCartInfo() {
+            const cart = getCartData();
+            const cartInfo = document.getElementById('cartInfo');
+            
+            if (cart.items.length === 0) {
+                cartInfo.innerHTML = '<p>📭 购物车为空</p>';
+            } else {
+                let html = `<p><strong>📦 商品数量:</strong> ${cart.items.length}</p>`;
+                html += '<ul>';
+                cart.items.forEach((item, index) => {
+                    html += `<li>
+                        <strong>${item.name}</strong><br>
+                        价格: ${item.price}<br>
+                        数量: ${item.quantity}
+                    </li>`;
+                });
+                html += '</ul>';
+                cartInfo.innerHTML = html;
+            }
+        }
+        
+        function resetCart() {
+            localStorage.removeItem('cart');
+            localStorage.removeItem('cartId');
+            log('购物车已清空', 'success');
+            updateCartInfo();
+        }
+        
+        async function runAllTests() {
+            const runAllBtn = document.getElementById('runAllBtn');
+            runAllBtn.disabled = true;
+            runAllBtn.textContent = '⏳ 测试中...';
+            
+            clearTestResults();
+            clearLog();
+            log('开始运行测试...', 'info');
+            
+            let testPassed = 0;
+            let testFailed = 0;
+            
+            try {
+                // 测试1: 检查localStorage是否可用
+                log('\n=== 测试1: localStorage可用性 ===', 'info');
+                try {
+                    localStorage.setItem('test', 'test');
+                    localStorage.removeItem('test');
+                    addTestResult('✓ localStorage功能正常', 'success');
+                    log('localStorage功能正常', 'success');
+                    testPassed++;
+                } catch (e) {
+                    addTestResult('✗ localStorage不可用', 'error');
+                    log('localStorage不可用: ' + e.message, 'error');
+                    testFailed++;
+                }
+                
+                // 测试2: 清空购物车
+                log('\n=== 测试2: 清空购物车 ===', 'info');
+                resetCart();
+                addTestResult('✓ 购物车已清空', 'success');
+                testPassed++;
+                
+                // 测试3: 打开新窗口访问产品页面
+                log('\n=== 测试3: 打开产品页面 ===', 'info');
+                addTestResult('ℹ 请在新打开的窗口中点击"加入购物车"按钮', 'info');
+                addTestResult('ℹ 然后关闭新窗口返回这里继续测试', 'info');
+                log('正在打开产品页面...', 'info');
+                
+                const productsWindow = window.open('http://localhost:3000/products', '_blank', 'width=800,height=600');
+                
+                if (productsWindow) {
+                    addTestResult('✓ 产品页面已打开', 'success');
+                    log('产品页面已打开', 'success');
+                    testPassed++;
+                    
+                    // 等待用户手动操作
+                    addTestResult('⏳ 等待用户添加商品到购物车...', 'warning');
+                    log('请在产品页面点击"加入购物车"按钮...', 'warning');
+                    
+                    // 每2秒检查购物车状态
+                    let checkCount = 0;
+                    const checkInterval = setInterval(() => {
+                        checkCount++;
+                        updateCartInfo();
+                        const cart = getCartData();
+                        
+                        if (cart.items.length > 0) {
+                            clearInterval(checkInterval);
+                            log('检测到购物车有商品！', 'success');
+                            
+                            // 测试4: 验证购物车数据
+                            log('\n=== 测试4: 验证购物车数据 ===', 'info');
+                            addTestResult(`✓ 购物车中有 ${cart.items.length} 个商品`, 'success');
+                            log(`购物车中有 ${cart.items.length} 个商品`, 'success');
+                            
+                            const firstItem = cart.items[0];
+                            addTestResult(`✓ 第一个商品: ${firstItem.name}, 价格: ${firstItem.price}, 数量: ${firstItem.quantity}`, 'success');
+                            log(`商品详情: ${firstItem.name} - ${firstItem.price} x ${firstItem.quantity}`, 'success');
+                            testPassed++;
+                            
+                            // 测试5: 测试localStorage持久化
+                            log('\n=== 测试5: localStorage持久化 ===', 'info');
+                            addTestResult('ℹ 请刷新页面查看购物车数据是否保持...', 'info');
+                            log('购物车数据已保存到localStorage', 'success');
+                            addTestResult('✓ 购物车数据已保存', 'success');
+                            testPassed++;
+                            
+                            // 测试总结
+                            setTimeout(() => {
+                                log('\n=== 测试总结 ===', 'info');
+                                log(`测试通过: ${testPassed}`, 'success');
+                                log(`测试失败: ${testFailed}`, testFailed > 0 ? 'error' : 'info');
+                                log(`总计: ${testPassed + testFailed} 个测试`, 'info');
+                                
+                                addTestResult(`\n=== 测试完成 ===`, 'info');
+                                addTestResult(`✓ 通过: ${testPassed}`, 'success');
+                                if (testFailed > 0) {
+                                    addTestResult(`✗ 失败: ${testFailed}`, 'error');
+                                }
+                                
+                                runAllBtn.disabled = false;
+                                runAllBtn.textContent = '▶ 运行所有测试';
+                            }, 1000);
+                        } else if (checkCount >= 30) { // 60秒超时
+                            clearInterval(checkInterval);
+                            addTestResult('✗ 超时：未检测到购物车更新', 'error');
+                            log('超时：未检测到购物车更新', 'error');
+                            testFailed++;
+                            
+                            runAllBtn.disabled = false;
+                            runAllBtn.textContent = '▶ 运行所有测试';
+                        }
+                    }, 2000);
+                    
+                } else {
+                    addTestResult('✗ 无法打开新窗口，请检查浏览器弹窗设置', 'error');
+                    log('无法打开新窗口', 'error');
+                    testFailed++;
+                    runAllBtn.disabled = false;
+                    runAllBtn.textContent = '▶ 运行所有测试';
+                }
+                
+            } catch (error) {
+                addTestResult(`✗ 测试出错: ${error.message}`, 'error');
+                log('测试出错: ' + error.message, 'error');
+                testFailed++;
+                runAllBtn.disabled = false;
+                runAllBtn.textContent = '▶ 运行所有测试';
+            }
+        }
+        
+        // 页面加载时更新购物车信息
+        updateCartInfo();
+        log('测试页面已加载，点击"运行所有测试"开始测试', 'info');
+    </script>
+</body>
+</html>
